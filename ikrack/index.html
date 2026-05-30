@@ -2028,5 +2028,682 @@
     }, 3000);
   }
 </script>
+
+<!-- ─── IKRACK ASSISTANT CHATBOT ─── -->
+<style>
+  /* Floating button */
+  #ikrack-chat-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #ff8833);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 30px rgba(255,85,51,0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 1.5rem;
+  }
+  #ikrack-chat-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(255,85,51,0.55);
+  }
+  #ikrack-chat-btn .chat-badge {
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 16px; height: 16px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    animation: pulse 2.5s infinite;
+  }
+
+  /* Chat window */
+  #ikrack-chat-window {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 998;
+    width: 380px;
+    max-height: 580px;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,85,51,0.2);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    transform: scale(0.92) translateY(16px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #ikrack-chat-window.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Header */
+  .chat-header {
+    background: linear-gradient(135deg, rgba(255,85,51,0.18), rgba(255,85,51,0.06));
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+  .chat-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #ff8833);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .chat-avatar-dot {
+    position: absolute;
+    bottom: 1px; right: 1px;
+    width: 10px; height: 10px;
+    background: #4ade80;
+    border-radius: 50%;
+    border: 2px solid var(--card-bg);
+  }
+  .chat-header-info h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .chat-header-info p {
+    font-size: 0.72rem;
+    color: #4ade80;
+    font-weight: 400;
+  }
+  .chat-close-btn {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    line-height: 1;
+  }
+  .chat-close-btn:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+
+  /* Messages */
+  .chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    scroll-behavior: smooth;
+  }
+  .chat-messages::-webkit-scrollbar { width: 4px; }
+  .chat-messages::-webkit-scrollbar-track { background: transparent; }
+  .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+  .chat-msg {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-end;
+    animation: msgIn 0.25s ease;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .chat-msg.user { flex-direction: row-reverse; }
+
+  .msg-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #ff8833);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+  .msg-avatar.user-av {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  .msg-bubble {
+    max-width: 82%;
+    padding: 0.65rem 0.9rem;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  .chat-msg.bot .msg-bubble {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-bottom-left-radius: 4px;
+  }
+  .chat-msg.user .msg-bubble {
+    background: var(--accent);
+    color: white;
+    border-bottom-right-radius: 4px;
+  }
+
+  /* Quick reply chips */
+  .chat-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0 1rem 0.5rem;
+  }
+  .chip {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.78rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.18s;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+  }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Typing indicator */
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0 1rem;
+  }
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.55rem 0.75rem;
+  }
+  .typing-dots span {
+    width: 6px; height: 6px;
+    background: var(--muted);
+    border-radius: 50%;
+    animation: typingDot 1.2s infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Input */
+  .chat-input-row {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-shrink: 0;
+    background: var(--card-bg);
+  }
+  .chat-input {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+    height: 40px;
+    line-height: 1.4;
+  }
+  .chat-input:focus { border-color: rgba(255,85,51,0.4); }
+  .chat-input::placeholder { color: var(--muted); }
+  .chat-send-btn {
+    width: 38px; height: 38px;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.15s;
+    flex-shrink: 0;
+  }
+  .chat-send-btn:hover { background: var(--accent2); transform: scale(1.05); }
+  .chat-send-btn:active { transform: scale(0.95); }
+
+  .chat-footer-note {
+    text-align: center;
+    font-size: 0.68rem;
+    color: var(--muted);
+    padding: 0 1rem 0.6rem;
+    font-weight: 300;
+  }
+
+  @media (max-width: 440px) {
+    #ikrack-chat-window { width: calc(100vw - 24px); right: 12px; bottom: 90px; }
+    #ikrack-chat-btn { right: 16px; bottom: 16px; }
+  }
+</style>
+
+<!-- Floating button -->
+<button id="ikrack-chat-btn" onclick="toggleChat()" aria-label="Open iKrack Assistant">
+  🤖
+  <span class="chat-badge"></span>
+</button>
+
+<!-- Chat window -->
+<div id="ikrack-chat-window">
+  <div class="chat-header">
+    <div class="chat-avatar">
+      🤖
+      <span class="chat-avatar-dot"></span>
+    </div>
+    <div class="chat-header-info">
+      <h4>iKrack Assistant</h4>
+      <p>● Online — Here to help</p>
+    </div>
+    <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+  </div>
+
+  <div class="chat-messages" id="chatMessages"></div>
+  <div id="chatChips" class="chat-chips"></div>
+  <div id="typingIndicator" class="typing-indicator" style="display:none;">
+    <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff8833);display:flex;align-items:center;justify-content:center;font-size:0.8rem;">🤖</div>
+    <div class="typing-dots"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="chat-input-row">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Type a question…" onkeydown="if(event.key==='Enter') sendUserMsg()" maxlength="200">
+    <button class="chat-send-btn" onclick="sendUserMsg()">➤</button>
+  </div>
+  <div class="chat-footer-note">iKrack Assistant · Proof of concept · Not a live AI</div>
+</div>
+
+<script>
+// ─── CHATBOT ENGINE ───
+
+let chatOpen = false;
+let chatStarted = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('ikrack-chat-window');
+  win.classList.toggle('open', chatOpen);
+  if (chatOpen && !chatStarted) {
+    chatStarted = true;
+    setTimeout(() => botSay("Hey there! 👋 I'm the **iKrack Assistant**. I can walk you through troubleshooting steps for common phone issues.\n\nWhat's going on with your device?", MAIN_MENU), 400);
+  }
+  if (chatOpen) setTimeout(() => document.getElementById('chatInput').focus(), 300);
+}
+
+const MAIN_MENU = [
+  { label: '📱 Screen issues', key: 'screen' },
+  { label: '🔋 Battery / charging', key: 'battery' },
+  { label: '📵 Phone won't turn on', key: 'wont_on' },
+  { label: '🔇 Sound / speaker', key: 'sound' },
+  { label: '📷 Camera problems', key: 'camera' },
+  { label: '🌐 Wi-Fi / connectivity', key: 'wifi' },
+  { label: '💧 Water damage', key: 'water' },
+  { label: '🔥 Overheating', key: 'overheat' },
+  { label: '🐌 Phone is slow', key: 'slow' },
+  { label: '📞 Can\'t make calls', key: 'calls' },
+];
+
+const FLOWS = {
+  screen: {
+    msg: "Got it — screen issues. What does the screen look like?",
+    chips: [
+      { label: 'Black / won\'t display', key: 'screen_black' },
+      { label: 'Cracked / broken glass', key: 'screen_cracked' },
+      { label: 'Flickering or lines', key: 'screen_flicker' },
+      { label: 'Touch doesn\'t respond', key: 'screen_touch' },
+      { label: 'Dim / dark screen', key: 'screen_dim' },
+    ]
+  },
+  screen_black: {
+    msg: "A black screen can often be fixed at home. Try these steps:\n\n**1.** Hold the power button for 10–15 seconds to force restart.\n**2.** If that doesn't work, try a hard reset (Power + Volume Down on most phones).\n**3.** Connect to a charger for at least 15 minutes — the battery may be fully dead.\n**4.** Check if the screen works when connected to an external display via USB-C.\n\nIf the screen stays black after all this, the display itself is likely damaged and needs replacement. 🔧",
+    chips: [{ label: '✅ That fixed it!', key: 'great' }, { label: '❌ Still not working', key: 'needs_repair' }, { label: '← Back to main menu', key: '__main' }]
+  },
+  screen_cracked: {
+    msg: "A cracked screen needs professional repair — attempting to fix it yourself risks cutting your fingers or damaging the digitizer underneath.\n\n**Quick tips while you wait:**\n• Apply clear tape over the crack to prevent glass chips from spreading.\n• Enable screen protector mode if available.\n• Back up your data ASAP.\n\niKrack can replace your screen **same day** starting around **$69**. Want to get a quote?",
+    chips: [{ label: '💰 Get a price estimate', key: '__quote' }, { label: '📞 Call us now', key: '__call' }, { label: '← Main menu', key: '__main' }]
+  },
+  screen_flicker: {
+    msg: "Screen flickering or lines usually means a loose display cable or hardware fault. Try this first:\n\n**1.** Restart your phone completely.\n**2.** Update your OS — sometimes a software bug causes flickering.\n**3.** Try Safe Mode (hold Power, long-press 'Power off') — if it stops in Safe Mode, an app is causing it.\n**4.** Turn off Auto-Brightness and check if it persists.\n\nIf flickering continues, the display connector or LCD is failing and should be replaced.",
+    chips: [{ label: '✅ Fixed in Safe Mode', key: 'app_issue' }, { label: '❌ Still flickering', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  screen_touch: {
+    msg: "Unresponsive touch is frustrating! Here's what to try:\n\n**1.** Clean the screen with a dry microfiber cloth — moisture or oils block touch sensors.\n**2.** Remove any thick screen protector — low-quality ones block touch sensitivity.\n**3.** Restart the phone.\n**4.** On iPhone: Go to Settings → Accessibility → Touch → adjust settings.\n**5.** Hard reset if still unresponsive.\n\nIf none of these work, the digitizer (touch layer) may be damaged.",
+    chips: [{ label: '✅ That helped!', key: 'great' }, { label: '❌ Touch still broken', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  screen_dim: {
+    msg: "Dim screen? Let's rule out software first:\n\n**1.** Drag down the notification shade and crank brightness all the way up.\n**2.** Turn off Auto-Brightness: Settings → Accessibility → Display → Auto-Brightness (iPhone) or Settings → Display (Android).\n**3.** Check if you accidentally enabled 'Night Mode' or color filters.\n**4.** Check battery saver mode — it often dims the screen automatically.\n\nIf the screen is dim even at max brightness, the backlight may be failing.",
+    chips: [{ label: '✅ Fixed it!', key: 'great' }, { label: '❌ Still too dim', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  battery: {
+    msg: "Battery or charging issue — let's narrow it down:",
+    chips: [
+      { label: 'Won\'t charge at all', key: 'batt_no_charge' },
+      { label: 'Charges very slowly', key: 'batt_slow' },
+      { label: 'Battery drains fast', key: 'batt_drain' },
+      { label: 'Phone dies at 20–30%', key: 'batt_inaccurate' },
+      { label: 'Gets hot while charging', key: 'batt_hot' },
+    ]
+  },
+  batt_no_charge: {
+    msg: "Not charging at all — try these steps:\n\n**1.** Try a different cable and charger block. Cables fail more often than phones.\n**2.** Clean the charging port gently with a dry toothpick — lint buildup is #1 cause.\n**3.** Try a wireless charger if your phone supports it — confirms if port is the issue.\n**4.** Restart the phone while plugged in.\n**5.** Check for bent or corroded pins in the port.\n\nIf none of these work, the charging port likely needs replacement — a quick, affordable fix at iKrack. ⚡",
+    chips: [{ label: '✅ It\'s charging now!', key: 'great' }, { label: '❌ Still won\'t charge', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  batt_slow: {
+    msg: "Slow charging is usually a cable or charger issue:\n\n**1.** Use the original charger that came with your phone — third-party ones often underdeliver wattage.\n**2.** Make sure you're using a fast-charge compatible adapter.\n**3.** Turn on Airplane Mode while charging — it dramatically speeds things up.\n**4.** Close all background apps.\n**5.** Clean the charging port.\n\nIf your phone used to charge fast and now doesn't, the battery may be degraded.",
+    chips: [{ label: '✅ Faster now!', key: 'great' }, { label: '🔋 Check my battery health', key: 'batt_health' }, { label: '← Main menu', key: '__main' }]
+  },
+  batt_drain: {
+    msg: "Fast battery drain is usually software-related. Try this:\n\n**1.** Check Battery Usage: Settings → Battery → see which app is draining it.\n**2.** Turn off Background App Refresh (iPhone) or restrict background activity (Android).\n**3.** Lower screen brightness and enable adaptive brightness.\n**4.** Turn off 5G if you don't need it — it's a huge battery drain.\n**5.** Disable Location Services for apps that don't need it.\n**6.** Check battery health — if under 80%, it needs replacement.\n\n**iPhone:** Settings → Battery → Battery Health.",
+    chips: [{ label: '🔋 Check battery health', key: 'batt_health' }, { label: '✅ That helped!', key: 'great' }, { label: '← Main menu', key: '__main' }]
+  },
+  batt_health: {
+    msg: "**Checking Battery Health:**\n\n📱 **iPhone:** Settings → Battery → Battery Health & Charging. If it shows below **80%**, Apple recommends replacement.\n\n🤖 **Samsung/Android:** Settings → Device Care → Battery → Battery Information. Or dial **##4636##** for a battery test.\n\nA degraded battery causes random shutdowns, slow performance, and fast drain. iKrack replaces batteries starting at **$39** with a lifetime warranty. 🔋",
+    chips: [{ label: '💰 Get a battery quote', key: '__quote' }, { label: '📞 Call us', key: '__call' }, { label: '← Main menu', key: '__main' }]
+  },
+  batt_inaccurate: {
+    msg: "Shutting off at 20–30% is a classic sign of a worn-out battery that can no longer hold a full charge.\n\n**Quick test:**\nLet the phone die completely, then charge uninterrupted to 100%. If it still shuts off early — the battery needs replacement.\n\nThis is one of the most common and affordable repairs we do. Battery replacement at iKrack starts at **$39** and takes about 20 minutes. ⚡",
+    chips: [{ label: '💰 Get a quote', key: '__quote' }, { label: '📞 Call us', key: '__call' }, { label: '← Main menu', key: '__main' }]
+  },
+  batt_hot: {
+    msg: "Getting hot while charging is a warning sign. Do this **now**:\n\n⚠️ **Remove the case** while charging — cases trap heat.\n⚠️ **Don't charge under pillows or blankets.**\n\n**Steps:**\n1. Stop using the phone while it charges.\n2. Avoid direct sunlight or hot surfaces.\n3. Try a different charger — a faulty charger can cause overheating.\n4. Check if a specific app is running in the background.\n\nIf the phone gets uncomfortably hot regularly, the battery may be swelling — bring it in immediately, as a swollen battery can be dangerous.",
+    chips: [{ label: '📞 Urgent — call us now', key: '__call' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  wont_on: {
+    msg: "Phone won't turn on — let's work through this:\n\n**1.** Plug into a charger for at least 15–20 minutes (it may be completely dead).\n**2.** Try a hard reset — hold **Power + Volume Down** for 10–15 seconds (Android) or **Power + Volume Down** until Apple logo appears (iPhone).\n**3.** Try a different charging cable and adapter.\n**4.** Look for any signs of life — vibration, sound, LED flash.\n\nIf there's absolutely no response, the battery, charging port, or motherboard may have failed.",
+    chips: [{ label: '✅ It turned on!', key: 'great' }, { label: '❌ Nothing at all', key: 'needs_repair' }, { label: '💧 It got wet recently', key: 'water' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  sound: {
+    msg: "Sound or speaker issue — what's happening?",
+    chips: [
+      { label: 'No sound at all', key: 'sound_none' },
+      { label: 'Muffled / quiet speaker', key: 'sound_muffled' },
+      { label: 'Earpiece not working', key: 'sound_earpiece' },
+      { label: 'Microphone issue', key: 'sound_mic' },
+    ]
+  },
+  sound_none: {
+    msg: "No sound? Run through these fast:\n\n**1.** Check the mute switch (iPhone left side — orange means muted).\n**2.** Turn volume all the way up with the side buttons.\n**3.** Disconnect any Bluetooth headphones — sound may be routing there.\n**4.** Pull out of headphone jack / check if any accessory is plugged in.\n**5.** Restart the phone.\n**6.** Try Settings → Sounds → play a ringtone to test.\n**7.** Check Do Not Disturb / Focus mode is off.\n\nIf speaker is still silent, it may be a hardware fault or debris blockage.",
+    chips: [{ label: '✅ Got sound back!', key: 'great' }, { label: '❌ Still silent', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  sound_muffled: {
+    msg: "Muffled speaker is almost always **lint or debris** clogging the speaker grille.\n\n**Fix it yourself:**\n1. Look closely at the bottom speaker grille.\n2. Use a **dry, soft toothbrush** to gently brush across the grille — don't push in.\n3. Use a can of compressed air from a distance.\n4. Never use water, toothpicks, or needles.\n\nIf the speaker is physically damaged (e.g. after a drop or water), it'll need replacement.",
+    chips: [{ label: '✅ Much better!', key: 'great' }, { label: '❌ Still muffled', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  sound_earpiece: {
+    msg: "Can't hear calls through the earpiece? Try:\n\n**1.** Make sure you're not on speaker mode during calls.\n**2.** Clean the earpiece speaker (top of phone) with a soft dry brush.\n**3.** Test with headphones — if you hear fine, earpiece is the issue.\n**4.** Go to Settings → Accessibility → Audio/Visual → check balance isn't all on one side.\n**5.** Restart the phone.\n\nEarpiece replacement is a common, quick repair at iKrack.",
+    chips: [{ label: '✅ Fixed!', key: 'great' }, { label: '❌ Still no earpiece', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  sound_mic: {
+    msg: "Microphone not working? People can't hear you on calls?\n\n**1.** Record a voice memo and play it back — confirms if mic hardware works.\n**2.** Check all three mic locations aren't blocked (bottom, back near camera, top).\n**3.** Remove your case — some cases partially cover mic holes.\n**4.** Check app permissions — Settings → Privacy → Microphone.\n**5.** Restart and test again.\n\nIf people hear static or nothing, the mic itself likely needs replacement.",
+    chips: [{ label: '✅ Works now!', key: 'great' }, { label: '❌ Mic still broken', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  camera: {
+    msg: "Camera problems — what's the issue?",
+    chips: [
+      { label: 'Camera app crashes', key: 'cam_crash' },
+      { label: 'Photos are blurry', key: 'cam_blur' },
+      { label: 'Black screen in camera', key: 'cam_black' },
+      { label: 'Flash not working', key: 'cam_flash' },
+    ]
+  },
+  cam_crash: {
+    msg: "Camera app crashing? Try this:\n\n**1.** Force-close the camera app and reopen.\n**2.** Restart the phone.\n**3.** Update iOS/Android — camera bugs are often patched.\n**4.** Check available storage: Settings → Storage. Camera needs at least 1GB free.\n**5.** Reset app preferences: Settings → Apps → Camera → Clear Cache.\n**6.** If it only crashes on one lens (wide/ultra-wide), a specific camera module may be faulty.",
+    chips: [{ label: '✅ Works now!', key: 'great' }, { label: '❌ Still crashing', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  cam_blur: {
+    msg: "Blurry photos are usually simple to fix:\n\n**1.** Clean the camera lens with a microfiber cloth — fingerprints are the #1 cause.\n**2.** Remove any case or lens protector that may be covering the lens.\n**3.** Tap the subject on screen to manually focus.\n**4.** Make sure you're not too close — most cameras need 2–3 inches of distance.\n**5.** Check if the lens glass is cracked — a crack causes permanent blur.\n\nA cracked camera lens is an inexpensive fix at iKrack!",
+    chips: [{ label: '✅ Sharp again!', key: 'great' }, { label: '❌ Still blurry', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  cam_black: {
+    msg: "Black screen when opening the camera is usually a software or memory issue:\n\n**1.** Force-close and reopen the camera.\n**2.** Restart the phone.\n**3.** Clear camera app cache (Android): Settings → Apps → Camera → Storage → Clear Cache.\n**4.** Free up storage space — the camera needs room to function.\n**5.** Try a third-party camera app (Google Camera, etc.) to test if hardware works.\n\nIf third-party apps work fine, it's a software issue. If not, the camera hardware may be faulty.",
+    chips: [{ label: '✅ Camera works!', key: 'great' }, { label: '❌ Black screen still', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  cam_flash: {
+    msg: "Flash not working?\n\n**1.** Check if flash is turned on in the camera app — look for the lightning bolt icon.\n**2.** Check if the flashlight works: swipe down → tap flashlight. If it works there, flash hardware is fine.\n**3.** Let the phone cool down — iPhones disable the flash when overheating.\n**4.** Restart the phone.\n**5.** Go to Settings → Privacy → Camera and re-enable camera access.\n\nIf the flashlight also doesn't work, the flash LED may need replacement.",
+    chips: [{ label: '✅ Flash is back!', key: 'great' }, { label: '❌ Flash still broken', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  wifi: {
+    msg: "Wi-Fi or connectivity issue — what's happening?",
+    chips: [
+      { label: 'Can\'t connect to Wi-Fi', key: 'wifi_no' },
+      { label: 'Wi-Fi keeps dropping', key: 'wifi_drop' },
+      { label: 'No cellular signal', key: 'wifi_cell' },
+      { label: 'Bluetooth not working', key: 'wifi_bt' },
+    ]
+  },
+  wifi_no: {
+    msg: "Can't connect to Wi-Fi? Let's troubleshoot:\n\n**1.** Toggle Wi-Fi off and back on.\n**2.** Forget the network: Settings → Wi-Fi → tap network → Forget. Reconnect fresh.\n**3.** Restart your router (unplug 30 seconds).\n**4.** Try connecting to a different network — isolates if it's your phone or router.\n**5.** Reset Network Settings: Settings → General → Transfer or Reset → Reset Network Settings.\n\n⚠️ Resetting network settings will erase saved Wi-Fi passwords.",
+    chips: [{ label: '✅ Connected!', key: 'great' }, { label: '❌ Still can\'t connect', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  wifi_drop: {
+    msg: "Wi-Fi keeps dropping? Common causes:\n\n**1.** Stay closer to the router — walls and distance weaken signal.\n**2.** Check if other devices have the same issue — may be a router problem.\n**3.** Change your router's channel in router settings (avoid channel 6 if crowded).\n**4.** On iPhone: turn off Wi-Fi Assist (Settings → Cellular → scroll down → Wi-Fi Assist off).\n**5.** Reset Network Settings as a last resort.\n\nIf only your phone drops while others stay connected, the Wi-Fi antenna inside may be damaged.",
+    chips: [{ label: '✅ Stable now!', key: 'great' }, { label: '❌ Still dropping', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  wifi_cell: {
+    msg: "No cellular signal? Try these:\n\n**1.** Toggle Airplane Mode on for 15 seconds, then off — forces a tower reconnect.\n**2.** Restart the phone.\n**3.** Check if your SIM card is seated properly — power off, remove, reinsert SIM.\n**4.** Manually select your carrier: Settings → Cellular → Network Selection → Manual.\n**5.** Update carrier settings (iPhone): Settings → General → About — update will pop up if available.\n**6.** Test your SIM in another phone to rule out a faulty SIM.\n\nIf no signal persists, the cellular antenna may be damaged.",
+    chips: [{ label: '✅ Got signal!', key: 'great' }, { label: '❌ Still no signal', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+  wifi_bt: {
+    msg: "Bluetooth not working?\n\n**1.** Toggle Bluetooth off and back on.\n**2.** 'Forget' the device and re-pair it fresh.\n**3.** Restart both your phone and the Bluetooth device.\n**4.** Make sure the other device is in pairing mode.\n**5.** Reset Network Settings — this clears all Bluetooth pairings too.\n**6.** Check if Bluetooth works with any other device — narrows down the issue.\n\nBluetooth antenna issues from drops or water damage may require a repair.",
+    chips: [{ label: '✅ Connected!', key: 'great' }, { label: '❌ Still not pairing', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  water: {
+    msg: "⚠️ **Act fast — water damage gets worse by the minute!**\n\nDo this **immediately:**\n\n**1.** Power off the phone RIGHT NOW — don't charge it.\n**2.** Remove the case and SIM card.\n**3.** Gently shake out excess water.\n**4.** Pat dry with a towel — do NOT use a hair dryer.\n**5.** Leave it in a dry room with airflow for 24–48 hours.\n**6.** Do NOT put it in rice — rice does nothing useful.\n\n⚡ The sooner you bring it to iKrack, the better chance we have of saving it. Our water damage service starts at **$49**.",
+    chips: [{ label: '📞 Call us urgently', key: '__call' }, { label: '💰 Water damage quote', key: '__quote' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  overheat: {
+    msg: "Phone overheating? This can seriously damage your battery and motherboard:\n\n**Immediate steps:**\n1. Remove the case.\n2. Stop charging and close all apps.\n3. Move out of direct sunlight / hot car.\n4. Turn on Airplane Mode temporarily.\n\n**Ongoing fixes:**\n• Reduce screen brightness.\n• Update apps — poorly coded apps cause heat.\n• Check which app is consuming CPU: Settings → Battery.\n• Turn off Background App Refresh.\n• Avoid gaming/video while charging.\n\nFrequent overheating with no clear cause can signal a failing battery or logic board.",
+    chips: [{ label: '✅ Cooled down!', key: 'great' }, { label: '❌ Still overheating', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  slow: {
+    msg: "Phone running slow? Try these performance fixes:\n\n**1.** Restart — clears RAM and background processes.\n**2.** Free up storage: aim for at least 10–15% free space. Delete unused apps, photos, videos.\n**3.** Clear app caches (Android): Settings → Storage → Cached Data.\n**4.** Disable or uninstall apps you don't use.\n**5.** Update iOS/Android — updates often include performance improvements.\n**6.** Turn off unnecessary animations: Settings → Accessibility → Reduce Motion (iPhone).\n**7.** Check battery health — a degraded battery throttles performance automatically.",
+    chips: [{ label: '🔋 Check battery health', key: 'batt_health' }, { label: '✅ Running faster!', key: 'great' }, { label: '❌ Still very slow', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  calls: {
+    msg: "Can't make or receive calls? Let's figure it out:\n\n**1.** Check you have cellular signal (bars at top of screen).\n**2.** Toggle Airplane Mode on/off — reconnects to tower.\n**3.** Make sure Do Not Disturb / Focus mode isn't blocking calls.\n**4.** Check call forwarding is off: Settings → Phone → Call Forwarding.\n**5.** Check if your account is in good standing with your carrier.\n**6.** Test your SIM in another phone.\n**7.** Restart the phone.\n\nIf you have signal but calls fail, it could be a carrier issue or a damaged antenna.",
+    chips: [{ label: '✅ Calls working!', key: 'great' }, { label: '❌ Still can\'t call', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }]
+  },
+
+  // Terminal states
+  great: {
+    msg: "That's awesome — glad we could sort that out! 🎉\n\nIf anything else comes up, I'm always here. And if you ever need a professional repair, iKrack has you covered with **same-day service** and a **lifetime warranty**. 🛡️",
+    chips: [{ label: '🔁 Another issue', key: '__main' }, { label: '💰 Get a repair quote', key: '__quote' }, { label: '📞 Contact a store', key: '__call' }]
+  },
+  needs_repair: {
+    msg: "Sounds like this one needs a professional look. 🔧\n\nThe good news: iKrack's certified technicians handle this every day. Bring it in and we'll diagnose it **free** — no fix, no fee.\n\n📍 **Two locations:**\n• Bonaire: (478) 287-9783\n• Macon: (478) 309-6400\n\nOr get an instant price estimate online and save $10 when you book! 💰",
+    chips: [{ label: '💰 Get instant quote', key: '__quote' }, { label: '📞 Call Bonaire', key: '__call_bonaire' }, { label: '📞 Call Macon', key: '__call_macon' }, { label: '🔁 Try another issue', key: '__main' }]
+  },
+  app_issue: {
+    msg: "If the issue only appears in normal mode and not Safe Mode, a third-party app is the culprit.\n\n**Find and remove it:**\n1. Stay in Safe Mode and confirm it's stable.\n2. Exit Safe Mode (restart normally).\n3. Think about the last app you installed before the issue started — uninstall it.\n4. If unsure, uninstall recently installed apps one by one until the issue stops.\n\nThis is the safest fix and costs nothing! 😊",
+    chips: [{ label: '✅ Found the app!', key: 'great' }, { label: '← Main menu', key: '__main' }]
+  },
+};
+
+// ── Text input fallback keyword map ──
+const KEYWORD_MAP = [
+  { words: ['screen','display','broke','crack','shatter','black','dark','dim','flicker','touch'], key: 'screen' },
+  { words: ['battery','charge','charging','drain','fast','slow charge','die','percent'], key: 'battery' },
+  { words: ['turn on','wont on','won\'t on','dead','no power','not turning'], key: 'wont_on' },
+  { words: ['sound','speaker','audio','loud','quiet','muffled','mic','microphone','hear'], key: 'sound' },
+  { words: ['camera','photo','picture','blur','blurry','flash','selfie','lens'], key: 'camera' },
+  { words: ['wifi','wi-fi','internet','connect','signal','cellular','bluetooth','4g','5g'], key: 'wifi' },
+  { words: ['water','wet','dropped','liquid','spill','rain','pool','sink'], key: 'water' },
+  { words: ['hot','heat','overheat','warm','burning'], key: 'overheat' },
+  { words: ['slow','lag','freeze','stuck','sluggish','performance'], key: 'slow' },
+  { words: ['call','calls','phone call','dial','receive'], key: 'calls' },
+  { words: ['quote','price','cost','how much','estimate'], key: '__quote' },
+  { words: ['hi','hello','hey','help','start'], key: '__main_greet' },
+];
+
+function matchKeyword(text) {
+  const t = text.toLowerCase();
+  for (const entry of KEYWORD_MAP) {
+    if (entry.words.some(w => t.includes(w))) return entry.key;
+  }
+  return null;
+}
+
+// ── Core chat functions ──
+function addMsg(role, text) {
+  const messages = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = `chat-msg ${role}`;
+  const isBot = role === 'bot';
+  div.innerHTML = `
+    <div class="msg-avatar ${isBot ? '' : 'user-av'}">${isBot ? '🤖' : 'You'}</div>
+    <div class="msg-bubble">${formatText(text)}</div>
+  `;
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function formatText(t) {
+  return t
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n/g, '<br>');
+}
+
+function setChips(chips) {
+  const container = document.getElementById('chatChips');
+  container.innerHTML = '';
+  (chips || []).forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'chip';
+    btn.textContent = c.label;
+    btn.onclick = () => handleChip(c);
+    container.appendChild(btn);
+  });
+}
+
+function showTyping() {
+  document.getElementById('typingIndicator').style.display = 'flex';
+  document.getElementById('chatMessages').scrollTop = 99999;
+}
+function hideTyping() {
+  document.getElementById('typingIndicator').style.display = 'none';
+}
+
+function botSay(text, chips, delay = 0) {
+  setChips([]);
+  showTyping();
+  setTimeout(() => {
+    hideTyping();
+    addMsg('bot', text);
+    if (chips) setChips(chips);
+  }, delay + 900);
+}
+
+function handleChip(chip) {
+  // Special system chips
+  if (chip.key === '__main') {
+    addMsg('user', chip.label);
+    botSay("Sure! What else can I help you with? 😊", MAIN_MENU);
+    return;
+  }
+  if (chip.key === '__main_greet') {
+    botSay("Hey! 👋 What's going on with your device?", MAIN_MENU);
+    return;
+  }
+  if (chip.key === '__quote') {
+    addMsg('user', chip.label);
+    botSay("Sure! Scroll up and use our **Instant Quote Tool** to get a price estimate in seconds. 👆\n\nOr give us a call:\n📞 Bonaire: (478) 287-9783\n📞 Macon: (478) 309-6400", [
+      { label: '🔁 Back to main menu', key: '__main' }
+    ]);
+    setTimeout(() => document.getElementById('quote').scrollIntoView({ behavior: 'smooth' }), 1200);
+    return;
+  }
+  if (chip.key === '__call') {
+    addMsg('user', chip.label);
+    botSay("Give us a call — our techs are standing by! 📞\n\n• **Bonaire:** (478) 287-9783\n• **Macon:** (478) 309-6400\n\nMon–Sat: 10am–7pm", [
+      { label: '📞 Call Bonaire', key: '__call_bonaire' },
+      { label: '📞 Call Macon', key: '__call_macon' },
+      { label: '🔁 Main menu', key: '__main' }
+    ]);
+    return;
+  }
+  if (chip.key === '__call_bonaire') {
+    window.location.href = 'tel:+14782879783';
+    return;
+  }
+  if (chip.key === '__call_macon') {
+    window.location.href = 'tel:+14783096400';
+    return;
+  }
+
+  // Normal flow chip
+  const flow = FLOWS[chip.key];
+  if (!flow) return;
+  addMsg('user', chip.label);
+  botSay(flow.msg, flow.chips);
+}
+
+function sendUserMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg('user', text);
+  setChips([]);
+
+  const key = matchKeyword(text);
+  if (key === '__main_greet') {
+    botSay("Hey! 👋 What's going on with your device? Pick a topic below:", MAIN_MENU);
+    return;
+  }
+  if (key === '__quote') {
+    botSay("Sure! Use our **Instant Quote Tool** above to get a price estimate in seconds. 👆", [{ label: '🔁 Main menu', key: '__main' }]);
+    setTimeout(() => document.getElementById('quote').scrollIntoView({ behavior: 'smooth' }), 1200);
+    return;
+  }
+  if (key && FLOWS[key]) {
+    const flow = FLOWS[key];
+    botSay(flow.msg, flow.chips);
+    return;
+  }
+
+  // fallback
+  botSay("I'm not sure I understand that one, but I'm happy to help! Pick a topic below or call us directly.", MAIN_MENU);
+}
+</script>
+
 </body>
 </html>

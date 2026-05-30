@@ -488,7 +488,7 @@
   /* ─── SECTION COMMONS ─── */
   section { padding: 100px 2rem; }
 
-  .section-inner { max-width: 1200px; margin: 0 auto; min-width: 0; overflow: hidden; }
+  .section-inner { max-width: 1200px; margin: 0 auto; min-width: 0; width: 100%; }
 
   .section-label {
     font-size: 0.72rem;
@@ -1000,11 +1000,14 @@
 
   /* Tablet */
   @media (max-width: 960px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; width: 100%; }
+    .hero-content { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .hero-sub { text-align: center; max-width: 100%; }
+    .hero-badge { align-self: center; }
     .hero-visual { display: none; }
     .hero-sub { margin: 0 auto 2.5rem; }
     .hero-actions { justify-content: center; }
-    .hero-stats { justify-content: center; }
+    .hero-stats { justify-content: center; gap: 2rem; width: 100%; }
     .repairs-header { flex-direction: column; align-items: flex-start; }
     .repair-grid { grid-template-columns: 1fr 1fr; }
     .features-grid { grid-template-columns: 1fr; }
@@ -1025,17 +1028,18 @@
     /* Base */
     html { -webkit-text-size-adjust: 100%; }
     body { -webkit-tap-highlight-color: transparent; }
-    section { padding: 60px 1.25rem; }
+    section { padding: 56px 1.25rem; width: 100%; box-sizing: border-box; }
+    .section-inner { padding: 0; width: 100%; box-sizing: border-box; }
 
     /* Nav */
-    nav { padding: 0 1.25rem; height: 58px; }
+    nav { padding: 0 1.25rem; height: 58px; width: 100%; overflow: hidden; }
     .nav-logo { font-size: 1.3rem; }
     .theme-toggle { width: 40px; height: 22px; }
     .theme-toggle-thumb { width: 14px; height: 14px; }
     body.light-mode .theme-toggle-thumb { transform: translateX(18px); }
 
     /* Hero */
-    #hero { padding: 80px 1.25rem 48px; min-height: 100svh; }
+    #hero { padding: 80px 1.25rem 48px; min-height: 100svh; width: 100%; }
     .hero-badge { font-size: 0.72rem; padding: 0.3rem 0.85rem; }
     .hero-title { font-size: clamp(2.4rem, 10vw, 3.2rem); letter-spacing: -0.03em; }
     .hero-sub { font-size: 0.95rem; }
@@ -1096,9 +1100,9 @@
     .mobile-menu { padding: 1.5rem 1.25rem; overflow-y: auto; }
     .mobile-menu a { font-size: 1.3rem; padding: 0.9rem 0; min-height: 52px; display: flex; align-items: center; }
 
-    /* Chatbot */
-    #ikrack-chat-window { width: calc(100vw - 20px); right: 10px; bottom: 85px; max-height: 72vh; }
-    #ikrack-chat-btn { right: 16px; bottom: 16px; width: 54px; height: 54px; font-size: 1.3rem; }
+    /* Chatbot — corner floater above mobile bottom bar */
+    #ikrack-chat-window { width: calc(100vw - 24px); max-width: 360px; right: 12px; bottom: calc(148px + env(safe-area-inset-bottom)); max-height: 62vh; border-radius: 16px; }
+    #ikrack-chat-btn { right: 14px; bottom: calc(84px + env(safe-area-inset-bottom)); width: 52px; height: 52px; font-size: 1.25rem; box-shadow: 0 6px 24px rgba(255,85,51,0.5); }
     .chat-input { font-size: 16px; } /* Prevent iOS zoom on focus */
 
     /* Buttons — larger touch targets */
@@ -1112,8 +1116,6 @@
     /* Safe area insets for notched phones */
     nav { padding-top: env(safe-area-inset-top); }
     footer { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
-    #ikrack-chat-btn { bottom: calc(16px + env(safe-area-inset-bottom)); }
-    #ikrack-chat-window { bottom: calc(85px + env(safe-area-inset-bottom)); }
   }
 
   /* Very small phones */
@@ -1464,53 +1466,28 @@
     }
     /* Push content above the bar */
     body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
-    #ikrack-chat-btn { bottom: calc(80px + env(safe-area-inset-bottom)); }
-    #ikrack-chat-window { bottom: calc(145px + env(safe-area-inset-bottom)); }
   }
 
-  /* ── Horizontal scroll sections on mobile ── */
+  /* ── Mobile grid fixes ── */
   @media (max-width: 600px) {
     .testimonials-grid {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 1rem;
-      padding-bottom: 0.5rem;
-      margin: 0 -1.25rem;
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-      scrollbar-width: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      width: 100%;
+      margin: 2rem 0 0;
     }
-    .testimonials-grid::-webkit-scrollbar { display: none; }
-    .testimonial-card {
-      flex: 0 0 80vw;
-      scroll-snap-align: start;
-      max-width: 320px;
-    }
-
-    /* Repair grid horizontal scroll too */
+    .testimonial-card { width: 100%; }
     .repair-grid {
-      display: flex;
-      flex-direction: row;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 0;
-      margin: 0 -1.25rem;
-      border-radius: 0;
-      border-left: none;
-      border-right: none;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
-    .repair-card {
-      flex: 0 0 72vw;
-      scroll-snap-align: start;
-      max-width: 280px;
-      border-radius: 0;
-      border-right: 1px solid var(--border);
-    }
-    .repair-card:first-child { border-left: none; }
+    .repair-card { border-radius: 0; }
   }
 </style>
 
@@ -2767,8 +2744,7 @@
   }
 
   @media (max-width: 440px) {
-    #ikrack-chat-window { width: calc(100vw - 24px); right: 12px; bottom: 90px; }
-    #ikrack-chat-btn { right: 16px; bottom: 16px; }
+    #ikrack-chat-window { max-width: calc(100vw - 24px); }
   }
 </style>
 

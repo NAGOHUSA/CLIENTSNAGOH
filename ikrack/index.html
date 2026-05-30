@@ -2,8 +2,32 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>iKrack Mobile — Repair · Buy · Sell</title>
+
+<!-- Open Graph / Social Share -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ikrack.com/" />
+<meta property="og:title" content="iKrack Mobile — Smartphone Repair Service" />
+<meta property="og:description" content="Same-day repairs, lifetime warranty. iPhone, Samsung, iPad & more. Two locations in Central Georgia — Bonaire & Macon. Free instant quote!" />
+<meta property="og:image" content="https://clients.nagoh.us/ikrack/share-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="iKrack Mobile — Smart Phone Repair Service" />
+<meta property="og:site_name" content="iKrack Mobile" />
+
+<!-- Twitter / iMessage card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="iKrack Mobile — Smartphone Repair Service" />
+<meta name="twitter:description" content="Same-day repairs, lifetime warranty. iPhone, Samsung, iPad & more. Two locations in Central Georgia — Bonaire & Macon." />
+<meta name="twitter:image" content="https://clients.nagoh.us/ikrack/share-image.jpg" />
+
+<!-- General SEO -->
+<meta name="description" content="iKrack Mobile — Central Georgia's trusted smartphone repair shop since 2012. Same-day iPhone, Samsung, iPad & computer repairs. Lifetime warranty. Locations in Bonaire & Macon, GA." />
+<meta name="keywords" content="phone repair, iPhone repair, Samsung repair, iPad repair, Macon GA, Bonaire GA, Warner Robins, screen replacement, battery replacement, iKrack" />
+<meta name="author" content="iKrack Mobile" />
+<link rel="icon" type="image/jpeg" href="https://ikrack.com/wp-content/uploads/2020/11/iKrack-Logo.jpg" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
@@ -18,6 +42,130 @@
     --muted: #7a7a8c;
     --white: #ffffff;
     --card-bg: #13131c;
+  }
+
+  /* ─── LIGHT MODE ─── */
+  body.light-mode {
+    --bg: #f4f4f8;
+    --surface: #eaeaf0;
+    --surface2: #e0e0ea;
+    --border: rgba(0,0,0,0.08);
+    --accent: #e03e1e;
+    --accent2: #ff6644;
+    --text: #1a1a2e;
+    --muted: #5a5a72;
+    --white: #1a1a2e;
+    --card-bg: #ffffff;
+  }
+
+  body.light-mode nav {
+    background: rgba(244,244,248,0.90);
+    border-bottom-color: rgba(0,0,0,0.08);
+  }
+
+  body.light-mode .hero-grid-overlay {
+    opacity: 0.15;
+  }
+
+  body.light-mode .ticker-item { color: var(--muted); }
+
+  body.light-mode .repair-card { background: #ffffff; }
+  body.light-mode .repair-card:hover { background: #f0f0f8; }
+
+  body.light-mode .feature-card,
+  body.light-mode .testimonial-card,
+  body.light-mode .location-card,
+  body.light-mode .device-form-card,
+  body.light-mode .quote-panel,
+  body.light-mode .quote-result,
+  body.light-mode .hero-card-main,
+  body.light-mode .hero-card-float {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+  }
+
+  body.light-mode .qopt {
+    background: #f0f0f8;
+    border-color: rgba(0,0,0,0.1);
+    color: var(--text);
+  }
+
+  body.light-mode .quote-step-btn {
+    background: #ffffff;
+    border-color: rgba(0,0,0,0.1);
+  }
+
+  body.light-mode footer,
+  body.light-mode #awards {
+    background: var(--surface);
+  }
+
+  body.light-mode .mobile-menu {
+    background: rgba(244,244,248,0.98);
+  }
+
+  body.light-mode #ikrack-chat-window {
+    background: #ffffff;
+    border-color: rgba(224,62,30,0.2);
+  }
+
+  body.light-mode .chat-header {
+    background: linear-gradient(135deg, rgba(224,62,30,0.08), rgba(224,62,30,0.02));
+  }
+
+  body.light-mode .msg-bubble.bot,
+  body.light-mode .chat-msg.bot .msg-bubble {
+    background: #f0f0f8;
+    border-color: rgba(0,0,0,0.08);
+    color: var(--text);
+  }
+
+  body.light-mode .chat-input-row { background: #ffffff; }
+  body.light-mode .chat-input { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
+  body.light-mode .chip { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
+  body.light-mode .typing-dots { background: #f0f0f8; border-color: rgba(0,0,0,0.08); }
+
+  body.light-mode .hero-bg {
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(224,62,30,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(224,62,30,0.04) 0%, transparent 50%);
+  }
+
+  /* ─── THEME TOGGLE ─── */
+  .theme-toggle {
+    width: 44px;
+    height: 24px;
+    border-radius: 100px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+    padding: 0;
+    outline: none;
+  }
+  .theme-toggle:hover { border-color: var(--accent); }
+
+  .theme-toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    line-height: 1;
+  }
+
+  body.light-mode .theme-toggle-thumb {
+    transform: translateX(20px);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -123,6 +271,7 @@
     position: relative;
     padding: 100px 2rem 60px;
     overflow: hidden;
+    contain: layout;
   }
 
   .hero-bg {
@@ -150,10 +299,11 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
     position: relative;
     z-index: 1;
+    min-width: 0;
   }
 
   .hero-badge {
@@ -219,51 +369,51 @@
   .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
 
   .hero-visual {
-    position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
     justify-content: center;
-    height: 500px;
+    min-width: 0;
+    width: 100%;
+    padding: 1rem 0;
   }
 
   .hero-card-main {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 2rem;
-    width: 300px;
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    padding: 1.8rem;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
     animation: float 6s ease-in-out infinite;
   }
 
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
+    50% { transform: translateY(-8px); }
   }
 
   .hero-card-icon {
-    width: 52px; height: 52px;
+    width: 48px; height: 48px;
     background: linear-gradient(135deg, var(--accent), #ff8833);
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
   }
 
   .hero-card-main h3 {
     font-family: 'Syne', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   .hero-card-main p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
 
   .hero-card-tag {
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: 0.8rem;
     background: rgba(255,85,51,0.12);
     color: var(--accent2);
     font-size: 0.72rem;
@@ -274,28 +424,29 @@
     text-transform: uppercase;
   }
 
+  .hero-cards-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
   .hero-card-float {
-    position: absolute;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 1rem 1.2rem;
+    padding: 1rem;
     display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    flex-direction: column;
+    gap: 0.4rem;
     font-size: 0.82rem;
+    animation: float 6s ease-in-out infinite;
   }
-  .hero-card-float .icon { font-size: 1.4rem; }
-  .hero-card-float strong { display: block; font-size: 0.9rem; color: var(--white); }
-  .hero-card-float span { color: var(--muted); font-size: 0.75rem; }
-
-  .float-1 { top: 60px; right: -20px; animation: float2 5s ease-in-out infinite; }
-  .float-2 { bottom: 80px; left: -30px; animation: float3 7s ease-in-out infinite; }
-  .float-3 { top: 200px; right: -50px; animation: float2 8s ease-in-out infinite 1s; }
-
-  @keyframes float2 { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
-  @keyframes float3 { 0%,100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-10px) rotate(-1deg); } }
+  .hero-card-float:nth-child(2) { animation-duration: 7s; animation-delay: 0.5s; }
+  .hero-card-float:nth-child(3) { animation-duration: 8s; animation-delay: 1s; }
+  .hero-card-float .icon { font-size: 1.3rem; }
+  .hero-card-float strong { display: block; font-size: 0.85rem; color: var(--white); font-weight: 600; }
+  .hero-card-float span { color: var(--muted); font-size: 0.72rem; line-height: 1.4; }
 
   /* ─── SECTION COMMONS ─── */
   section { padding: 100px 2rem; }
@@ -1099,6 +1250,9 @@
       <a href="tel:+14783096400">Macon · (478) 309-6400</a>
     </div>
     <a href="#quote" class="btn btn-primary">⚡ Get Quote</a>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
+      <div class="theme-toggle-thumb" id="themeThumb">🌙</div>
+    </button>
     <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </div>
@@ -1153,23 +1307,19 @@
         <p>Screen replacement completed in under 45 minutes with OEM-quality parts.</p>
         <span class="hero-card-tag">✓ Ready for Pickup</span>
       </div>
-      <div class="hero-card-float float-1">
-        <span class="icon">⭐</span>
-        <div>
+      <div class="hero-cards-row">
+        <div class="hero-card-float">
+          <span class="icon">⭐</span>
           <strong>4.9 / 5.0</strong>
           <span>500+ Google Reviews</span>
         </div>
-      </div>
-      <div class="hero-card-float float-2">
-        <span class="icon">🛡️</span>
-        <div>
+        <div class="hero-card-float">
+          <span class="icon">🛡️</span>
           <strong>Lifetime Warranty</strong>
           <span>On all repair parts</span>
         </div>
-      </div>
-      <div class="hero-card-float float-3">
-        <span class="icon">⚡</span>
-        <div>
+        <div class="hero-card-float">
+          <span class="icon">⚡</span>
           <strong>Same Day</strong>
           <span>Most repairs done while you wait</span>
         </div>
@@ -2027,6 +2177,33 @@
       btn.style.background = '';
     }, 3000);
   }
+
+  // ─── THEME TOGGLE ───
+  const THEME_KEY = 'ikrack-theme';
+
+  function applyTheme(theme) {
+    const thumb = document.getElementById('themeThumb');
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+      if (thumb) thumb.textContent = '☀️';
+    } else {
+      document.body.classList.remove('light-mode');
+      if (thumb) thumb.textContent = '🌙';
+    }
+    localStorage.setItem(THEME_KEY, theme);
+  }
+
+  function toggleTheme() {
+    const isLight = document.body.classList.contains('light-mode');
+    applyTheme(isLight ? 'dark' : 'light');
+  }
+
+  // Load saved preference on page load (default: dark)
+  (function() {
+    const saved = localStorage.getItem(THEME_KEY);
+    applyTheme(saved === 'light' ? 'light' : 'dark');
+  })();
+
 </script>
 
 <!-- ─── IKRACK ASSISTANT CHATBOT ─── -->
@@ -2349,6 +2526,12 @@
 let chatOpen = false;
 let chatStarted = false;
 
+// Ensure button is wired even if inline onclick attr somehow fails
+document.addEventListener('DOMContentLoaded', function() {
+  const btn = document.getElementById('ikrack-chat-btn');
+  if (btn) btn.addEventListener('click', toggleChat);
+});
+
 function toggleChat() {
   chatOpen = !chatOpen;
   const win = document.getElementById('ikrack-chat-window');
@@ -2363,7 +2546,7 @@ function toggleChat() {
 const MAIN_MENU = [
   { label: '📱 Screen issues', key: 'screen' },
   { label: '🔋 Battery / charging', key: 'battery' },
-  { label: '📵 Phone won't turn on', key: 'wont_on' },
+  { label: '📵 Phone won\'t turn on', key: 'wont_on' },
   { label: '🔇 Sound / speaker', key: 'sound' },
   { label: '📷 Camera problems', key: 'camera' },
   { label: '🌐 Wi-Fi / connectivity', key: 'wifi' },

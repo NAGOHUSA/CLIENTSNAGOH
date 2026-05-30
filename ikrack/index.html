@@ -300,15 +300,7 @@
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    flex-shrink: 0;
-  }
 
-  /* Chat btn always visible in nav on ALL screen sizes */
-  #ikrack-chat-nav-btn-wrap { display: flex; align-items: center; }
 
   /* ─── HERO ─── */
   #hero {
@@ -1029,8 +1021,6 @@
     .nav-links { display: none; }
     .nav-phones { display: none; }
     .hamburger { display: flex; }
-    #ikrack-chat-btn { display: flex !important; }
-    .nav-right { gap: 0.75rem; }
     .cta-box { padding: 3rem 2rem; }
     .cta-box .section-title { font-size: 2rem; }
   }
@@ -1046,11 +1036,10 @@
     /* Nav */
     nav { padding: 0 1rem; height: 58px; width: 100%; }
     .nav-logo { font-size: 1.2rem; }
-    .nav-right { gap: 0.5rem; }
     .theme-toggle { width: 36px; height: 20px; }
     .theme-toggle-thumb { width: 13px; height: 13px; font-size: 8px; top: 2px; left: 2px; }
     body.light-mode .theme-toggle-thumb { transform: translateX(16px); }
-    #ikrack-chat-btn { display: flex !important; width: 32px; height: 32px; font-size: 0.9rem; }
+
     .chat-badge { width: 6px !important; height: 6px !important; }
 
     /* Hero */
@@ -1117,7 +1106,7 @@
 
     /* Chatbot — corner floater above mobile bottom bar */
     #ikrack-chat-window { width: calc(100vw - 24px); max-width: 360px; right: 12px; bottom: calc(148px + env(safe-area-inset-bottom)); max-height: 62vh; border-radius: 16px; }
-    #ikrack-chat-btn { right: 14px; bottom: calc(84px + env(safe-area-inset-bottom)); width: 52px; height: 52px; font-size: 1.25rem; box-shadow: 0 6px 24px rgba(255,85,51,0.5); }
+
     .chat-input { font-size: 16px; } /* Prevent iOS zoom on focus */
 
     /* Buttons — larger touch targets */
@@ -1523,7 +1512,7 @@
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#quote" style="color:var(--accent2); font-weight:600;">⚡ Quote Tool</a></li>
   </ul>
-  <div class="nav-right">
+  <div style="display:flex;align-items:center;gap:0.6rem;flex-shrink:0;">
     <div class="nav-phones">
       <a href="tel:+14782879783">Bonaire · (478) 287-9783</a>
       <a href="tel:+14783096400">Macon · (478) 309-6400</a>
@@ -1531,9 +1520,9 @@
     <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle light/dark mode" title="Toggle light/dark mode">
       <div class="theme-toggle-thumb" id="themeThumb">🌙</div>
     </button>
-    <button id="ikrack-chat-btn" aria-label="Open iKrack Assistant" title="iKrack Assistant">
+    <button id="ikrack-chat-btn" aria-label="Open iKrack Assistant" title="Chat with iKrack Assistant" style="background:none;border:1px solid rgba(255,255,255,0.15);border-radius:8px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;position:relative;flex-shrink:0;color:white;">
       🤖
-      <span class="chat-badge"></span>
+      <span class="chat-badge" style="position:absolute;top:-3px;right:-3px;width:8px;height:8px;background:#4ade80;border-radius:50%;border:2px solid #0a0a0f;animation:pulse 2.5s infinite;"></span>
     </button>
     <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -2491,23 +2480,8 @@
 <!-- ─── IKRACK ASSISTANT CHATBOT ─── -->
 <style>
   /* ── Chat nav button ── */
-  #ikrack-chat-btn {
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    cursor: pointer;
-    position: relative;
-    transition: border-color 0.2s, background 0.2s;
-    flex-shrink: 0;
-    -webkit-tap-highlight-color: transparent;
-  }
-  #ikrack-chat-btn:hover { border-color: var(--accent); background: rgba(255,85,51,0.08); }
+  #ikrack-chat-btn:hover { border-color: var(--accent) !important; background: rgba(255,85,51,0.12) !important; }
+  #ikrack-chat-btn:active { opacity: 0.8; }
   #ikrack-chat-btn .chat-badge {
     position: absolute;
     top: -3px; right: -3px;
@@ -2555,11 +2529,7 @@
       max-height: 70vh;
       transform-origin: top center;
     }
-    #ikrack-chat-btn {
-      width: 34px;
-      height: 34px;
-      font-size: 1rem;
-    }
+    /* chat btn sized via inline style */
   }
 
   /* ── Header ── */
@@ -2711,7 +2681,7 @@
   body.light-mode .chat-input { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
   body.light-mode .chip { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
   body.light-mode .typing-dots { background: #f0f0f8; border-color: rgba(0,0,0,0.08); }
-  body.light-mode #ikrack-chat-btn { border-color: rgba(0,0,0,0.1); }
+  body.light-mode #ikrack-chat-btn { border-color: rgba(0,0,0,0.15) !important; }
 </style>
 
 

@@ -1000,8 +1000,8 @@
 
   /* Tablet */
   @media (max-width: 960px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; width: 100%; }
-    .hero-content { width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; width: 100%; overflow: hidden; }
+    .hero-content { width: 100%; max-width: 100%; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
     .hero-sub { text-align: center; max-width: 100%; }
     .hero-badge { align-self: center; }
     .hero-visual { display: none; }
@@ -1039,9 +1039,9 @@
     body.light-mode .theme-toggle-thumb { transform: translateX(18px); }
 
     /* Hero */
-    #hero { padding: 80px 1.25rem 48px; min-height: 100svh; width: 100%; }
+    #hero { padding: 80px 1.25rem 48px; min-height: 100svh; width: 100%; overflow-x: hidden; box-sizing: border-box; }
     .hero-badge { font-size: 0.72rem; padding: 0.3rem 0.85rem; }
-    .hero-title { font-size: clamp(2.4rem, 10vw, 3.2rem); letter-spacing: -0.03em; }
+    .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem); letter-spacing: -0.02em; word-break: break-word; overflow-wrap: break-word; }
     .hero-sub { font-size: 0.95rem; }
     .hero-actions { flex-direction: column; align-items: stretch; gap: 0.75rem; }
     .hero-actions .btn { justify-content: center; padding: 0.9rem 1.2rem; font-size: 1rem; border-radius: 12px; min-height: 52px; }
@@ -1120,7 +1120,7 @@
 
   /* Very small phones */
   @media (max-width: 380px) {
-    .hero-title { font-size: 2.1rem; }
+    .hero-title { font-size: 1.75rem; letter-spacing: -0.01em; }
     .hero-actions .btn { font-size: 0.9rem; }
     .stat-num { font-size: 1.3rem; }
     .section-title { font-size: 1.6rem; }
@@ -2749,6 +2749,30 @@
 </style>
 
 <!-- Floating button -->
+<div id="chat-nudge" style="
+  position:fixed;
+  bottom:calc(110px + env(safe-area-inset-bottom));
+  right:14px;
+  background:var(--card-bg);
+  border:1px solid rgba(255,85,51,0.35);
+  border-radius:12px 12px 4px 12px;
+  padding:0.6rem 0.9rem;
+  font-family:'DM Sans',sans-serif;
+  font-size:0.78rem;
+  color:var(--text);
+  z-index:997;
+  max-width:180px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.3);
+  opacity:0;
+  transform:translateY(8px) scale(0.95);
+  transition:all 0.3s ease;
+  pointer-events:none;
+  line-height:1.4;
+  display:none;
+">
+  👋 Need help? Tap me!
+  <span style="display:block;font-size:0.7rem;color:var(--muted);margin-top:2px;">iKrack Assistant is here</span>
+</div>
 <button id="ikrack-chat-btn" aria-label="Open iKrack Assistant">
   🤖
   <span class="chat-badge"></span>
@@ -2789,7 +2813,34 @@ let chatOpen = false;
 let chatStarted = false;
 
 // Wire button directly — script runs after HTML so element exists
-document.getElementById('ikrack-chat-btn').addEventListener('click', toggleChat);
+document.getElementById('ikrack-chat-btn').addEventListener('click', function() {
+  // Hide nudge when chat opens
+  const nudge = document.getElementById('chat-nudge');
+  if (nudge) { nudge.style.opacity = '0'; nudge.style.display = 'none'; }
+  toggleChat();
+});
+
+// Show nudge on mobile after 2.5s if chat hasn't been opened yet
+if (window.innerWidth <= 768) {
+  setTimeout(function() {
+    const nudge = document.getElementById('chat-nudge');
+    if (nudge && !chatStarted) {
+      nudge.style.display = 'block';
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          nudge.style.opacity = '1';
+          nudge.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+      // Auto-hide after 5 seconds
+      setTimeout(function() {
+        nudge.style.opacity = '0';
+        nudge.style.transform = 'translateY(8px) scale(0.95)';
+        setTimeout(function() { nudge.style.display = 'none'; }, 300);
+      }, 5000);
+    }
+  }, 2500);
+}
 
 function toggleChat() {
   chatOpen = !chatOpen;

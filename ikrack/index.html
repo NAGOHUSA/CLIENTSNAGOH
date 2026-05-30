@@ -300,6 +300,16 @@
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+
+  /* Chat btn always visible in nav on ALL screen sizes */
+  #ikrack-chat-nav-btn-wrap { display: flex; align-items: center; }
+
   /* ─── HERO ─── */
   #hero {
     min-height: 100vh;
@@ -1019,6 +1029,8 @@
     .nav-links { display: none; }
     .nav-phones { display: none; }
     .hamburger { display: flex; }
+    #ikrack-chat-btn { display: flex !important; }
+    .nav-right { gap: 0.75rem; }
     .cta-box { padding: 3rem 2rem; }
     .cta-box .section-title { font-size: 2rem; }
   }
@@ -1033,12 +1045,13 @@
 
     /* Nav */
     nav { padding: 0 1rem; height: 58px; width: 100%; }
-    .nav-logo { font-size: 1.25rem; }
-    .nav-right { gap: 0.6rem !important; }
-    .theme-toggle { width: 38px; height: 22px; }
-    .theme-toggle-thumb { width: 14px; height: 14px; font-size: 9px; }
+    .nav-logo { font-size: 1.2rem; }
+    .nav-right { gap: 0.5rem; }
+    .theme-toggle { width: 36px; height: 20px; }
+    .theme-toggle-thumb { width: 13px; height: 13px; font-size: 8px; top: 2px; left: 2px; }
     body.light-mode .theme-toggle-thumb { transform: translateX(16px); }
-    #ikrack-chat-btn { width: 32px; height: 32px; font-size: 0.95rem; }
+    #ikrack-chat-btn { display: flex !important; width: 32px; height: 32px; font-size: 0.9rem; }
+    .chat-badge { width: 6px !important; height: 6px !important; }
 
     /* Hero */
     #hero { padding: 80px 1.25rem 48px; min-height: 100svh; width: 100%; overflow-x: hidden; box-sizing: border-box; }
@@ -1510,7 +1523,7 @@
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#quote" style="color:var(--accent2); font-weight:600;">⚡ Quote Tool</a></li>
   </ul>
-  <div class="nav-right" style="display:flex; align-items:center; gap: 1.5rem;">
+  <div class="nav-right">
     <div class="nav-phones">
       <a href="tel:+14782879783">Bonaire · (478) 287-9783</a>
       <a href="tel:+14783096400">Macon · (478) 309-6400</a>

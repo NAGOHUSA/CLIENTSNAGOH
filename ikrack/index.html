@@ -2486,7 +2486,7 @@
 </style>
 
 <!-- Floating button -->
-<button id="ikrack-chat-btn" onclick="toggleChat()" aria-label="Open iKrack Assistant">
+<button id="ikrack-chat-btn" aria-label="Open iKrack Assistant">
   🤖
   <span class="chat-badge"></span>
 </button>
@@ -2502,7 +2502,7 @@
       <h4>iKrack Assistant</h4>
       <p>● Online — Here to help</p>
     </div>
-    <button class="chat-close-btn" onclick="toggleChat()">✕</button>
+    <button class="chat-close-btn" id="chatCloseBtn">✕</button>
   </div>
 
   <div class="chat-messages" id="chatMessages"></div>
@@ -2525,11 +2525,8 @@
 let chatOpen = false;
 let chatStarted = false;
 
-// Ensure button is wired even if inline onclick attr somehow fails
-document.addEventListener('DOMContentLoaded', function() {
-  const btn = document.getElementById('ikrack-chat-btn');
-  if (btn) btn.addEventListener('click', toggleChat);
-});
+// Wire button directly — script runs after HTML so element exists
+document.getElementById('ikrack-chat-btn').addEventListener('click', toggleChat);
 
 function toggleChat() {
   chatOpen = !chatOpen;
@@ -2541,6 +2538,7 @@ function toggleChat() {
   }
   if (chatOpen) setTimeout(() => document.getElementById('chatInput').focus(), 300);
 }
+document.getElementById('chatCloseBtn').addEventListener('click', toggleChat);
 
 const MAIN_MENU = [
   { label: '📱 Screen issues', key: 'screen' },

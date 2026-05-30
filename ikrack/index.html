@@ -1,1 +1,1378 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iKrack Mobile — Repair · Buy · Sell</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #16161f;
+    --border: rgba(255,255,255,0.07);
+    --accent: #ff5533;
+    --accent2: #ff8866;
+    --text: #f0f0f5;
+    --muted: #7a7a8c;
+    --white: #ffffff;
+    --card-bg: #13131c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: -0.03em;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-phones {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: right;
+  }
+  .nav-phones a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .nav-phones a:hover { color: var(--accent); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,85,51,0.35); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 100px 2rem 60px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,85,51,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,85,51,0.06) 0%, transparent 50%);
+  }
+
+  .hero-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+    opacity: 0.4;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,85,51,0.1);
+    border: 1px solid rgba(255,85,51,0.25);
+    border-radius: 100px;
+    padding: 0.35rem 1rem;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.03em;
+  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: normal; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 460px;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.03em;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+
+  .hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+  }
+
+  .hero-card-main {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 300px;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-card-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--accent), #ff8833);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-card-main h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .hero-card-main p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+  .hero-card-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    background: rgba(255,85,51,0.12);
+    color: var(--accent2);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.25rem 0.7rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .hero-card-float {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    font-size: 0.82rem;
+  }
+  .hero-card-float .icon { font-size: 1.4rem; }
+  .hero-card-float strong { display: block; font-size: 0.9rem; color: var(--white); }
+  .hero-card-float span { color: var(--muted); font-size: 0.75rem; }
+
+  .float-1 { top: 60px; right: -20px; animation: float2 5s ease-in-out infinite; }
+  .float-2 { bottom: 80px; left: -30px; animation: float3 7s ease-in-out infinite; }
+  .float-3 { top: 200px; right: -50px; animation: float2 8s ease-in-out infinite 1s; }
+
+  @keyframes float2 { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
+  @keyframes float3 { 0%,100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-10px) rotate(-1deg); } }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding: 100px 2rem; }
+
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 560px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ─── AWARDS TICKER ─── */
+  #awards {
+    padding: 24px 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 3rem;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .ticker-item .dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
+
+  /* ─── REPAIRS ─── */
+  #repairs { background: var(--surface); }
+
+  .repairs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .repair-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .repair-card {
+    position: relative;
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: block;
+  }
+  .repair-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .repair-card:hover { background: #1a1a26; }
+  .repair-card:hover::before { transform: scaleX(1); }
+
+  .repair-icon {
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
+    display: block;
+  }
+
+  .repair-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .repair-card p {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .repair-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 32px; height: 32px;
+    background: rgba(255,85,51,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--accent);
+    transition: all 0.3s;
+  }
+  .repair-card:hover .repair-arrow { background: var(--accent); color: white; transform: translate(2px,-2px); }
+
+  /* ─── FEATURES ─── */
+  #features {
+    background: var(--bg);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .feature-card:hover { border-color: rgba(255,85,51,0.3); transform: translateY(-3px); }
+
+  .feature-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(255,85,51,0.08) 0%, var(--card-bg) 60%);
+    border-color: rgba(255,85,51,0.2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    background: rgba(255,85,51,0.1);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .feature-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .feature-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+  .feature-big-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    line-height: 1.15;
+  }
+  .feature-big-title em { font-style: normal; color: var(--accent); }
+
+  /* ─── BUY/SELL ─── */
+  #devices {
+    background: var(--surface);
+  }
+
+  .devices-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+
+  .device-perks { list-style: none; margin-top: 1.5rem; }
+  .device-perks li {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 300;
+    align-items: flex-start;
+  }
+  .device-perks li:last-child { border-bottom: none; }
+  .perk-check {
+    width: 20px; height: 20px;
+    background: rgba(255,85,51,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .perk-text strong { display: block; color: var(--white); font-size: 0.92rem; margin-bottom: 2px; font-weight: 500; }
+
+  .device-form-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+  }
+
+  .device-form-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .device-form-card p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
+
+  .form-group { margin-bottom: 1rem; }
+  .form-group label { display: block; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.4rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group select option { background: var(--surface2); }
+  .form-group textarea { resize: none; height: 80px; }
+
+  /* ─── LOCATIONS ─── */
+  #locations { background: var(--bg); }
+
+  .locations-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3.5rem;
+  }
+
+  .location-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .location-card:hover { border-color: rgba(255,85,51,0.3); transform: translateY(-3px); }
+
+  .location-map {
+    height: 200px;
+    background: var(--surface2);
+    position: relative;
+    overflow: hidden;
+  }
+  .location-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(80%) invert(0.9) contrast(0.8); }
+
+  .location-info { padding: 1.8rem; }
+  .location-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .location-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+  .location-detail .licon { font-size: 1rem; margin-top: 1px; }
+  .location-detail a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .location-detail a:hover { color: var(--accent); }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials { background: var(--surface); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .testimonial-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .testimonial-card:hover { transform: translateY(-3px); border-color: rgba(255,85,51,0.2); }
+
+  .stars { color: #ffc107; font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+
+  .testimonial-text {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #ff8833);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+  }
+  .author-name { font-size: 0.85rem; font-weight: 600; color: var(--white); }
+  .author-location { font-size: 0.75rem; color: var(--muted); }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--bg);
+    padding: 80px 2rem;
+  }
+
+  .cta-box {
+    max-width: 900px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(255,85,51,0.1) 0%, var(--card-bg) 100%);
+    border: 1px solid rgba(255,85,51,0.2);
+    border-radius: 24px;
+    padding: 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,85,51,0.05) 0%, transparent 60%);
+  }
+
+  .cta-box .section-title { font-size: 2.5rem; }
+  .cta-box .section-sub { margin: 1rem auto 2.5rem; text-align: center; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 1rem;
+    max-width: 260px;
+    font-weight: 300;
+  }
+
+  .footer-col h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 300;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+  .social-link {
+    width: 34px; height: 34px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .social-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 64px; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,15,0.97);
+    backdrop-filter: blur(20px);
+    z-index: 99;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--accent); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-sub { margin: 0 auto 2.5rem; }
+    .hero-actions { justify-content: center; }
+    .hero-stats { justify-content: center; }
+    .repairs-header { flex-direction: column; align-items: flex-start; }
+    .repair-grid { grid-template-columns: 1fr 1fr; }
+    .features-grid { grid-template-columns: 1fr; }
+    .feature-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    .devices-layout { grid-template-columns: 1fr; }
+    .locations-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .nav-phones { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 70px 1.25rem; }
+    .repair-grid { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr; }
+    .cta-box { padding: 2.5rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">i<span>K</span>rack</a>
+  <ul class="nav-links">
+    <li><a href="#repairs">Repairs</a></li>
+    <li><a href="#features">Why Us</a></li>
+    <li><a href="#devices">Buy &amp; Sell</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap: 1.5rem;">
+    <div class="nav-phones">
+      <a href="tel:+14782879783">Bonaire · (478) 287-9783</a>
+      <a href="tel:+14783096400">Macon · (478) 309-6400</a>
+    </div>
+    <a href="#devices" class="btn btn-primary">Get Quote</a>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#repairs" onclick="toggleMenu()">Repairs</a>
+  <a href="#features" onclick="toggleMenu()">Why Us</a>
+  <a href="#devices" onclick="toggleMenu()">Buy &amp; Sell</a>
+  <a href="#locations" onclick="toggleMenu()">Locations</a>
+  <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="tel:+14782879783" style="color: var(--accent)">Bonaire: (478) 287-9783</a>
+  <a href="tel:+14783096400" style="color: var(--accent)">Macon: (478) 309-6400</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">Serving Warner Robins &amp; Macon, GA since 2012</div>
+      <h1 class="hero-title">Your Device.<br><em>Restored.</em><br>Guaranteed.</h1>
+      <p class="hero-sub">Expert repairs for iPhone, Samsung, iPad &amp; more. Same-day turnaround, lifetime warranty on parts, and the best prices in Central Georgia.</p>
+      <div class="hero-actions">
+        <a href="#repairs" class="btn btn-primary">→ Get Repair Quote</a>
+        <a href="#devices" class="btn btn-outline">Buy / Sell a Device</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">12+</span>
+          <span class="stat-label">Years in Business</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">50k+</span>
+          <span class="stat-label">Devices Repaired</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">2</span>
+          <span class="stat-label">Locations</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="hero-card-icon">🔧</div>
+        <h3>iPhone 16 Pro Max</h3>
+        <p>Screen replacement completed in under 45 minutes with OEM-quality parts.</p>
+        <span class="hero-card-tag">✓ Ready for Pickup</span>
+      </div>
+      <div class="hero-card-float float-1">
+        <span class="icon">⭐</span>
+        <div>
+          <strong>4.9 / 5.0</strong>
+          <span>500+ Google Reviews</span>
+        </div>
+      </div>
+      <div class="hero-card-float float-2">
+        <span class="icon">🛡️</span>
+        <div>
+          <strong>Lifetime Warranty</strong>
+          <span>On all repair parts</span>
+        </div>
+      </div>
+      <div class="hero-card-float float-3">
+        <span class="icon">⚡</span>
+        <div>
+          <strong>Same Day</strong>
+          <span>Most repairs done while you wait</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS TICKER -->
+<div id="awards">
+  <div class="ticker-track">
+    <!-- duplicated for seamless loop -->
+    <span class="ticker-item"><span class="dot"></span> Viewers Choice Award 2022</span>
+    <span class="ticker-item"><span class="dot"></span> Best of Georgia 2021</span>
+    <span class="ticker-item"><span class="dot"></span> Best of Georgia 2022</span>
+    <span class="ticker-item"><span class="dot"></span> Best of Georgia 2023</span>
+    <span class="ticker-item"><span class="dot"></span> BBB Accredited Business</span>
+    <span class="ticker-item"><span class="dot"></span> Lifetime Warranty on All Repairs</span>
+    <span class="ticker-item"><span class="dot"></span> Save $10 — Book Online Today</span>
+    <span class="ticker-item"><span class="dot"></span> Viewers Choice Award 2022</span>
+    <span class="ticker-item"><span class="dot"></span> Best of Georgia 2021</span>
+    <span class="ticker-item"><span class="dot"></span> Best of Georgia 2022</span>
+    <span class="ticker-item"><span class="dot"></span> Best of Georgia 2023</span>
+    <span class="ticker-item"><span class="dot"></span> BBB Accredited Business</span>
+    <span class="ticker-item"><span class="dot"></span> Lifetime Warranty on All Repairs</span>
+    <span class="ticker-item"><span class="dot"></span> Save $10 — Book Online Today</span>
+  </div>
+</div>
+
+<!-- REPAIRS -->
+<section id="repairs">
+  <div class="section-inner">
+    <div class="repairs-header fade-up">
+      <div>
+        <p class="section-label">Repair Services</p>
+        <h2 class="section-title">We Fix What Others<br>Can't.</h2>
+      </div>
+      <div>
+        <p class="section-sub">From shattered screens to water damage and micro-soldering — we handle it all with professional-grade tools and certified technicians.</p>
+        <a href="#devices" class="btn btn-primary" style="margin-top:1.5rem">Get Instant Quote →</a>
+      </div>
+    </div>
+
+    <div class="repair-grid fade-up">
+      <a href="#devices" class="repair-card">
+        <span class="repair-icon">📱</span>
+        <h3>iPhone Repairs</h3>
+        <p>Screen replacements, battery swaps, charging port, cameras, and more for all iPhone models.</p>
+        <div class="repair-arrow">→</div>
+      </a>
+      <a href="#devices" class="repair-card">
+        <span class="repair-icon">🤖</span>
+        <h3>Samsung Repairs</h3>
+        <p>Galaxy S &amp; A series screen repairs, back glass, batteries, and software issues.</p>
+        <div class="repair-arrow">→</div>
+      </a>
+      <a href="#devices" class="repair-card">
+        <span class="repair-icon">📲</span>
+        <h3>Other Smartphones</h3>
+        <p>Google Pixel, LG, Motorola and more — we service a wide range of Android devices.</p>
+        <div class="repair-arrow">→</div>
+      </a>
+      <a href="#devices" class="repair-card">
+        <span class="repair-icon">📋</span>
+        <h3>iPad Repairs</h3>
+        <p>Cracked screens, battery replacements, and charging issues for all iPad generations.</p>
+        <div class="repair-arrow">→</div>
+      </a>
+      <a href="#devices" class="repair-card">
+        <span class="repair-icon">💻</span>
+        <h3>Computer Repairs</h3>
+        <p>MacBook, Windows laptops and desktops — hardware, software, and data recovery.</p>
+        <div class="repair-arrow">→</div>
+      </a>
+      <a href="#devices" class="repair-card">
+        <span class="repair-icon">🔬</span>
+        <h3>Micro Soldering</h3>
+        <p>Board-level repairs for liquid damage and chip-level issues — no fix, no fee.</p>
+        <div class="repair-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES / WHY US -->
+<section id="features">
+  <div class="section-inner">
+    <div class="fade-up">
+      <p class="section-label">Why iKrack</p>
+      <h2 class="section-title">Repair Done Right,<br>Every Time.</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card featured fade-up">
+        <div>
+          <div class="feature-icon">🛡️</div>
+          <h2 class="feature-big-title">Lifetime Warranty<br>on <em>Every Repair</em></h2>
+          <p>We stand behind our work. Every repair comes with a lifetime warranty on parts and labor. If something goes wrong, bring it back and we'll fix it free — no questions asked. Liquid damage or third-party service voids warranty.</p>
+          <a href="#devices" class="btn btn-primary" style="margin-top:1.5rem">Book a Repair →</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1rem; padding-top: 0.5rem;">
+          <div style="background: var(--surface2); border-radius:12px; padding:1.2rem; border: 1px solid var(--border);">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚡</div>
+            <strong style="color:var(--white); font-size:0.95rem;">While-You-Wait</strong>
+            <p style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">Most repairs completed in 30–60 minutes so you're never without your device for long.</p>
+          </div>
+          <div style="background: var(--surface2); border-radius:12px; padding:1.2rem; border: 1px solid var(--border);">
+            <div style="font-size:1.5rem; margin-bottom:0.5rem;">🔐</div>
+            <strong style="color:var(--white); font-size:0.95rem;">OEM-Quality Parts</strong>
+            <p style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">We use certified replacement parts that meet manufacturer specs for quality you can feel.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📅</div>
+        <h3>Online Booking</h3>
+        <p>Skip the wait — book your repair appointment online in minutes. Choose your device, your issue, and your preferred location. Fastest turnaround starts here.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💰</div>
+        <h3>Free Instant Quote</h3>
+        <p>No surprises. Get a transparent, upfront price for your repair before you ever walk in the door. What we quote is what you pay.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🏆</div>
+        <h3>Award-Winning Service</h3>
+        <p>Best of Georgia 2021–2023, Viewers Choice Award, and a BBB-accredited business. Our reputation is built on trust and results.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🔑</div>
+        <h3>Device Unlocking</h3>
+        <p>Locked to a carrier? We can unlock iPhones, Samsung, and other devices so you can use them on the network of your choice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY / SELL -->
+<section id="devices">
+  <div class="section-inner">
+    <div class="fade-up">
+      <p class="section-label">Buy · Sell · Trade</p>
+      <h2 class="section-title">Great Devices at<br>Unbeatable Prices.</h2>
+    </div>
+    <div class="devices-layout">
+      <div class="fade-up">
+        <p class="section-sub">Whether you're upgrading, downgrading, or just need some cash — we've got you. Every pre-owned device is fully inspected and backed by our warranty.</p>
+        <ul class="device-perks">
+          <li>
+            <span class="perk-check">✓</span>
+            <span class="perk-text"><strong>Fully Inspected &amp; Refurbished</strong>Checked for hardware and software issues, restored to factory-standard functionality.</span>
+          </li>
+          <li>
+            <span class="perk-check">✓</span>
+            <span class="perk-text"><strong>Save Up to 30% Off Retail</strong>Unbeatable prices on a wide selection of iPhones, Samsungs, and more.</span>
+          </li>
+          <li>
+            <span class="perk-check">✓</span>
+            <span class="perk-text"><strong>Sell or Trade Your Device</strong>We offer the best deals on used and broken devices — bring it in for a free evaluation.</span>
+          </li>
+          <li>
+            <span class="perk-check">✓</span>
+            <span class="perk-text"><strong>Lease Without Credit</strong>Shop with Acima — get approved for up to $5,000 in merchandise without using credit.</span>
+          </li>
+        </ul>
+        <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+          <a href="https://ikrack.com/buy-a-device/" class="btn btn-primary" target="_blank">Buy a Device →</a>
+          <a href="https://ikrack.com/sell-a-device/" class="btn btn-outline" target="_blank">Sell My Device</a>
+        </div>
+      </div>
+
+      <div class="device-form-card fade-up">
+        <h3>Get an Instant Repair Quote</h3>
+        <p>Tell us about your device and we'll get back to you with pricing — fast.</p>
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Smith">
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="(478) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Device Type</label>
+          <select>
+            <option value="">Select your device...</option>
+            <option>iPhone</option>
+            <option>Samsung Galaxy</option>
+            <option>iPad</option>
+            <option>Other Android</option>
+            <option>MacBook / Laptop</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Issue / Notes</label>
+          <textarea placeholder="Cracked screen, won't charge, water damage..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Preferred Location</label>
+          <select>
+            <option value="">Select a store...</option>
+            <option>Bonaire — (478) 287-9783</option>
+            <option>Macon — (478) 309-6400</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 0.85rem;" onclick="handleQuote()">Send My Request →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="locations">
+  <div class="section-inner">
+    <div class="fade-up">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title">Two Locations<br>Ready to Help.</h2>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card fade-up">
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-83.659!3d32.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2ziKrack+Bonaire!5e0!3m2!1sen!2sus!4v1"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="iKrack Bonaire Location">
+          </iframe>
+        </div>
+        <div class="location-info">
+          <h3 class="location-name">Bonaire</h3>
+          <div class="location-detail">
+            <span class="licon">📍</span>
+            <span>122 Margie Dr, Warner Robins, GA 31088</span>
+          </div>
+          <div class="location-detail">
+            <span class="licon">📞</span>
+            <a href="tel:+14782879783">(478) 287-9783</a>
+          </div>
+          <div class="location-detail">
+            <span class="licon">🕐</span>
+            <span>Mon–Sat: 10am–7pm · Sun: Closed</span>
+          </div>
+          <a href="https://ikrack.com/locations/bonaire/" class="btn btn-outline" style="margin-top:1.2rem" target="_blank">Store Details →</a>
+        </div>
+      </div>
+
+      <div class="location-card fade-up">
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-83.63!3d32.84!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2ziKrack+Macon!5e0!3m2!1sen!2sus!4v1"
+            allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="iKrack Macon Location">
+          </iframe>
+        </div>
+        <div class="location-info">
+          <h3 class="location-name">Macon</h3>
+          <div class="location-detail">
+            <span class="licon">📍</span>
+            <span>5080 Riverside Dr Suite 110, Macon, GA 31210</span>
+          </div>
+          <div class="location-detail">
+            <span class="licon">📞</span>
+            <a href="tel:+14783096400">(478) 309-6400</a>
+          </div>
+          <div class="location-detail">
+            <span class="licon">🕐</span>
+            <span>Mon–Sat: 10am–7pm · Sun: Closed</span>
+          </div>
+          <a href="https://ikrack.com/locations/macon/" class="btn btn-outline" style="margin-top:1.2rem" target="_blank">Store Details →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-inner">
+    <div class="fade-up" style="text-align:center; margin-bottom: 0;">
+      <p class="section-label">Customer Reviews</p>
+      <h2 class="section-title">Don't Take Our Word for It.</h2>
+      <p class="section-sub" style="margin: 0.75rem auto 0;">Thousands of satisfied customers in Warner Robins, Bonaire, and Macon trust iKrack for all their device needs.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Brought in my shattered iPhone 14 Pro at noon and it was done by 1:30pm. Screen looks perfect, price was super fair. Will absolutely be coming back!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JM</div>
+          <div><div class="author-name">James M.</div><div class="author-location">Warner Robins, GA</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"I dropped my Samsung in the pool and these guys saved it with their micro-soldering service. Thought it was a goner. Honestly couldn't believe it. Highly recommend!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SR</div>
+          <div><div class="author-name">Sarah R.</div><div class="author-location">Macon, GA</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">"Bought a refurbished iPhone from iKrack — works flawlessly and saved me hundreds. The staff explained everything. This is the only phone store I'll ever use again."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">DK</div>
+          <div><div class="author-name">Derek K.</div><div class="author-location">Bonaire, GA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-inner">
+    <div class="cta-box fade-up">
+      <p class="section-label" style="margin-bottom:1rem;">Save $10 Today</p>
+      <h2 class="section-title">Book Your Repair Online &amp;<br>Save Ten Bucks.</h2>
+      <p class="section-sub">Use our instant quote tool to lock in your appointment at either of our two Central Georgia locations. Fast, transparent, guaranteed.</p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2.5rem;">
+        <a href="https://ikrack.com/instant-quote-widget/" class="btn btn-primary" target="_blank">Get Instant Quote → Save $10</a>
+        <a href="tel:+14782879783" class="btn btn-outline">📞 Call Bonaire</a>
+        <a href="tel:+14783096400" class="btn btn-outline">📞 Call Macon</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo" style="font-size:1.3rem;">i<span>K</span>rack</a>
+      <p>Central Georgia's trusted smartphone repair shop since 2012. Two locations serving Warner Robins, Bonaire, and Macon.</p>
+      <div class="social-links" style="margin-top:1.5rem;">
+        <a href="https://www.facebook.com/ikrackphone/" class="social-link" target="_blank" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/ikrackcellphonerepair/" class="social-link" target="_blank" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Repairs</h4>
+      <ul>
+        <li><a href="https://ikrack.com/repair-services/iphone-repairs/" target="_blank">iPhone Repairs</a></li>
+        <li><a href="https://ikrack.com/repair-services/samsung-phone-repairs/" target="_blank">Samsung Repairs</a></li>
+        <li><a href="https://ikrack.com/repair-services/ipad-repairs/" target="_blank">iPad Repairs</a></li>
+        <li><a href="https://ikrack.com/repair-services/computer-repairs/" target="_blank">Computer Repairs</a></li>
+        <li><a href="https://ikrack.com/micro-soldering/" target="_blank">Micro Soldering</a></li>
+        <li><a href="https://ikrack.com/unlocks/" target="_blank">Unlocks</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Buy &amp; Sell</h4>
+      <ul>
+        <li><a href="https://ikrack.com/buy-a-device/" target="_blank">Buy a Device</a></li>
+        <li><a href="https://ikrack.com/sell-a-device/" target="_blank">Sell Your Device</a></li>
+        <li><a href="https://ikrack.com/accessories/" target="_blank">Accessories</a></li>
+        <li><a href="https://ikrack.com/instant-quote-widget/" target="_blank">Instant Quote</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="https://ikrack.com/about-us/" target="_blank">About Us</a></li>
+        <li><a href="https://ikrack.com/blog/" target="_blank">Blog</a></li>
+        <li><a href="https://ikrack.com/faqs/" target="_blank">FAQs</a></li>
+        <li><a href="https://ikrack.com/contact-us/" target="_blank">Contact</a></li>
+        <li><a href="https://ikrack.com/locations/bonaire/" target="_blank">Bonaire</a></li>
+        <li><a href="https://ikrack.com/locations/macon/" target="_blank">Macon</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 iKrack Mobile. All rights reserved.</span>
+    <span>Built with care for Central Georgia</span>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Staggered children
+  document.querySelectorAll('.repair-grid, .features-grid, .testimonials-grid, .locations-grid').forEach(grid => {
+    grid.querySelectorAll('.repair-card, .feature-card, .testimonial-card, .location-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 70}ms`;
+    });
+  });
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.borderBottomColor = window.scrollY > 50 ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
+  });
+
+  // Smooth active link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
+    });
+  });
+
+  // Quote form handler
+  function handleQuote() {
+    const btn = event.target;
+    btn.textContent = '✓ Request Sent!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => {
+      btn.textContent = 'Send My Request →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>

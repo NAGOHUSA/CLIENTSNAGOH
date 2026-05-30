@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -837,7 +836,228 @@
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   }
 
-  /* ─── ANIMATIONS ─── */
+  /* ─── QUOTE TOOL ─── */
+  #quote { background: var(--bg); }
+
+  .quote-wrapper {
+    margin-top: 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .quote-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .quote-step-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+    width: 100%;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+  }
+  .quote-step-btn:hover { border-color: rgba(255,85,51,0.3); color: var(--text); }
+  .quote-step-btn.active { border-color: var(--accent); background: rgba(255,85,51,0.06); color: var(--white); }
+  .quote-step-btn.done { border-color: rgba(255,85,51,0.2); color: var(--muted); }
+  .quote-step-btn.done .qstep-icon { background: rgba(80,200,100,0.15); color: #4ade80; }
+
+  .qstep-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .quote-step-btn.active .qstep-num { background: var(--accent); color: white; }
+  .quote-step-btn.done .qstep-num { background: rgba(74,222,128,0.2); color: #4ade80; }
+
+  .qstep-label { font-weight: 500; }
+  .qstep-value { font-size: 0.78rem; color: var(--accent2); margin-top: 1px; }
+
+  .qstep-icon {
+    margin-left: auto;
+    font-size: 1.3rem;
+    background: var(--surface2);
+    width: 38px; height: 38px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  /* Right panel */
+  .quote-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .quote-panel-inner {
+    padding: 2rem;
+  }
+
+  .qpanel-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .qpanel-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
+
+  .quote-option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+  .quote-option-grid.cols3 { grid-template-columns: repeat(3, 1fr); }
+
+  .qopt {
+    background: var(--surface2);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 0.75rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-weight: 500;
+    line-height: 1.3;
+    user-select: none;
+  }
+  .qopt .qopt-icon { font-size: 1.4rem; display: block; margin-bottom: 0.35rem; }
+  .qopt:hover { border-color: rgba(255,85,51,0.4); color: var(--text); }
+  .qopt.selected { border-color: var(--accent); background: rgba(255,85,51,0.08); color: var(--white); }
+
+  /* Result card */
+  .quote-result {
+    display: none;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .quote-result.visible { display: block; }
+
+  .qresult-header {
+    background: linear-gradient(135deg, rgba(255,85,51,0.15), transparent);
+    border-bottom: 1px solid var(--border);
+    padding: 1.8rem 2rem;
+  }
+
+  .qresult-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+
+  .qresult-device {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .qresult-repair { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+
+  .qresult-price-row {
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .qresult-price-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+
+  .qresult-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.04em;
+  }
+  .qresult-price span { font-size: 1rem; color: var(--muted); font-weight: 400; margin-left: 0.3rem; }
+
+  .qresult-perks {
+    padding: 1.25rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .qperk { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+  .qperk-dot { width: 5px; height: 5px; background: #4ade80; border-radius: 50%; flex-shrink: 0; }
+
+  .qresult-actions {
+    padding: 1.25rem 2rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .quote-disclaimer {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+    padding: 0.75rem 2rem 1.25rem;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .quote-progress {
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 0;
+  }
+  .quote-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 0;
+    transition: width 0.4s ease;
+  }
+
+  .qpanel-back {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+  }
+  .qpanel-back:hover { color: var(--white); }
+
+  @media (max-width: 860px) {
+    .quote-wrapper { grid-template-columns: 1fr; }
+    .quote-steps { display: none; }
+    .quote-option-grid.cols3 { grid-template-columns: repeat(2, 1fr); }
+  }
+
+
   .fade-up {
     opacity: 0;
     transform: translateY(30px);
@@ -860,13 +1080,14 @@
     <li><a href="#devices">Buy &amp; Sell</a></li>
     <li><a href="#locations">Locations</a></li>
     <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#quote" style="color:var(--accent2); font-weight:600;">⚡ Quote Tool</a></li>
   </ul>
   <div style="display:flex; align-items:center; gap: 1.5rem;">
     <div class="nav-phones">
       <a href="tel:+14782879783">Bonaire · (478) 287-9783</a>
       <a href="tel:+14783096400">Macon · (478) 309-6400</a>
     </div>
-    <a href="#devices" class="btn btn-primary">Get Quote</a>
+    <a href="#quote" class="btn btn-primary">⚡ Get Quote</a>
     <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </div>
@@ -880,6 +1101,7 @@
   <a href="#devices" onclick="toggleMenu()">Buy &amp; Sell</a>
   <a href="#locations" onclick="toggleMenu()">Locations</a>
   <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
+  <a href="#quote" onclick="toggleMenu()" style="color:var(--accent)">⚡ Quote Tool</a>
   <a href="tel:+14782879783" style="color: var(--accent)">Bonaire: (478) 287-9783</a>
   <a href="tel:+14783096400" style="color: var(--accent)">Macon: (478) 309-6400</a>
 </div>
@@ -965,6 +1187,96 @@
     <span class="ticker-item"><span class="dot"></span> Save $10 — Book Online Today</span>
   </div>
 </div>
+
+<!-- INSTANT QUOTE TOOL -->
+<section id="quote">
+  <div class="section-inner">
+    <div class="fade-up">
+      <p class="section-label">Instant Estimate</p>
+      <h2 class="section-title">How Much Will My<br>Repair Cost?</h2>
+      <p class="section-sub">Get a price estimate in under 30 seconds — no forms, no phone calls needed.</p>
+    </div>
+
+    <div class="quote-wrapper">
+      <!-- Left: step tracker -->
+      <div class="quote-steps" id="quoteStepTracker">
+        <div class="quote-step-btn active" id="tracker-0">
+          <div class="qstep-num">1</div>
+          <div>
+            <div class="qstep-label">Device Type</div>
+            <div class="qstep-value" id="tv-0">Choose a device</div>
+          </div>
+          <div class="qstep-icon">📱</div>
+        </div>
+        <div class="quote-step-btn" id="tracker-1">
+          <div class="qstep-num">2</div>
+          <div>
+            <div class="qstep-label">Device Model</div>
+            <div class="qstep-value" id="tv-1">—</div>
+          </div>
+          <div class="qstep-icon">🔍</div>
+        </div>
+        <div class="quote-step-btn" id="tracker-2">
+          <div class="qstep-num">3</div>
+          <div>
+            <div class="qstep-label">Repair Type</div>
+            <div class="qstep-value" id="tv-2">—</div>
+          </div>
+          <div class="qstep-icon">🔧</div>
+        </div>
+        <div class="quote-step-btn" id="tracker-3">
+          <div class="qstep-num">4</div>
+          <div>
+            <div class="qstep-label">Your Estimate</div>
+            <div class="qstep-value" id="tv-3">—</div>
+          </div>
+          <div class="qstep-icon">💰</div>
+        </div>
+      </div>
+
+      <!-- Right: interactive panel -->
+      <div>
+        <div class="quote-progress"><div class="quote-progress-bar" id="quoteProgressBar" style="width:0%"></div></div>
+        <div class="quote-panel" id="quotePanel">
+          <div class="quote-panel-inner" id="quotePanelInner">
+            <!-- Step content injected by JS -->
+          </div>
+        </div>
+
+        <!-- Result card (hidden until step 4) -->
+        <div class="quote-result" id="quoteResult">
+          <div class="qresult-header">
+            <div class="qresult-label">Your Repair Estimate</div>
+            <div class="qresult-device" id="res-device">—</div>
+            <div class="qresult-repair" id="res-repair">—</div>
+          </div>
+          <div class="qresult-price-row">
+            <div>
+              <div class="qresult-price-label">Estimated Price</div>
+              <div class="qresult-price" id="res-price">—<span>estimate</span></div>
+            </div>
+            <div style="text-align:right;">
+              <div class="qresult-price-label">Turnaround</div>
+              <div style="font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:var(--white);" id="res-time">—</div>
+            </div>
+          </div>
+          <div class="qresult-perks">
+            <div class="qperk"><span class="qperk-dot"></span> Lifetime warranty on parts & labor</div>
+            <div class="qperk"><span class="qperk-dot"></span> OEM-quality replacement parts</div>
+            <div class="qperk"><span class="qperk-dot"></span> Free diagnostic — no fix, no fee</div>
+            <div class="qperk"><span class="qperk-dot"></span> Save $10 when you book online</div>
+          </div>
+          <div class="qresult-actions">
+            <a href="tel:+14782879783" class="btn btn-primary">📞 Call to Book</a>
+            <a href="https://ikrack.com/instant-quote-widget/" class="btn btn-outline" target="_blank">Book Online — Save $10</a>
+            <button class="btn btn-outline" onclick="resetQuote()">↺ Start Over</button>
+          </div>
+          <div class="quote-disclaimer">*Estimates are approximate. Final price confirmed after in-store diagnosis. Price may vary by condition.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- REPAIRS -->
 <section id="repairs">
@@ -1350,7 +1662,338 @@
     nav.style.borderBottomColor = window.scrollY > 50 ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
   });
 
-  // Smooth active link highlight
+  // ─── INSTANT QUOTE TOOL ───
+  const QUOTE_DATA = {
+    iPhone: {
+      label: 'iPhone', icon: '📱',
+      models: {
+        'iPhone 16 Pro Max': {
+          'Screen Replacement': { price: '$229–$279', time: '45–60 min' },
+          'Battery Replacement': { price: '$79–$99', time: '30 min' },
+          'Charging Port': { price: '$89–$119', time: '45 min' },
+          'Back Glass': { price: '$149–$199', time: '60–90 min' },
+          'Camera Repair': { price: '$129–$179', time: '45–60 min' },
+          'Water Damage': { price: '$89–$149', time: '1–2 days' },
+        },
+        'iPhone 16 / 16 Plus': {
+          'Screen Replacement': { price: '$189–$239', time: '45–60 min' },
+          'Battery Replacement': { price: '$69–$89', time: '30 min' },
+          'Charging Port': { price: '$79–$109', time: '45 min' },
+          'Back Glass': { price: '$129–$169', time: '60–90 min' },
+          'Camera Repair': { price: '$109–$149', time: '45–60 min' },
+          'Water Damage': { price: '$79–$139', time: '1–2 days' },
+        },
+        'iPhone 15 Pro Max': {
+          'Screen Replacement': { price: '$199–$249', time: '45–60 min' },
+          'Battery Replacement': { price: '$69–$89', time: '30 min' },
+          'Charging Port': { price: '$79–$109', time: '45 min' },
+          'Back Glass': { price: '$119–$159', time: '60–90 min' },
+          'Camera Repair': { price: '$109–$149', time: '45–60 min' },
+          'Water Damage': { price: '$79–$139', time: '1–2 days' },
+        },
+        'iPhone 15 / 15 Plus': {
+          'Screen Replacement': { price: '$169–$219', time: '30–45 min' },
+          'Battery Replacement': { price: '$59–$79', time: '30 min' },
+          'Charging Port': { price: '$69–$99', time: '30–45 min' },
+          'Back Glass': { price: '$99–$139', time: '60 min' },
+          'Camera Repair': { price: '$99–$139', time: '45 min' },
+          'Water Damage': { price: '$69–$129', time: '1–2 days' },
+        },
+        'iPhone 14 Series': {
+          'Screen Replacement': { price: '$129–$179', time: '30–45 min' },
+          'Battery Replacement': { price: '$49–$69', time: '20–30 min' },
+          'Charging Port': { price: '$59–$89', time: '30–45 min' },
+          'Back Glass': { price: '$89–$129', time: '60 min' },
+          'Camera Repair': { price: '$79–$119', time: '30–45 min' },
+          'Water Damage': { price: '$59–$119', time: '1–2 days' },
+        },
+        'iPhone 13 Series': {
+          'Screen Replacement': { price: '$109–$149', time: '30 min' },
+          'Battery Replacement': { price: '$49–$69', time: '20–30 min' },
+          'Charging Port': { price: '$59–$79', time: '30 min' },
+          'Back Glass': { price: '$79–$119', time: '45–60 min' },
+          'Camera Repair': { price: '$69–$109', time: '30–45 min' },
+          'Water Damage': { price: '$59–$109', time: '1–2 days' },
+        },
+        'iPhone 12 or Older': {
+          'Screen Replacement': { price: '$69–$119', time: '20–30 min' },
+          'Battery Replacement': { price: '$39–$59', time: '20 min' },
+          'Charging Port': { price: '$49–$69', time: '20–30 min' },
+          'Back Glass': { price: '$59–$99', time: '45–60 min' },
+          'Camera Repair': { price: '$49–$89', time: '20–30 min' },
+          'Water Damage': { price: '$49–$99', time: '1–2 days' },
+        },
+      }
+    },
+    Samsung: {
+      label: 'Samsung', icon: '🤖',
+      models: {
+        'Galaxy S25 Series': {
+          'Screen Replacement': { price: '$199–$269', time: '45–75 min' },
+          'Battery Replacement': { price: '$69–$89', time: '30–45 min' },
+          'Charging Port': { price: '$79–$109', time: '45 min' },
+          'Back Glass': { price: '$99–$149', time: '60 min' },
+          'Camera Repair': { price: '$109–$159', time: '45–60 min' },
+          'Water Damage': { price: '$79–$149', time: '1–2 days' },
+        },
+        'Galaxy S24 Series': {
+          'Screen Replacement': { price: '$179–$239', time: '45–75 min' },
+          'Battery Replacement': { price: '$59–$79', time: '30–45 min' },
+          'Charging Port': { price: '$69–$99', time: '45 min' },
+          'Back Glass': { price: '$89–$129', time: '60 min' },
+          'Camera Repair': { price: '$99–$149', time: '45–60 min' },
+          'Water Damage': { price: '$69–$139', time: '1–2 days' },
+        },
+        'Galaxy S23 Series': {
+          'Screen Replacement': { price: '$149–$199', time: '45–60 min' },
+          'Battery Replacement': { price: '$49–$69', time: '30 min' },
+          'Charging Port': { price: '$59–$89', time: '30–45 min' },
+          'Back Glass': { price: '$79–$119', time: '45–60 min' },
+          'Camera Repair': { price: '$79–$129', time: '30–45 min' },
+          'Water Damage': { price: '$59–$129', time: '1–2 days' },
+        },
+        'Galaxy A Series': {
+          'Screen Replacement': { price: '$79–$139', time: '30–45 min' },
+          'Battery Replacement': { price: '$39–$59', time: '20–30 min' },
+          'Charging Port': { price: '$49–$79', time: '30 min' },
+          'Back Glass': { price: '$59–$99', time: '45 min' },
+          'Camera Repair': { price: '$59–$99', time: '30 min' },
+          'Water Damage': { price: '$49–$99', time: '1–2 days' },
+        },
+        'Galaxy Fold / Flip': {
+          'Screen Replacement': { price: '$299–$449', time: '60–120 min' },
+          'Battery Replacement': { price: '$99–$139', time: '45–60 min' },
+          'Charging Port': { price: '$89–$119', time: '45–60 min' },
+          'Hinge Repair': { price: '$149–$249', time: '60–90 min' },
+          'Water Damage': { price: '$99–$199', time: '1–3 days' },
+        },
+      }
+    },
+    iPad: {
+      label: 'iPad', icon: '📋',
+      models: {
+        'iPad Pro (M4/M2)': {
+          'Screen Replacement': { price: '$249–$349', time: '60–90 min' },
+          'Battery Replacement': { price: '$99–$129', time: '45–60 min' },
+          'Charging Port': { price: '$89–$119', time: '45 min' },
+          'Water Damage': { price: '$99–$179', time: '1–3 days' },
+        },
+        'iPad Air / Mini': {
+          'Screen Replacement': { price: '$149–$229', time: '45–75 min' },
+          'Battery Replacement': { price: '$79–$109', time: '30–45 min' },
+          'Charging Port': { price: '$69–$99', time: '45 min' },
+          'Water Damage': { price: '$79–$149', time: '1–3 days' },
+        },
+        'iPad (Standard)': {
+          'Screen Replacement': { price: '$99–$169', time: '30–60 min' },
+          'Battery Replacement': { price: '$59–$89', time: '30 min' },
+          'Charging Port': { price: '$59–$79', time: '30–45 min' },
+          'Water Damage': { price: '$69–$129', time: '1–2 days' },
+        },
+      }
+    },
+    Computer: {
+      label: 'Computer / Laptop', icon: '💻',
+      models: {
+        'MacBook Pro': {
+          'Screen Replacement': { price: '$249–$449', time: '1–2 days' },
+          'Battery Replacement': { price: '$129–$199', time: '60–90 min' },
+          'Keyboard Repair': { price: '$149–$249', time: '1–2 days' },
+          'Charging Port': { price: '$99–$149', time: '45–60 min' },
+          'Water Damage / Micro Solder': { price: '$149–$299', time: '1–3 days' },
+          'SSD Upgrade': { price: '$99–$199', time: '60 min' },
+        },
+        'MacBook Air': {
+          'Screen Replacement': { price: '$199–$349', time: '1–2 days' },
+          'Battery Replacement': { price: '$109–$169', time: '45–75 min' },
+          'Keyboard Repair': { price: '$129–$199', time: '1–2 days' },
+          'Charging Port': { price: '$89–$129', time: '45 min' },
+          'Water Damage / Micro Solder': { price: '$129–$249', time: '1–3 days' },
+          'SSD Upgrade': { price: '$89–$179', time: '60 min' },
+        },
+        'Windows Laptop': {
+          'Screen Replacement': { price: '$99–$249', time: '60–120 min' },
+          'Battery Replacement': { price: '$59–$119', time: '30–60 min' },
+          'Keyboard Repair': { price: '$69–$149', time: '45–90 min' },
+          'Charging Port': { price: '$59–$99', time: '30–60 min' },
+          'Virus Removal': { price: '$49–$89', time: '60–120 min' },
+          'RAM / SSD Upgrade': { price: '$49–$149', time: '30–60 min' },
+        },
+      }
+    },
+    'Other Phone': {
+      label: 'Other Phone', icon: '📲',
+      models: {
+        'Google Pixel': {
+          'Screen Replacement': { price: '$99–$199', time: '30–60 min' },
+          'Battery Replacement': { price: '$49–$79', time: '30 min' },
+          'Charging Port': { price: '$59–$89', time: '30–45 min' },
+          'Water Damage': { price: '$59–$119', time: '1–2 days' },
+        },
+        'Motorola': {
+          'Screen Replacement': { price: '$79–$149', time: '30–60 min' },
+          'Battery Replacement': { price: '$39–$69', time: '20–30 min' },
+          'Charging Port': { price: '$49–$79', time: '30 min' },
+          'Water Damage': { price: '$49–$109', time: '1–2 days' },
+        },
+        'LG / Other Android': {
+          'Screen Replacement': { price: '$69–$139', time: '30–60 min' },
+          'Battery Replacement': { price: '$39–$59', time: '20–30 min' },
+          'Charging Port': { price: '$49–$69', time: '30 min' },
+          'Water Damage': { price: '$49–$99', time: '1–2 days' },
+        },
+      }
+    },
+  };
+
+  let qState = { device: null, model: null, repair: null };
+  let qStep = 0;
+
+  function updateProgress() {
+    const pct = [0, 33, 66, 100];
+    document.getElementById('quoteProgressBar').style.width = pct[qStep] + '%';
+    // update tracker
+    for (let i = 0; i < 4; i++) {
+      const t = document.getElementById('tracker-' + i);
+      t.classList.remove('active', 'done');
+      if (i < qStep) t.classList.add('done');
+      else if (i === qStep) t.classList.add('active');
+    }
+  }
+
+  function setTrackerValue(idx, val) {
+    document.getElementById('tv-' + idx).textContent = val;
+  }
+
+  function renderStep() {
+    const panel = document.getElementById('quotePanelInner');
+    const result = document.getElementById('quoteResult');
+    result.classList.remove('visible');
+    document.getElementById('quotePanel').style.display = 'block';
+    updateProgress();
+
+    if (qStep === 0) {
+      panel.innerHTML = `
+        <p class="qpanel-title">What type of device?</p>
+        <p class="qpanel-sub">Select the device you need repaired.</p>
+        <div class="quote-option-grid cols3">
+          ${Object.entries(QUOTE_DATA).map(([key, d]) => `
+            <div class="qopt" onclick="selectDevice('${key}')">
+              <span class="qopt-icon">${d.icon}</span>${d.label}
+            </div>
+          `).join('')}
+        </div>`;
+    } else if (qStep === 1) {
+      const models = Object.keys(QUOTE_DATA[qState.device].models);
+      panel.innerHTML = `
+        <button class="qpanel-back" onclick="goBack()">← Back</button>
+        <p class="qpanel-title">Which model?</p>
+        <p class="qpanel-sub">Choose the closest model to yours.</p>
+        <div class="quote-option-grid">
+          ${models.map(m => `
+            <div class="qopt" onclick="selectModel('${m.replace(/'/g,"\\'")}')">
+              <span class="qopt-icon">${QUOTE_DATA[qState.device].icon}</span>${m}
+            </div>
+          `).join('')}
+        </div>`;
+    } else if (qStep === 2) {
+      const repairs = Object.keys(QUOTE_DATA[qState.device].models[qState.model]);
+      panel.innerHTML = `
+        <button class="qpanel-back" onclick="goBack()">← Back</button>
+        <p class="qpanel-title">What needs to be fixed?</p>
+        <p class="qpanel-sub">Select the repair type.</p>
+        <div class="quote-option-grid">
+          ${repairs.map(r => `
+            <div class="qopt" onclick="selectRepair('${r.replace(/'/g,"\\'")}')">
+              ${repairIcon(r)}<span style="display:block;margin-top:4px;">${r}</span>
+            </div>
+          `).join('')}
+        </div>`;
+    }
+  }
+
+  function repairIcon(r) {
+    const icons = {
+      'Screen': '🖥️', 'Battery': '🔋', 'Charging': '⚡', 'Back': '🔲',
+      'Camera': '📷', 'Water': '💧', 'Hinge': '🔗', 'Keyboard': '⌨️',
+      'Virus': '🛡️', 'RAM': '💾', 'SSD': '💾', 'Micro': '🔬'
+    };
+    for (const [k, v] of Object.entries(icons)) {
+      if (r.includes(k)) return `<span class="qopt-icon">${v}</span>`;
+    }
+    return `<span class="qopt-icon">🔧</span>`;
+  }
+
+  function selectDevice(key) {
+    qState.device = key;
+    qState.model = null;
+    qState.repair = null;
+    setTrackerValue(0, QUOTE_DATA[key].label);
+    qStep = 1;
+    renderStep();
+  }
+
+  function selectModel(model) {
+    qState.model = model;
+    qState.repair = null;
+    setTrackerValue(1, model.length > 20 ? model.substring(0,18)+'…' : model);
+    qStep = 2;
+    renderStep();
+  }
+
+  function selectRepair(repair) {
+    qState.repair = repair;
+    setTrackerValue(2, repair.length > 18 ? repair.substring(0,16)+'…' : repair);
+    qStep = 3;
+    showResult();
+  }
+
+  function showResult() {
+    updateProgress();
+    const data = QUOTE_DATA[qState.device].models[qState.model][qState.repair];
+    document.getElementById('res-device').textContent = `${qState.model}`;
+    document.getElementById('res-repair').textContent = qState.repair;
+    document.getElementById('res-price').innerHTML = `${data.price}<span>estimate</span>`;
+    document.getElementById('res-time').textContent = data.time;
+    setTrackerValue(3, data.price);
+
+    // hide panel, show result
+    document.getElementById('quotePanel').style.display = 'none';
+    const result = document.getElementById('quoteResult');
+    result.classList.add('visible');
+
+    // mark all steps done
+    for (let i = 0; i < 4; i++) {
+      const t = document.getElementById('tracker-' + i);
+      t.classList.remove('active');
+      t.classList.add('done');
+    }
+    document.getElementById('quoteProgressBar').style.width = '100%';
+  }
+
+  function goBack() {
+    qStep = Math.max(0, qStep - 1);
+    if (qStep === 0) { qState.device = null; setTrackerValue(0, 'Choose a device'); }
+    if (qStep === 1) { qState.model = null; setTrackerValue(1, '—'); }
+    renderStep();
+  }
+
+  function resetQuote() {
+    qState = { device: null, model: null, repair: null };
+    qStep = 0;
+    setTrackerValue(0, 'Choose a device');
+    setTrackerValue(1, '—');
+    setTrackerValue(2, '—');
+    setTrackerValue(3, '—');
+    document.getElementById('quotePanel').style.display = 'block';
+    document.getElementById('quoteResult').classList.remove('visible');
+    renderStep();
+  }
+
+  // init quote tool
+  renderStep();
+
+
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {

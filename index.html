@@ -146,6 +146,7 @@
     position: relative;
     padding: 100px 2rem 60px;
     overflow: hidden;
+    contain: layout;
   }
 
   .hero-bg {
@@ -173,10 +174,11 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
     position: relative;
     z-index: 1;
+    min-width: 0;
   }
 
   .hero-badge {
@@ -247,6 +249,9 @@
     align-items: center;
     justify-content: center;
     height: 500px;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 20px;
   }
 
   .hero-card-main {
@@ -313,9 +318,9 @@
   .hero-card-float strong { display: block; font-size: 0.9rem; color: var(--white); }
   .hero-card-float span { color: var(--muted); font-size: 0.75rem; }
 
-  .float-1 { top: 60px; right: -20px; animation: float2 5s ease-in-out infinite; }
-  .float-2 { bottom: 80px; left: -30px; animation: float3 7s ease-in-out infinite; }
-  .float-3 { top: 200px; right: -50px; animation: float2 8s ease-in-out infinite 1s; }
+  .float-1 { top: 60px; right: 8px; animation: float2 5s ease-in-out infinite; }
+  .float-2 { bottom: 80px; left: 8px; animation: float3 7s ease-in-out infinite; }
+  .float-3 { top: 200px; right: 8px; animation: float2 8s ease-in-out infinite 1s; }
 
   @keyframes float2 { 0%,100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-8px) rotate(1deg); } }
   @keyframes float3 { 0%,100% { transform: translateY(0) rotate(1deg); } 50% { transform: translateY(-10px) rotate(-1deg); } }

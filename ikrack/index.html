@@ -2740,14 +2740,7 @@ document.getElementById('ikrack-chat-btn').addEventListener('click', toggleChat)
 document.getElementById('chatCloseBtn').addEventListener('click', toggleChat);
 document.getElementById('chatSendBtn').addEventListener('click', sendUserMsg);
 
-// Close chat when clicking outside the window
-document.addEventListener('click', function(e) {
-  if (chatOpen &&
-      !document.getElementById('ikrack-chat-window').contains(e.target) &&
-      !document.getElementById('ikrack-chat-btn').contains(e.target)) {
-    toggleChat();
-  }
-});
+// Chat closes via ✕ button or nav icon only
 
 
 const MAIN_MENU = [

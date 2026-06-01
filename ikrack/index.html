@@ -47,6 +47,14 @@
     --muted: #7a7a8c;
     --white: #ffffff;
     --card-bg: #13131c;
+    --acima-blue: #1e3fa0;
+    --acima-blue-hover: #2850c8;
+    --acima-border: rgba(30,100,255,0.22);
+    --acima-bg: rgba(30,100,255,0.06);
+    --acima-logo-bg: rgba(30,63,160,0.18);
+    --acima-text: #a0c4ff;
+    --acima-badge-bg: rgba(30,100,255,0.12);
+    --acima-badge-border: rgba(30,100,255,0.28);
   }
 
   /* ─── LIGHT MODE ─── */
@@ -61,22 +69,21 @@
     --muted: #5a5a72;
     --white: #1a1a2e;
     --card-bg: #ffffff;
+    --acima-blue: #1740b0;
+    --acima-blue-hover: #1030a0;
+    --acima-border: rgba(23,64,176,0.2);
+    --acima-bg: rgba(23,64,176,0.04);
+    --acima-logo-bg: rgba(23,64,176,0.08);
+    --acima-text: #1740b0;
+    --acima-badge-bg: rgba(23,64,176,0.08);
+    --acima-badge-border: rgba(23,64,176,0.2);
   }
 
-  body.light-mode nav {
-    background: rgba(244,244,248,0.90);
-    border-bottom-color: rgba(0,0,0,0.08);
-  }
-
-  body.light-mode .hero-grid-overlay {
-    opacity: 0.15;
-  }
-
+  body.light-mode nav { background: rgba(244,244,248,0.90); border-bottom-color: rgba(0,0,0,0.08); }
+  body.light-mode .hero-grid-overlay { opacity: 0.15; }
   body.light-mode .ticker-item { color: var(--muted); }
-
   body.light-mode .repair-card { background: #ffffff; }
   body.light-mode .repair-card:hover { background: #f0f0f8; }
-
   body.light-mode .feature-card,
   body.light-mode .testimonial-card,
   body.light-mode .location-card,
@@ -84,403 +91,83 @@
   body.light-mode .quote-panel,
   body.light-mode .quote-result,
   body.light-mode .hero-card-main,
-  body.light-mode .hero-card-float {
-    background: #ffffff;
-    border-color: rgba(0,0,0,0.08);
-    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
-  }
-
-  body.light-mode .qopt {
-    background: #f0f0f8;
-    border-color: rgba(0,0,0,0.1);
-    color: var(--text);
-  }
-
-  body.light-mode .quote-step-btn {
-    background: #ffffff;
-    border-color: rgba(0,0,0,0.1);
-  }
-
-  body.light-mode footer,
-  body.light-mode #awards {
-    background: var(--surface);
-  }
-
-  body.light-mode .mobile-menu {
-    background: rgba(244,244,248,0.98);
-  }
-
-  body.light-mode #ikrack-chat-window {
-    background: #ffffff;
-    border-color: rgba(224,62,30,0.2);
-  }
-
-  body.light-mode .chat-header {
-    background: linear-gradient(135deg, rgba(224,62,30,0.08), rgba(224,62,30,0.02));
-  }
-
+  body.light-mode .hero-card-float { background: #ffffff; border-color: rgba(0,0,0,0.08); box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+  body.light-mode .qopt { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
+  body.light-mode .quote-step-btn { background: #ffffff; border-color: rgba(0,0,0,0.1); }
+  body.light-mode footer, body.light-mode #awards { background: var(--surface); }
+  body.light-mode .mobile-menu { background: rgba(244,244,248,0.98); }
+  body.light-mode #ikrack-chat-window { background: #ffffff; border-color: rgba(224,62,30,0.2); }
+  body.light-mode .chat-header { background: linear-gradient(135deg, rgba(224,62,30,0.08), rgba(224,62,30,0.02)); }
   body.light-mode .msg-bubble.bot,
-  body.light-mode .chat-msg.bot .msg-bubble {
-    background: #f0f0f8;
-    border-color: rgba(0,0,0,0.08);
-    color: var(--text);
-  }
-
+  body.light-mode .chat-msg.bot .msg-bubble { background: #f0f0f8; border-color: rgba(0,0,0,0.08); color: var(--text); }
   body.light-mode .chat-input-row { background: #ffffff; }
   body.light-mode .chat-input { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
   body.light-mode .chip { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
   body.light-mode .typing-dots { background: #f0f0f8; border-color: rgba(0,0,0,0.08); }
-
-  body.light-mode .hero-bg {
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(224,62,30,0.07) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(224,62,30,0.04) 0%, transparent 50%);
-  }
+  body.light-mode .hero-bg { background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(224,62,30,0.07) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(224,62,30,0.04) 0%, transparent 50%); }
+  body.light-mode .acima-card { background: #f0f4ff; }
+  body.light-mode #ikrack-chat-btn { border-color: rgba(0,0,0,0.15) !important; color: var(--text) !important; }
 
   /* ─── THEME TOGGLE ─── */
-  .theme-toggle {
-    width: 44px;
-    height: 24px;
-    border-radius: 100px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    cursor: pointer;
-    position: relative;
-    transition: background 0.3s, border-color 0.3s;
-    flex-shrink: 0;
-    padding: 0;
-    outline: none;
-  }
+  .theme-toggle { width: 44px; height: 24px; border-radius: 100px; background: var(--surface2); border: 1px solid var(--border); cursor: pointer; position: relative; transition: background 0.3s, border-color 0.3s; flex-shrink: 0; padding: 0; outline: none; }
   .theme-toggle:hover { border-color: var(--accent); }
-
-  .theme-toggle-thumb {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--accent);
-    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    line-height: 1;
-  }
-
-  body.light-mode .theme-toggle-thumb {
-    transform: translateX(20px);
-  }
+  .theme-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); display: flex; align-items: center; justify-content: center; font-size: 10px; line-height: 1; }
+  body.light-mode .theme-toggle-thumb { transform: translateX(20px); }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overscroll-behavior-y: none;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-
-  /* Smooth momentum scrolling on iOS */
-  html, body {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Prevent pull-to-refresh interfering with UX */
-  body {
-    overscroll-behavior: none;
-  }
-
-  /* Focus styles for accessibility */
-  :focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  /* Smooth image rendering */
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; overscroll-behavior-y: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  html, body { -webkit-overflow-scrolling: touch; }
+  body { overscroll-behavior: none; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
   img { image-rendering: -webkit-optimize-contrast; }
-
-  /* Tap targets — all interactive elements at least 44px */
   button, a, input, select, textarea { touch-action: manipulation; }
 
   /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(10,10,15,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: var(--white);
-    text-decoration: none;
-    letter-spacing: -0.03em;
-  }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--white); text-decoration: none; letter-spacing: -0.03em; }
   .nav-logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-  }
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    transition: color 0.2s;
-  }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
   .nav-links a:hover { color: var(--white); }
-
-  .nav-phones {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-align: right;
-  }
+  .nav-phones { display: flex; flex-direction: column; gap: 2px; font-size: 0.72rem; color: var(--muted); text-align: right; }
   .nav-phones a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .nav-phones a:hover { color: var(--accent); }
 
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.4rem;
-    border-radius: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 0.875rem;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition: all 0.2s;
-    letter-spacing: 0.01em;
-  }
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-  }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.4rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.875rem; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; letter-spacing: 0.01em; }
+  .btn-primary { background: var(--accent); color: white; }
   .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,85,51,0.35); }
-  .btn-outline {
-    background: transparent;
-    color: var(--white);
-    border: 1px solid var(--border);
-  }
+  .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--border); }
   .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
 
   .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
   .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
 
-
-
   /* ─── HERO ─── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    padding: 100px 2rem 60px;
-    overflow: hidden;
-    contain: layout;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,85,51,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,85,51,0.06) 0%, transparent 50%);
-  }
-
-  .hero-grid-overlay {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
-    opacity: 0.4;
-  }
-
-  .hero-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    min-width: 0;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(255,85,51,0.1);
-    border: 1px solid rgba(255,85,51,0.25);
-    border-radius: 100px;
-    padding: 0.35rem 1rem;
-    font-size: 0.78rem;
-    color: var(--accent2);
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    letter-spacing: 0.03em;
-  }
+  #hero { min-height: 100vh; display: flex; align-items: center; position: relative; padding: 100px 2rem 60px; overflow: hidden; contain: layout; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(255,85,51,0.12) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,85,51,0.06) 0%, transparent 50%); }
+  .hero-grid-overlay { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%); opacity: 0.4; }
+  .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; position: relative; z-index: 1; min-width: 0; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,85,51,0.1); border: 1px solid rgba(255,85,51,0.25); border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.78rem; color: var(--accent2); font-weight: 500; margin-bottom: 1.5rem; letter-spacing: 0.03em; }
   .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(1.4); }
-  }
-
-  .hero-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.04em;
-    color: var(--white);
-    margin-bottom: 1.5rem;
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
+  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; color: var(--white); margin-bottom: 1.5rem; }
   .hero-title em { font-style: normal; color: var(--accent); }
-
-  .hero-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 2.5rem;
-    max-width: 460px;
-    font-weight: 300;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-  }
+  .hero-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.7; margin-bottom: 2.5rem; max-width: 460px; font-weight: 300; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .hero-stats { display: flex; gap: 2.5rem; }
   .stat-item { display: flex; flex-direction: column; }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.03em;
-  }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--white); letter-spacing: -0.03em; }
   .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
-
-  .hero-visual {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    justify-content: center;
-    min-width: 0;
-    width: 100%;
-    padding: 1rem 0;
-  }
-
-  .hero-card-main {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 1.8rem;
-    width: 100%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .hero-card-icon {
-    width: 48px; height: 48px;
-    background: linear-gradient(135deg, var(--accent), #ff8833);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero-card-main h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
+  .hero-visual { display: flex; flex-direction: column; gap: 1rem; justify-content: center; min-width: 0; width: 100%; padding: 1rem 0; }
+  .hero-card-main { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 1.8rem; width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: float 6s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
+  .hero-card-icon { width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent), #ff8833); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+  .hero-card-main h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
   .hero-card-main p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-
-  .hero-card-tag {
-    display: inline-block;
-    margin-top: 0.8rem;
-    background: rgba(255,85,51,0.12);
-    color: var(--accent2);
-    font-size: 0.72rem;
-    font-weight: 600;
-    padding: 0.25rem 0.7rem;
-    border-radius: 4px;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .hero-cards-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0.75rem;
-    width: 100%;
-  }
-
-  .hero-card-float {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    animation: float 6s ease-in-out infinite;
-  }
+  .hero-card-tag { display: inline-block; margin-top: 0.8rem; background: rgba(255,85,51,0.12); color: var(--accent2); font-size: 0.72rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .hero-cards-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; width: 100%; }
+  .hero-card-float { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 1rem; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.82rem; animation: float 6s ease-in-out infinite; }
   .hero-card-float:nth-child(2) { animation-duration: 7s; animation-delay: 0.5s; }
   .hero-card-float:nth-child(3) { animation-duration: 8s; animation-delay: 1s; }
   .hero-card-float .icon { font-size: 1.3rem; }
@@ -489,518 +176,217 @@
 
   /* ─── SECTION COMMONS ─── */
   section { padding: 100px 2rem; }
-
   .section-inner { max-width: 1200px; margin: 0 auto; min-width: 0; width: 100%; }
-
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.8rem;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--white);
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .section-sub {
-    color: var(--muted);
-    font-size: 1rem;
-    max-width: 560px;
-    line-height: 1.7;
-    font-weight: 300;
-  }
+  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: var(--white); line-height: 1.1; margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; line-height: 1.7; font-weight: 300; }
 
   /* ─── AWARDS TICKER ─── */
-  #awards {
-    padding: 24px 0;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .ticker-track {
-    display: flex;
-    gap: 3rem;
-    animation: ticker 20s linear infinite;
-    white-space: nowrap;
-    width: max-content;
-  }
-
+  #awards { padding: 24px 0; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+  .ticker-track { display: flex; gap: 3rem; animation: ticker 20s linear infinite; white-space: nowrap; width: max-content; }
   @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  .ticker-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-  }
+  .ticker-item { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
   .ticker-item .dot { width: 5px; height: 5px; background: var(--accent); border-radius: 50%; }
 
   /* ─── REPAIRS ─── */
   #repairs { background: var(--surface); }
-
-  .repairs-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 3.5rem;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .repair-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5px;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-  }
-
-  .repair-card {
-    position: relative;
-    background: var(--card-bg);
-    padding: 2.5rem 2rem;
-    cursor: pointer;
-    overflow: hidden;
-    transition: background 0.3s;
-    text-decoration: none;
-    display: block;
-  }
-  .repair-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s;
-  }
+  .repairs-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap; }
+  .repair-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+  .repair-card { position: relative; background: var(--card-bg); padding: 2.5rem 2rem; cursor: pointer; overflow: hidden; transition: background 0.3s; text-decoration: none; display: block; }
+  .repair-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
   .repair-card:hover { background: #1a1a26; }
   .repair-card:hover::before { transform: scaleX(1); }
-
-  .repair-icon {
-    font-size: 2rem;
-    margin-bottom: 1.2rem;
-    display: block;
-  }
-
-  .repair-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  .repair-card p {
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  .repair-arrow {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 32px; height: 32px;
-    background: rgba(255,85,51,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    color: var(--accent);
-    transition: all 0.3s;
-  }
+  .repair-icon { font-size: 2rem; margin-bottom: 1.2rem; display: block; }
+  .repair-card h3 { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .repair-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+  .repair-arrow { position: absolute; bottom: 1.5rem; right: 1.5rem; width: 32px; height: 32px; background: rgba(255,85,51,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--accent); transition: all 0.3s; }
   .repair-card:hover .repair-arrow { background: var(--accent); color: white; transform: translate(2px,-2px); }
 
   /* ─── FEATURES ─── */
-  #features {
-    background: var(--bg);
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 3.5rem;
-  }
-
-  .feature-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
+  #features { background: var(--bg); }
+  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .feature-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
   .feature-card:hover { border-color: rgba(255,85,51,0.3); transform: translateY(-3px); }
-
-  .feature-card.featured {
-    grid-column: span 2;
-    background: linear-gradient(135deg, rgba(255,85,51,0.08) 0%, var(--card-bg) 60%);
-    border-color: rgba(255,85,51,0.2);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .feature-icon {
-    width: 48px; height: 48px;
-    background: rgba(255,85,51,0.1);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.3rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .feature-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
+  .feature-card.featured { grid-column: span 2; background: linear-gradient(135deg, rgba(255,85,51,0.08) 0%, var(--card-bg) 60%); border-color: rgba(255,85,51,0.2); display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+  .feature-icon { width: 48px; height: 48px; background: rgba(255,85,51,0.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; }
+  .feature-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; letter-spacing: -0.02em; }
   .feature-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; font-weight: 300; }
-
-  .feature-big-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-    line-height: 1.15;
-  }
+  .feature-big-title { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--white); letter-spacing: -0.03em; margin-bottom: 1rem; line-height: 1.15; }
   .feature-big-title em { font-style: normal; color: var(--accent); }
 
   /* ─── BUY/SELL ─── */
-  #devices {
-    background: var(--surface);
-  }
-
-  .devices-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    margin-top: 3.5rem;
-  }
-
+  #devices { background: var(--surface); }
+  .devices-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3.5rem; }
   .device-perks { list-style: none; margin-top: 1.5rem; }
-  .device-perks li {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.9rem;
-    color: var(--muted);
-    font-weight: 300;
-    align-items: flex-start;
-  }
+  .device-perks li { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--muted); font-weight: 300; align-items: flex-start; }
   .device-perks li:last-child { border-bottom: none; }
-  .perk-check {
-    width: 20px; height: 20px;
-    background: rgba(255,85,51,0.12);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem;
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
+  .perk-check { width: 20px; height: 20px; background: rgba(255,85,51,0.12); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
   .perk-text strong { display: block; color: var(--white); font-size: 0.92rem; margin-bottom: 2px; font-weight: 500; }
 
-  .device-form-card {
+  /* ─── ACIMA CARD ─── */
+  .acima-card {
     background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 2.5rem;
+    border: 1px solid var(--acima-border);
+    border-radius: 16px;
+    padding: 1.4rem 1.6rem;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: border-color 0.25s, transform 0.25s;
   }
+  .acima-card:hover { border-color: rgba(30,100,255,0.45); transform: translateY(-2px); }
+  .acima-card::before { content: ''; position: absolute; inset: 0; background: var(--acima-bg); pointer-events: none; }
+  .acima-logo-block {
+    background: var(--acima-logo-bg);
+    border: 1px solid var(--acima-border);
+    border-radius: 12px;
+    width: 68px; height: 68px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0; z-index: 1;
+    gap: 2px;
+  }
+  .acima-logo-wordmark { font-family: 'Arial Black', 'Arial', sans-serif; font-weight: 900; font-size: 1.05rem; color: #4d90fe; line-height: 1; letter-spacing: -0.02em; }
+  .acima-logo-sub { font-size: 0.5rem; color: #6a90d0; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .acima-info { z-index: 1; }
+  .acima-badge { display: inline-block; background: var(--acima-badge-bg); border: 1px solid var(--acima-badge-border); color: var(--acima-text); font-size: 0.67rem; font-weight: 700; padding: 0.18rem 0.65rem; border-radius: 100px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 0.45rem; }
+  .acima-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; letter-spacing: -0.02em; }
+  .acima-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; font-weight: 300; }
+  .acima-desc strong { color: var(--acima-text); font-weight: 600; }
+  .acima-btn {
+    background: var(--acima-blue);
+    color: #fff;
+    border: none; border-radius: 10px;
+    padding: 0.7rem 1.3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+    display: flex; align-items: center; gap: 0.35rem;
+    flex-shrink: 0; z-index: 1;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .acima-btn:hover { background: var(--acima-blue-hover); transform: translateY(-1px); }
+  .acima-btn:active { transform: scale(0.97); }
 
-  .device-form-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-  }
+  .device-form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; }
+  .device-form-card h3 { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
   .device-form-card p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
-
   .form-group { margin-bottom: 1rem; }
   .form-group label { display: block; font-size: 0.78rem; color: var(--muted); margin-bottom: 0.4rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    transition: border-color 0.2s;
-    -webkit-appearance: none;
-    outline: none;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; transition: border-color 0.2s; -webkit-appearance: none; outline: none; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
   .form-group select option { background: var(--surface2); }
   .form-group textarea { resize: none; height: 80px; }
 
   /* ─── LOCATIONS ─── */
   #locations { background: var(--bg); }
-
-  .locations-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3.5rem;
-  }
-
-  .location-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
+  .locations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3.5rem; }
+  .location-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
   .location-card:hover { border-color: rgba(255,85,51,0.3); transform: translateY(-3px); }
-
-  .location-map {
-    height: 200px;
-    background: var(--surface2);
-    position: relative;
-    overflow: hidden;
-  }
+  .location-map { height: 200px; background: var(--surface2); position: relative; overflow: hidden; }
   .location-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(80%) invert(0.9) contrast(0.8); }
-
   .location-info { padding: 1.8rem; }
-  .location-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1rem;
-    letter-spacing: -0.02em;
-  }
-
-  .location-detail {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-weight: 300;
-  }
+  .location-name { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .location-detail { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.75rem; font-size: 0.85rem; color: var(--muted); font-weight: 300; }
   .location-detail .licon { font-size: 1rem; margin-top: 1px; }
   .location-detail a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
   .location-detail a:hover { color: var(--accent); }
 
   /* ─── TESTIMONIALS ─── */
   #testimonials { background: var(--surface); }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-top: 3.5rem;
-  }
-
-  .testimonial-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 1.8rem;
-    transition: transform 0.3s, border-color 0.3s;
-  }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+  .testimonial-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: transform 0.3s, border-color 0.3s; }
   .testimonial-card:hover { transform: translateY(-3px); border-color: rgba(255,85,51,0.2); }
-
   .stars { color: #ffc107; font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
-
-  .testimonial-text {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-    font-style: italic;
-    font-weight: 300;
-    margin-bottom: 1.5rem;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .author-avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #ff8833);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: white;
-    flex-shrink: 0;
-  }
+  .testimonial-text { font-size: 0.9rem; color: var(--muted); line-height: 1.7; font-style: italic; font-weight: 300; margin-bottom: 1.5rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+  .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #ff8833); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; color: white; flex-shrink: 0; }
   .author-name { font-size: 0.85rem; font-weight: 600; color: var(--white); }
   .author-location { font-size: 0.75rem; color: var(--muted); }
 
   /* ─── CTA ─── */
-  #cta {
-    background: var(--bg);
-    padding: 80px 2rem;
-  }
-
-  .cta-box {
-    max-width: 900px;
-    margin: 0 auto;
-    background: linear-gradient(135deg, rgba(255,85,51,0.1) 0%, var(--card-bg) 100%);
-    border: 1px solid rgba(255,85,51,0.2);
-    border-radius: 24px;
-    padding: 4rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-box::before {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,85,51,0.05) 0%, transparent 60%);
-  }
-
+  #cta { background: var(--bg); padding: 80px 2rem; }
+  .cta-box { max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, rgba(255,85,51,0.1) 0%, var(--card-bg) 100%); border: 1px solid rgba(255,85,51,0.2); border-radius: 24px; padding: 4rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-box::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,85,51,0.05) 0%, transparent 60%); }
   .cta-box .section-title { font-size: 2.5rem; }
   .cta-box .section-sub { margin: 1rem auto 2.5rem; text-align: center; }
 
   /* ─── FOOTER ─── */
-  footer {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 3rem 2rem;
-  }
-
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 3rem;
-  }
-
-  .footer-brand p {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-top: 1rem;
-    max-width: 260px;
-    font-weight: 300;
-  }
-
-  .footer-col h4 {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 1.2rem;
-    letter-spacing: 0.02em;
-  }
-
+  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 2rem; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+  .footer-brand p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-top: 1rem; max-width: 260px; font-weight: 300; }
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 1.2rem; letter-spacing: 0.02em; }
   .footer-col ul { list-style: none; }
   .footer-col ul li { margin-bottom: 0.6rem; }
-  .footer-col ul li a {
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    font-weight: 300;
-  }
+  .footer-col ul li a { font-size: 0.85rem; color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 300; }
   .footer-col ul li a:hover { color: var(--white); }
-
-  .footer-bottom {
-    max-width: 1200px;
-    margin: 2rem auto 0;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
-  .social-links {
-    display: flex;
-    gap: 0.75rem;
-  }
-  .social-link {
-    width: 34px; height: 34px;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.9rem;
-    color: var(--muted);
-    text-decoration: none;
-    transition: all 0.2s;
-  }
+  .footer-bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--muted); font-weight: 300; }
+  .social-links { display: flex; gap: 0.75rem; }
+  .social-link { width: 34px; height: 34px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--muted); text-decoration: none; transition: all 0.2s; }
   .social-link:hover { border-color: var(--accent); color: var(--accent); }
 
   /* ─── MOBILE MENU ─── */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: 64px; left: 0; right: 0; bottom: 0;
-    background: rgba(10,10,15,0.97);
-    backdrop-filter: blur(20px);
-    z-index: 99;
-    padding: 2rem;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; bottom: 0; background: rgba(10,10,15,0.97); backdrop-filter: blur(20px); z-index: 99; padding: 2rem; flex-direction: column; gap: 0.5rem; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text);
-    text-decoration: none;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: color 0.2s;
-  }
+  .mobile-menu a { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); text-decoration: none; padding: 0.75rem 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
   .mobile-menu a:hover { color: var(--accent); }
 
-  /* ─── RESPONSIVE ─── */
+  /* ─── QUOTE TOOL ─── */
+  #quote { background: var(--bg); }
+  .quote-wrapper { margin-top: 3.5rem; display: grid; grid-template-columns: 340px 1fr; gap: 2rem; align-items: start; min-width: 0; }
+  .quote-wrapper > div:last-child { min-width: 0; overflow: hidden; }
+  .quote-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+  .quote-step-btn { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 1rem; cursor: pointer; transition: all 0.2s; text-align: left; width: 100%; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; }
+  .quote-step-btn:hover { border-color: rgba(255,85,51,0.3); color: var(--text); }
+  .quote-step-btn.active { border-color: var(--accent); background: rgba(255,85,51,0.06); color: var(--white); }
+  .quote-step-btn.done { border-color: rgba(255,85,51,0.2); color: var(--muted); }
+  .quote-step-btn.done .qstep-icon { background: rgba(80,200,100,0.15); color: #4ade80; }
+  .qstep-num { width: 28px; height: 28px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; color: var(--muted); transition: all 0.2s; }
+  .quote-step-btn.active .qstep-num { background: var(--accent); color: white; }
+  .quote-step-btn.done .qstep-num { background: rgba(74,222,128,0.2); color: #4ade80; }
+  .qstep-label { font-weight: 500; }
+  .qstep-value { font-size: 0.78rem; color: var(--accent2); margin-top: 1px; }
+  .qstep-icon { margin-left: auto; font-size: 1.3rem; background: var(--surface2); width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+  .quote-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; min-width: 0; width: 100%; }
+  .quote-panel-inner { padding: 2rem; }
+  .qpanel-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+  .qpanel-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
+  .quote-option-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.6rem; }
+  .quote-option-grid.cols3 { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+  .qopt { background: var(--surface2); border: 1.5px solid var(--border); border-radius: 10px; padding: 0.85rem 0.75rem; text-align: center; cursor: pointer; transition: all 0.18s; font-size: 0.82rem; color: var(--muted); font-weight: 500; line-height: 1.3; user-select: none; }
+  .qopt .qopt-icon { font-size: 1.4rem; display: block; margin-bottom: 0.35rem; }
+  .qopt:hover { border-color: rgba(255,85,51,0.4); color: var(--text); }
+  .qopt.selected { border-color: var(--accent); background: rgba(255,85,51,0.08); color: var(--white); }
+  .quote-result { display: none; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; }
+  .quote-result.visible { display: block; }
+  .qresult-header { background: linear-gradient(135deg, rgba(255,85,51,0.15), transparent); border-bottom: 1px solid var(--border); padding: 1.8rem 2rem; }
+  .qresult-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .qresult-device { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.25rem; }
+  .qresult-repair { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
+  .qresult-price-row { padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); gap: 1rem; flex-wrap: wrap; }
+  .qresult-price-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
+  .qresult-price { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--white); letter-spacing: -0.04em; }
+  .qresult-price span { font-size: 1rem; color: var(--muted); font-weight: 400; margin-left: 0.3rem; }
+  .qresult-perks { padding: 1.25rem 2rem; display: flex; flex-direction: column; gap: 0.6rem; border-bottom: 1px solid var(--border); }
+  .qperk { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+  .qperk-dot { width: 5px; height: 5px; background: #4ade80; border-radius: 50%; flex-shrink: 0; }
+  .qresult-actions { padding: 1.25rem 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .quote-disclaimer { font-size: 0.72rem; color: var(--muted); text-align: center; padding: 0.75rem 2rem 1.25rem; font-weight: 300; font-style: italic; }
+  .quote-progress { height: 3px; background: var(--surface2); border-radius: 0; }
+  .quote-progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 0; transition: width 0.4s ease; }
+  .qpanel-back { background: none; border: none; color: var(--muted); font-size: 0.8rem; cursor: pointer; padding: 0; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'DM Sans', sans-serif; transition: color 0.2s; }
+  .qpanel-back:hover { color: var(--white); }
 
-  /* Tablet */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
   @media (max-width: 960px) {
     .hero-inner { grid-template-columns: 1fr; text-align: center; width: 100%; overflow: hidden; }
     .hero-content { width: 100%; max-width: 100%; display: flex; flex-direction: column; align-items: center; overflow: hidden; }
@@ -1023,26 +409,23 @@
     .hamburger { display: flex; }
     .cta-box { padding: 3rem 2rem; }
     .cta-box .section-title { font-size: 2rem; }
+    .quote-wrapper { grid-template-columns: 1fr; }
+    .quote-steps { display: none; }
+    .acima-card { grid-template-columns: auto 1fr; }
+    .acima-btn { grid-column: 1 / -1; justify-content: center; }
   }
 
-  /* Mobile */
   @media (max-width: 600px) {
-    /* Base */
     html { -webkit-text-size-adjust: 100%; }
     body { -webkit-tap-highlight-color: transparent; }
     section { padding: 56px 1.25rem; width: 100%; box-sizing: border-box; }
     .section-inner { padding: 0; width: 100%; box-sizing: border-box; }
-
-    /* Nav */
     nav { padding: 0 1rem; height: 58px; width: 100%; }
     .nav-logo { font-size: 1.2rem; }
     .theme-toggle { width: 36px; height: 20px; }
     .theme-toggle-thumb { width: 13px; height: 13px; font-size: 8px; top: 2px; left: 2px; }
     body.light-mode .theme-toggle-thumb { transform: translateX(16px); }
-
     .chat-badge { width: 6px !important; height: 6px !important; }
-
-    /* Hero */
     #hero { padding: 80px 1.25rem 48px; min-height: 100svh; width: 100%; overflow-x: hidden; box-sizing: border-box; }
     .hero-badge { font-size: 0.72rem; padding: 0.3rem 0.85rem; }
     .hero-title { font-size: clamp(1.9rem, 8vw, 2.6rem); letter-spacing: -0.02em; word-break: break-word; overflow-wrap: break-word; }
@@ -1051,38 +434,27 @@
     .hero-actions .btn { justify-content: center; padding: 0.9rem 1.2rem; font-size: 1rem; border-radius: 12px; min-height: 52px; }
     .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
     .stat-num { font-size: 1.5rem; }
-
-    /* Repairs */
     .repair-grid { grid-template-columns: 1fr; gap: 1px; }
-    .repair-card { padding: 1.5rem 1.25rem; }
+    .repair-card { padding: 1.5rem 1.25rem; border-radius: 0; }
     .repairs-header { margin-bottom: 2rem; }
-
-    /* Features */
     .features-grid { gap: 1rem; margin-top: 2rem; }
     .feature-card { padding: 1.5rem; }
     .feature-card.featured { display: flex; flex-direction: column; }
     .feature-big-title { font-size: 1.6rem; }
-
-    /* Devices / Buy Sell */
     .device-form-card { padding: 1.5rem; }
     .devices-layout { gap: 2.5rem; }
-
-    /* Locations */
+    .acima-card { grid-template-columns: 1fr; text-align: center; padding: 1.25rem; }
+    .acima-logo-block { margin: 0 auto; }
+    .acima-btn { justify-content: center; width: 100%; min-height: 48px; }
     .locations-grid { grid-template-columns: 1fr; gap: 1rem; }
     .location-info { padding: 1.25rem; }
     .location-map { height: 160px; }
-
-    /* Testimonials */
     .testimonials-grid { grid-template-columns: 1fr; gap: 1rem; }
     .testimonial-card { padding: 1.25rem; }
-
-    /* CTA */
     #cta { padding: 50px 1.25rem; }
     .cta-box { padding: 2rem 1.25rem; border-radius: 16px; }
     .cta-box .section-title { font-size: 1.7rem; }
     .cta-box > div { flex-direction: column; }
-
-    /* Quote tool */
     .quote-wrapper { grid-template-columns: 1fr; margin-top: 2rem; }
     .quote-steps { display: none; }
     .qopt { padding: 0.75rem 0.5rem; font-size: 0.78rem; }
@@ -1090,39 +462,21 @@
     .qresult-price { font-size: 1.8rem; }
     .qresult-actions { flex-direction: column; }
     .qresult-actions .btn { justify-content: center; min-height: 48px; }
-
-    /* Section text */
     .section-title { font-size: clamp(1.7rem, 7vw, 2.5rem); }
     .section-sub { font-size: 0.9rem; }
-
-    /* Footer */
     .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
     .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
     footer { padding: 2.5rem 1.25rem; }
-
-    /* Mobile menu */
     .mobile-menu { padding: 1.5rem 1.25rem; overflow-y: auto; }
     .mobile-menu a { font-size: 1.3rem; padding: 0.9rem 0; min-height: 52px; display: flex; align-items: center; }
-
-    /* Chatbot — corner floater above mobile bottom bar */
     #ikrack-chat-window { width: calc(100vw - 24px); max-width: 360px; right: 12px; bottom: calc(148px + env(safe-area-inset-bottom)); max-height: 62vh; border-radius: 16px; }
-
-    .chat-input { font-size: 16px; } /* Prevent iOS zoom on focus */
-
-    /* Buttons — larger touch targets */
+    .chat-input { font-size: 16px; }
     .btn { min-height: 46px; }
-
-    /* Forms — prevent iOS zoom */
-    .form-group input,
-    .form-group select,
-    .form-group textarea { font-size: 16px; }
-
-    /* Safe area insets for notched phones */
+    .form-group input, .form-group select, .form-group textarea { font-size: 16px; }
     nav { padding-top: env(safe-area-inset-top); }
     footer { padding-bottom: calc(1.5rem + env(safe-area-inset-bottom)); }
   }
 
-  /* Very small phones */
   @media (max-width: 380px) {
     .hero-title { font-size: 1.75rem; letter-spacing: -0.01em; }
     .hero-actions .btn { font-size: 0.9rem; }
@@ -1130,7 +484,6 @@
     .section-title { font-size: 1.6rem; }
   }
 
-  /* Touch device optimizations */
   @media (hover: none) and (pointer: coarse) {
     .repair-card:hover { background: var(--card-bg); }
     .repair-card:hover::before { transform: scaleX(0); }
@@ -1138,360 +491,43 @@
     .location-card:hover { transform: none; }
     .testimonial-card:hover { transform: none; }
     .btn:hover { transform: none; box-shadow: none; }
-    /* Add active states instead for touch */
     .repair-card:active { background: #1a1a26; }
     .btn:active { opacity: 0.85; transform: scale(0.98); }
     .qopt:active { border-color: var(--accent); background: rgba(255,85,51,0.08); }
     .chip:active { border-color: var(--accent); color: var(--accent); }
+    .acima-card:hover { transform: none; }
+    .acima-card:active { transform: scale(0.99); }
+    .acima-btn:hover { transform: none; }
   }
-
-  /* ─── QUOTE TOOL ─── */
-  #quote { background: var(--bg); }
-
-  .quote-wrapper {
-    margin-top: 3.5rem;
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 2rem;
-    align-items: start;
-    min-width: 0;
-  }
-
-  .quote-wrapper > div:last-child {
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  .quote-steps {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .quote-step-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-align: left;
-    width: 100%;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-  }
-  .quote-step-btn:hover { border-color: rgba(255,85,51,0.3); color: var(--text); }
-  .quote-step-btn.active { border-color: var(--accent); background: rgba(255,85,51,0.06); color: var(--white); }
-  .quote-step-btn.done { border-color: rgba(255,85,51,0.2); color: var(--muted); }
-  .quote-step-btn.done .qstep-icon { background: rgba(80,200,100,0.15); color: #4ade80; }
-
-  .qstep-num {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--surface2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    flex-shrink: 0;
-    color: var(--muted);
-    transition: all 0.2s;
-  }
-  .quote-step-btn.active .qstep-num { background: var(--accent); color: white; }
-  .quote-step-btn.done .qstep-num { background: rgba(74,222,128,0.2); color: #4ade80; }
-
-  .qstep-label { font-weight: 500; }
-  .qstep-value { font-size: 0.78rem; color: var(--accent2); margin-top: 1px; }
-
-  .qstep-icon {
-    margin-left: auto;
-    font-size: 1.3rem;
-    background: var(--surface2);
-    width: 38px; height: 38px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-
-  /* Right panel */
-  .quote-panel {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-    min-width: 0;
-    width: 100%;
-  }
-
-  .quote-panel-inner {
-    padding: 2rem;
-  }
-
-  .qpanel-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-  .qpanel-sub { font-size: 0.82rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
-
-  .quote-option-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 0.6rem;
-  }
-  .quote-option-grid.cols3 {
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-  }
-
-  .qopt {
-    background: var(--surface2);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 0.85rem 0.75rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.18s;
-    font-size: 0.82rem;
-    color: var(--muted);
-    font-weight: 500;
-    line-height: 1.3;
-    user-select: none;
-  }
-  .qopt .qopt-icon { font-size: 1.4rem; display: block; margin-bottom: 0.35rem; }
-  .qopt:hover { border-color: rgba(255,85,51,0.4); color: var(--text); }
-  .qopt.selected { border-color: var(--accent); background: rgba(255,85,51,0.08); color: var(--white); }
-
-  /* Result card */
-  .quote-result {
-    display: none;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .quote-result.visible { display: block; }
-
-  .qresult-header {
-    background: linear-gradient(135deg, rgba(255,85,51,0.15), transparent);
-    border-bottom: 1px solid var(--border);
-    padding: 1.8rem 2rem;
-  }
-
-  .qresult-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
-
-  .qresult-device {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.25rem;
-  }
-
-  .qresult-repair { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
-
-  .qresult-price-row {
-    padding: 1.5rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid var(--border);
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .qresult-price-label { font-size: 0.78rem; color: var(--muted); font-weight: 300; }
-
-  .qresult-price {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.04em;
-  }
-  .qresult-price span { font-size: 1rem; color: var(--muted); font-weight: 400; margin-left: 0.3rem; }
-
-  .qresult-perks {
-    padding: 1.25rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .qperk { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--muted); font-weight: 300; }
-  .qperk-dot { width: 5px; height: 5px; background: #4ade80; border-radius: 50%; flex-shrink: 0; }
-
-  .qresult-actions {
-    padding: 1.25rem 2rem;
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .quote-disclaimer {
-    font-size: 0.72rem;
-    color: var(--muted);
-    text-align: center;
-    padding: 0.75rem 2rem 1.25rem;
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  .quote-progress {
-    height: 3px;
-    background: var(--surface2);
-    border-radius: 0;
-  }
-  .quote-progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 0;
-    transition: width 0.4s ease;
-  }
-
-  .qpanel-back {
-    background: none;
-    border: none;
-    color: var(--muted);
-    font-size: 0.8rem;
-    cursor: pointer;
-    padding: 0;
-    margin-bottom: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: 'DM Sans', sans-serif;
-    transition: color 0.2s;
-  }
-  .qpanel-back:hover { color: var(--white); }
 
   @media (max-width: 860px) {
-    .quote-wrapper { grid-template-columns: 1fr; }
-    .quote-steps { display: none; }
     .quote-option-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
     .quote-option-grid.cols3 { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
-  }
-
-
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 </style>
 </head>
 <body>
 
 <style>
-  /* ── Page load reveal ── */
-  @keyframes pageReveal {
-    from { opacity: 0; transform: translateY(6px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  @keyframes pageReveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
   body { animation: pageReveal 0.35s ease both; }
-
-  /* ── Smooth section transitions ── */
-  section, footer, #awards { 
-    transition: background 0.3s ease;
-  }
-
-  /* ── Pull-to-refresh blocker visual ── */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -100px;
-    left: 0; right: 0;
-    height: 100px;
-    background: var(--bg);
-    z-index: 9999;
-  }
-
-  /* ── iOS status bar color match ── */
+  section, footer, #awards { transition: background 0.3s ease; }
+  body::before { content: ''; position: fixed; top: -100px; left: 0; right: 0; height: 100px; background: var(--bg); z-index: 9999; }
   @supports (padding-top: env(safe-area-inset-top)) {
-    nav {
-      padding-top: max(0px, env(safe-area-inset-top));
-      height: calc(58px + env(safe-area-inset-top));
-    }
+    nav { padding-top: max(0px, env(safe-area-inset-top)); height: calc(58px + env(safe-area-inset-top)); }
     #hero { padding-top: calc(80px + env(safe-area-inset-top)); }
   }
-
-  /* ── Sticky bottom action bar on mobile ── */
-  .mobile-cta-bar {
-    display: none;
-  }
+  .mobile-cta-bar { display: none; }
   @media (max-width: 600px) {
-    .mobile-cta-bar {
-      display: flex;
-      position: fixed;
-      bottom: 0;
-      left: 0; right: 0;
-      z-index: 97;
-      background: var(--card-bg);
-      border-top: 1px solid var(--border);
-      padding: 0.75rem 1rem;
-      padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
-      gap: 0.75rem;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-    }
-    .mobile-cta-bar a {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
-      padding: 0.7rem;
-      border-radius: 10px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-decoration: none;
-      min-height: 46px;
-      transition: opacity 0.15s;
-    }
+    .mobile-cta-bar { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 97; background: var(--card-bg); border-top: 1px solid var(--border); padding: 0.75rem 1rem; padding-bottom: calc(0.75rem + env(safe-area-inset-bottom)); gap: 0.75rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+    .mobile-cta-bar a { flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem; padding: 0.7rem; border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; min-height: 46px; transition: opacity 0.15s; }
     .mobile-cta-bar a:active { opacity: 0.8; }
-    .mobile-cta-bar .cta-call {
-      background: var(--surface2);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .mobile-cta-bar .cta-quote {
-      background: var(--accent);
-      color: white;
-    }
-    /* Push content above the bar */
+    .mobile-cta-bar .cta-call { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
+    .mobile-cta-bar .cta-quote { background: var(--accent); color: white; }
     body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
-  }
-
-  /* ── Mobile grid fixes ── */
-  @media (max-width: 600px) {
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-      width: 100%;
-      margin: 2rem 0 0;
-    }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; width: 100%; margin: 2rem 0 0; }
     .testimonial-card { width: 100%; }
-    .repair-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1px;
-      width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .repair-card { border-radius: 0; }
+    .repair-grid { display: grid; grid-template-columns: 1fr; gap: 1px; width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
   }
 </style>
 
@@ -1538,8 +574,8 @@
   <a href="#locations" onclick="toggleMenu()">Locations</a>
   <a href="#testimonials" onclick="toggleMenu()">Reviews</a>
   <a href="#quote" onclick="toggleMenu()" style="color:var(--accent)">⚡ Quote Tool</a>
-  <a href="tel:+14782879783" style="color: var(--accent)">Bonaire: (478) 287-9783</a>
-  <a href="tel:+14783096400" style="color: var(--accent)">Macon: (478) 309-6400</a>
+  <a href="tel:+14782879783" style="color:var(--accent)">Bonaire: (478) 287-9783</a>
+  <a href="tel:+14783096400" style="color:var(--accent)">Macon: (478) 309-6400</a>
 </div>
 
 <!-- HERO -->
@@ -1552,25 +588,15 @@
       <h1 class="hero-title">Your Device.<br><em>Restored.</em><br>Guaranteed.</h1>
       <p class="hero-sub">Expert repairs for iPhone, Samsung, iPad &amp; more. Same-day turnaround, lifetime warranty on parts, and the best prices in Central Georgia.</p>
       <div class="hero-actions">
-        <a href="#repairs" class="btn btn-primary">→ Get Repair Quote</a>
+        <a href="#quote" class="btn btn-primary">→ Get Repair Quote</a>
         <a href="#devices" class="btn btn-outline">Buy / Sell a Device</a>
       </div>
       <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num">12+</span>
-          <span class="stat-label">Years in Business</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">50k+</span>
-          <span class="stat-label">Devices Repaired</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-num">2</span>
-          <span class="stat-label">Locations</span>
-        </div>
+        <div class="stat-item"><span class="stat-num">12+</span><span class="stat-label">Years in Business</span></div>
+        <div class="stat-item"><span class="stat-num">50k+</span><span class="stat-label">Devices Repaired</span></div>
+        <div class="stat-item"><span class="stat-num">2</span><span class="stat-label">Locations</span></div>
       </div>
     </div>
-
     <div class="hero-visual">
       <div class="hero-card-main">
         <div class="hero-card-icon">🔧</div>
@@ -1579,21 +605,9 @@
         <span class="hero-card-tag">✓ Ready for Pickup</span>
       </div>
       <div class="hero-cards-row">
-        <div class="hero-card-float">
-          <span class="icon">⭐</span>
-          <strong>4.9 / 5.0</strong>
-          <span>500+ Google Reviews</span>
-        </div>
-        <div class="hero-card-float">
-          <span class="icon">🛡️</span>
-          <strong>Lifetime Warranty</strong>
-          <span>On all repair parts</span>
-        </div>
-        <div class="hero-card-float">
-          <span class="icon">⚡</span>
-          <strong>Same Day</strong>
-          <span>Most repairs done while you wait</span>
-        </div>
+        <div class="hero-card-float"><span class="icon">⭐</span><strong>4.9 / 5.0</strong><span>500+ Google Reviews</span></div>
+        <div class="hero-card-float"><span class="icon">🛡️</span><strong>Lifetime Warranty</strong><span>On all repair parts</span></div>
+        <div class="hero-card-float"><span class="icon">⚡</span><strong>Same Day</strong><span>Most repairs done while you wait</span></div>
       </div>
     </div>
   </div>
@@ -1602,7 +616,6 @@
 <!-- AWARDS TICKER -->
 <div id="awards">
   <div class="ticker-track">
-    <!-- duplicated for seamless loop -->
     <span class="ticker-item"><span class="dot"></span> Viewers Choice Award 2022</span>
     <span class="ticker-item"><span class="dot"></span> Best of Georgia 2021</span>
     <span class="ticker-item"><span class="dot"></span> Best of Georgia 2022</span>
@@ -1628,76 +641,20 @@
       <h2 class="section-title">How Much Will My<br>Repair Cost?</h2>
       <p class="section-sub">Get a price estimate in under 30 seconds — no forms, no phone calls needed.</p>
     </div>
-
     <div class="quote-wrapper">
-      <!-- Left: step tracker -->
       <div class="quote-steps" id="quoteStepTracker">
-        <div class="quote-step-btn active" id="tracker-0">
-          <div class="qstep-num">1</div>
-          <div>
-            <div class="qstep-label">Device Type</div>
-            <div class="qstep-value" id="tv-0">Choose a device</div>
-          </div>
-          <div class="qstep-icon">📱</div>
-        </div>
-        <div class="quote-step-btn" id="tracker-1">
-          <div class="qstep-num">2</div>
-          <div>
-            <div class="qstep-label">Device Model</div>
-            <div class="qstep-value" id="tv-1">—</div>
-          </div>
-          <div class="qstep-icon">🔍</div>
-        </div>
-        <div class="quote-step-btn" id="tracker-2">
-          <div class="qstep-num">3</div>
-          <div>
-            <div class="qstep-label">Repair Type</div>
-            <div class="qstep-value" id="tv-2">—</div>
-          </div>
-          <div class="qstep-icon">🔧</div>
-        </div>
-        <div class="quote-step-btn" id="tracker-3">
-          <div class="qstep-num">4</div>
-          <div>
-            <div class="qstep-label">Your Estimate</div>
-            <div class="qstep-value" id="tv-3">—</div>
-          </div>
-          <div class="qstep-icon">💰</div>
-        </div>
+        <div class="quote-step-btn active" id="tracker-0"><div class="qstep-num">1</div><div><div class="qstep-label">Device Type</div><div class="qstep-value" id="tv-0">Choose a device</div></div><div class="qstep-icon">📱</div></div>
+        <div class="quote-step-btn" id="tracker-1"><div class="qstep-num">2</div><div><div class="qstep-label">Device Model</div><div class="qstep-value" id="tv-1">—</div></div><div class="qstep-icon">🔍</div></div>
+        <div class="quote-step-btn" id="tracker-2"><div class="qstep-num">3</div><div><div class="qstep-label">Repair Type</div><div class="qstep-value" id="tv-2">—</div></div><div class="qstep-icon">🔧</div></div>
+        <div class="quote-step-btn" id="tracker-3"><div class="qstep-num">4</div><div><div class="qstep-label">Your Estimate</div><div class="qstep-value" id="tv-3">—</div></div><div class="qstep-icon">💰</div></div>
       </div>
-
-      <!-- Right: interactive panel -->
       <div>
         <div class="quote-progress"><div class="quote-progress-bar" id="quoteProgressBar" style="width:0%"></div></div>
-        <div class="quote-panel" id="quotePanel">
-          <div class="quote-panel-inner" id="quotePanelInner">
-            <!-- Step content injected by JS -->
-          </div>
-        </div>
-
-        <!-- Result card (hidden until step 4) -->
+        <div class="quote-panel" id="quotePanel"><div class="quote-panel-inner" id="quotePanelInner"></div></div>
         <div class="quote-result" id="quoteResult">
-          <div class="qresult-header">
-            <div class="qresult-label">Your Repair Estimate</div>
-            <div class="qresult-device" id="res-device">—</div>
-            <div class="qresult-repair" id="res-repair">—</div>
-          </div>
-          <div class="qresult-price-row">
-            <div>
-              <div class="qresult-price-label">Estimated Price</div>
-              <div class="qresult-price" id="res-price">—<span>estimate</span></div>
-            </div>
-            <div style="text-align:right;">
-              <div class="qresult-price-label">Turnaround</div>
-              <div style="font-family:'Syne',sans-serif; font-size:1.1rem; font-weight:700; color:var(--white);" id="res-time">—</div>
-            </div>
-          </div>
-          <div class="qresult-perks">
-            <div class="qperk"><span class="qperk-dot"></span> Lifetime warranty on parts & labor</div>
-            <div class="qperk"><span class="qperk-dot"></span> OEM-quality replacement parts</div>
-            <div class="qperk"><span class="qperk-dot"></span> Free diagnostic — no fix, no fee</div>
-            <div class="qperk"><span class="qperk-dot"></span> Save $10 when you book online</div>
-          </div>
+          <div class="qresult-header"><div class="qresult-label">Your Repair Estimate</div><div class="qresult-device" id="res-device">—</div><div class="qresult-repair" id="res-repair">—</div></div>
+          <div class="qresult-price-row"><div><div class="qresult-price-label">Estimated Price</div><div class="qresult-price" id="res-price">—<span>estimate</span></div></div><div style="text-align:right;"><div class="qresult-price-label">Turnaround</div><div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--white);" id="res-time">—</div></div></div>
+          <div class="qresult-perks"><div class="qperk"><span class="qperk-dot"></span> Lifetime warranty on parts &amp; labor</div><div class="qperk"><span class="qperk-dot"></span> OEM-quality replacement parts</div><div class="qperk"><span class="qperk-dot"></span> Free diagnostic — no fix, no fee</div><div class="qperk"><span class="qperk-dot"></span> Save $10 when you book online</div></div>
           <div class="qresult-actions">
             <a href="tel:+14782879783" class="btn btn-primary">📞 Call to Book</a>
             <a href="https://ikrack.com/instant-quote-widget/" class="btn btn-outline" target="_blank">Book Online — Save $10</a>
@@ -1720,47 +677,16 @@
       </div>
       <div>
         <p class="section-sub">From shattered screens to water damage and micro-soldering — we handle it all with professional-grade tools and certified technicians.</p>
-        <a href="#devices" class="btn btn-primary" style="margin-top:1.5rem">Get Instant Quote →</a>
+        <a href="#quote" class="btn btn-primary" style="margin-top:1.5rem">Get Instant Quote →</a>
       </div>
     </div>
-
     <div class="repair-grid fade-up">
-      <a href="#devices" class="repair-card">
-        <span class="repair-icon">📱</span>
-        <h3>iPhone Repairs</h3>
-        <p>Screen replacements, battery swaps, charging port, cameras, and more for all iPhone models.</p>
-        <div class="repair-arrow">→</div>
-      </a>
-      <a href="#devices" class="repair-card">
-        <span class="repair-icon">🤖</span>
-        <h3>Samsung Repairs</h3>
-        <p>Galaxy S &amp; A series screen repairs, back glass, batteries, and software issues.</p>
-        <div class="repair-arrow">→</div>
-      </a>
-      <a href="#devices" class="repair-card">
-        <span class="repair-icon">📲</span>
-        <h3>Other Smartphones</h3>
-        <p>Google Pixel, LG, Motorola and more — we service a wide range of Android devices.</p>
-        <div class="repair-arrow">→</div>
-      </a>
-      <a href="#devices" class="repair-card">
-        <span class="repair-icon">📋</span>
-        <h3>iPad Repairs</h3>
-        <p>Cracked screens, battery replacements, and charging issues for all iPad generations.</p>
-        <div class="repair-arrow">→</div>
-      </a>
-      <a href="#devices" class="repair-card">
-        <span class="repair-icon">💻</span>
-        <h3>Computer Repairs</h3>
-        <p>MacBook, Windows laptops and desktops — hardware, software, and data recovery.</p>
-        <div class="repair-arrow">→</div>
-      </a>
-      <a href="#devices" class="repair-card">
-        <span class="repair-icon">🔬</span>
-        <h3>Micro Soldering</h3>
-        <p>Board-level repairs for liquid damage and chip-level issues — no fix, no fee.</p>
-        <div class="repair-arrow">→</div>
-      </a>
+      <a href="#quote" class="repair-card"><span class="repair-icon">📱</span><h3>iPhone Repairs</h3><p>Screen replacements, battery swaps, charging port, cameras, and more for all iPhone models.</p><div class="repair-arrow">→</div></a>
+      <a href="#quote" class="repair-card"><span class="repair-icon">🤖</span><h3>Samsung Repairs</h3><p>Galaxy S &amp; A series screen repairs, back glass, batteries, and software issues.</p><div class="repair-arrow">→</div></a>
+      <a href="#quote" class="repair-card"><span class="repair-icon">📲</span><h3>Other Smartphones</h3><p>Google Pixel, LG, Motorola and more — we service a wide range of Android devices.</p><div class="repair-arrow">→</div></a>
+      <a href="#quote" class="repair-card"><span class="repair-icon">📋</span><h3>iPad Repairs</h3><p>Cracked screens, battery replacements, and charging issues for all iPad generations.</p><div class="repair-arrow">→</div></a>
+      <a href="#quote" class="repair-card"><span class="repair-icon">💻</span><h3>Computer Repairs</h3><p>MacBook, Windows laptops and desktops — hardware, software, and data recovery.</p><div class="repair-arrow">→</div></a>
+      <a href="#quote" class="repair-card"><span class="repair-icon">🔬</span><h3>Micro Soldering</h3><p>Board-level repairs for liquid damage and chip-level issues — no fix, no fee.</p><div class="repair-arrow">→</div></a>
     </div>
   </div>
 </section>
@@ -1778,42 +704,17 @@
           <div class="feature-icon">🛡️</div>
           <h2 class="feature-big-title">Lifetime Warranty<br>on <em>Every Repair</em></h2>
           <p>We stand behind our work. Every repair comes with a lifetime warranty on parts and labor. If something goes wrong, bring it back and we'll fix it free — no questions asked. Liquid damage or third-party service voids warranty.</p>
-          <a href="#devices" class="btn btn-primary" style="margin-top:1.5rem">Book a Repair →</a>
+          <a href="#quote" class="btn btn-primary" style="margin-top:1.5rem">Book a Repair →</a>
         </div>
-        <div style="display:flex; flex-direction:column; gap:1rem; padding-top: 0.5rem;">
-          <div style="background: var(--surface2); border-radius:12px; padding:1.2rem; border: 1px solid var(--border);">
-            <div style="font-size:1.5rem; margin-bottom:0.5rem;">⚡</div>
-            <strong style="color:var(--white); font-size:0.95rem;">While-You-Wait</strong>
-            <p style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">Most repairs completed in 30–60 minutes so you're never without your device for long.</p>
-          </div>
-          <div style="background: var(--surface2); border-radius:12px; padding:1.2rem; border: 1px solid var(--border);">
-            <div style="font-size:1.5rem; margin-bottom:0.5rem;">🔐</div>
-            <strong style="color:var(--white); font-size:0.95rem;">OEM-Quality Parts</strong>
-            <p style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">We use certified replacement parts that meet manufacturer specs for quality you can feel.</p>
-          </div>
+        <div style="display:flex;flex-direction:column;gap:1rem;padding-top:0.5rem;">
+          <div style="background:var(--surface2);border-radius:12px;padding:1.2rem;border:1px solid var(--border);"><div style="font-size:1.5rem;margin-bottom:0.5rem;">⚡</div><strong style="color:var(--white);font-size:0.95rem;">While-You-Wait</strong><p style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">Most repairs completed in 30–60 minutes so you're never without your device for long.</p></div>
+          <div style="background:var(--surface2);border-radius:12px;padding:1.2rem;border:1px solid var(--border);"><div style="font-size:1.5rem;margin-bottom:0.5rem;">🔐</div><strong style="color:var(--white);font-size:0.95rem;">OEM-Quality Parts</strong><p style="font-size:0.8rem;color:var(--muted);margin-top:0.3rem;">We use certified replacement parts that meet manufacturer specs for quality you can feel.</p></div>
         </div>
       </div>
-
-      <div class="feature-card fade-up">
-        <div class="feature-icon">📅</div>
-        <h3>Online Booking</h3>
-        <p>Skip the wait — book your repair appointment online in minutes. Choose your device, your issue, and your preferred location. Fastest turnaround starts here.</p>
-      </div>
-      <div class="feature-card fade-up">
-        <div class="feature-icon">💰</div>
-        <h3>Free Instant Quote</h3>
-        <p>No surprises. Get a transparent, upfront price for your repair before you ever walk in the door. What we quote is what you pay.</p>
-      </div>
-      <div class="feature-card fade-up">
-        <div class="feature-icon">🏆</div>
-        <h3>Award-Winning Service</h3>
-        <p>Best of Georgia 2021–2023, Viewers Choice Award, and a BBB-accredited business. Our reputation is built on trust and results.</p>
-      </div>
-      <div class="feature-card fade-up">
-        <div class="feature-icon">🔑</div>
-        <h3>Device Unlocking</h3>
-        <p>Locked to a carrier? We can unlock iPhones, Samsung, and other devices so you can use them on the network of your choice.</p>
-      </div>
+      <div class="feature-card fade-up"><div class="feature-icon">📅</div><h3>Online Booking</h3><p>Skip the wait — book your repair appointment online in minutes. Choose your device, your issue, and your preferred location. Fastest turnaround starts here.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">💰</div><h3>Free Instant Quote</h3><p>No surprises. Get a transparent, upfront price for your repair before you ever walk in the door. What we quote is what you pay.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">🏆</div><h3>Award-Winning Service</h3><p>Best of Georgia 2021–2023, Viewers Choice Award, and a BBB-accredited business. Our reputation is built on trust and results.</p></div>
+      <div class="feature-card fade-up"><div class="feature-icon">🔑</div><h3>Device Unlocking</h3><p>Locked to a carrier? We can unlock iPhones, Samsung, and other devices so you can use them on the network of your choice.</p></div>
     </div>
   </div>
 </section>
@@ -1829,24 +730,29 @@
       <div class="fade-up">
         <p class="section-sub">Whether you're upgrading, downgrading, or just need some cash — we've got you. Every pre-owned device is fully inspected and backed by our warranty.</p>
         <ul class="device-perks">
-          <li>
-            <span class="perk-check">✓</span>
-            <span class="perk-text"><strong>Fully Inspected &amp; Refurbished</strong>Checked for hardware and software issues, restored to factory-standard functionality.</span>
-          </li>
-          <li>
-            <span class="perk-check">✓</span>
-            <span class="perk-text"><strong>Save Up to 30% Off Retail</strong>Unbeatable prices on a wide selection of iPhones, Samsungs, and more.</span>
-          </li>
-          <li>
-            <span class="perk-check">✓</span>
-            <span class="perk-text"><strong>Sell or Trade Your Device</strong>We offer the best deals on used and broken devices — bring it in for a free evaluation.</span>
-          </li>
-          <li>
-            <span class="perk-check">✓</span>
-            <span class="perk-text"><strong>Lease Without Credit</strong>Shop with Acima — get approved for up to $5,000 in merchandise without using credit.</span>
-          </li>
+          <li><span class="perk-check">✓</span><span class="perk-text"><strong>Fully Inspected &amp; Refurbished</strong>Checked for hardware and software issues, restored to factory-standard functionality.</span></li>
+          <li><span class="perk-check">✓</span><span class="perk-text"><strong>Save Up to 30% Off Retail</strong>Unbeatable prices on a wide selection of iPhones, Samsungs, and more.</span></li>
+          <li><span class="perk-check">✓</span><span class="perk-text"><strong>Sell or Trade Your Device</strong>We offer the best deals on used and broken devices — bring it in for a free evaluation.</span></li>
         </ul>
-        <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+
+        <!-- ─── ACIMA FINANCING CARD ─── -->
+        <a href="https://www.acima.com/apply" target="_blank" rel="noopener" class="acima-card fade-up">
+          <div class="acima-logo-block">
+            <div class="acima-logo-wordmark">acima</div>
+            <div class="acima-logo-sub">leasing</div>
+          </div>
+          <div class="acima-info">
+            <div class="acima-badge">No Credit Needed</div>
+            <div class="acima-title">Shop Without Using Credit</div>
+            <div class="acima-desc">Get approved to lease up to <strong>$5,000</strong> in merchandise — phones, repairs, accessories &amp; more. Use in-store today.</div>
+          </div>
+          <div class="acima-btn" onclick="event.stopPropagation();" role="button" tabindex="-1" aria-hidden="true">
+            Apply Now →
+          </div>
+        </a>
+        <!-- ─── END ACIMA CARD ─── -->
+
+        <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;">
           <a href="https://ikrack.com/buy-a-device/" class="btn btn-primary" target="_blank">Buy a Device →</a>
           <a href="https://ikrack.com/sell-a-device/" class="btn btn-outline" target="_blank">Sell My Device</a>
         </div>
@@ -1855,39 +761,16 @@
       <div class="device-form-card fade-up">
         <h3>Get an Instant Repair Quote</h3>
         <p>Tell us about your device and we'll get back to you with pricing — fast.</p>
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="John Smith">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="John Smith"></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(478) 000-0000"></div>
+        <div class="form-group"><label>Device Type</label>
+          <select><option value="">Select your device...</option><option>iPhone</option><option>Samsung Galaxy</option><option>iPad</option><option>Other Android</option><option>MacBook / Laptop</option><option>Other</option></select>
         </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" placeholder="(478) 000-0000">
+        <div class="form-group"><label>Issue / Notes</label><textarea placeholder="Cracked screen, won't charge, water damage..."></textarea></div>
+        <div class="form-group"><label>Preferred Location</label>
+          <select><option value="">Select a store...</option><option>Bonaire — (478) 287-9783</option><option>Macon — (478) 309-6400</option></select>
         </div>
-        <div class="form-group">
-          <label>Device Type</label>
-          <select>
-            <option value="">Select your device...</option>
-            <option>iPhone</option>
-            <option>Samsung Galaxy</option>
-            <option>iPad</option>
-            <option>Other Android</option>
-            <option>MacBook / Laptop</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Issue / Notes</label>
-          <textarea placeholder="Cracked screen, won't charge, water damage..."></textarea>
-        </div>
-        <div class="form-group">
-          <label>Preferred Location</label>
-          <select>
-            <option value="">Select a store...</option>
-            <option>Bonaire — (478) 287-9783</option>
-            <option>Macon — (478) 309-6400</option>
-          </select>
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center; padding: 0.85rem;" onclick="handleQuote()">Send My Request →</button>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:0.85rem;" onclick="handleQuote()">Send My Request →</button>
       </div>
     </div>
   </div>
@@ -1902,55 +785,22 @@
     </div>
     <div class="locations-grid">
       <div class="location-card fade-up">
-        <div class="location-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-83.659!3d32.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2ziKrack+Bonaire!5e0!3m2!1sen!2sus!4v1"
-            allowfullscreen loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="iKrack Bonaire Location">
-          </iframe>
-        </div>
+        <div class="location-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-83.659!3d32.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2ziKrack+Bonaire!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="iKrack Bonaire Location"></iframe></div>
         <div class="location-info">
           <h3 class="location-name">Bonaire</h3>
-          <div class="location-detail">
-            <span class="licon">📍</span>
-            <span>122 Margie Dr, Warner Robins, GA 31088</span>
-          </div>
-          <div class="location-detail">
-            <span class="licon">📞</span>
-            <a href="tel:+14782879783">(478) 287-9783</a>
-          </div>
-          <div class="location-detail">
-            <span class="licon">🕐</span>
-            <span>Mon–Sat: 10am–7pm · Sun: Closed</span>
-          </div>
+          <div class="location-detail"><span class="licon">📍</span><span>122 Margie Dr, Warner Robins, GA 31088</span></div>
+          <div class="location-detail"><span class="licon">📞</span><a href="tel:+14782879783">(478) 287-9783</a></div>
+          <div class="location-detail"><span class="licon">🕐</span><span>Mon–Sat: 10am–7pm · Sun: Closed</span></div>
           <a href="https://ikrack.com/locations/bonaire/" class="btn btn-outline" style="margin-top:1.2rem" target="_blank">Store Details →</a>
         </div>
       </div>
-
       <div class="location-card fade-up">
-        <div class="location-map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-83.63!3d32.84!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2ziKrack+Macon!5e0!3m2!1sen!2sus!4v1"
-            allowfullscreen loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="iKrack Macon Location">
-          </iframe>
-        </div>
+        <div class="location-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3341.5!2d-83.63!3d32.84!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2ziKrack+Macon!5e0!3m2!1sen!2sus!4v1" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="iKrack Macon Location"></iframe></div>
         <div class="location-info">
           <h3 class="location-name">Macon</h3>
-          <div class="location-detail">
-            <span class="licon">📍</span>
-            <span>5080 Riverside Dr Suite 110, Macon, GA 31210</span>
-          </div>
-          <div class="location-detail">
-            <span class="licon">📞</span>
-            <a href="tel:+14783096400">(478) 309-6400</a>
-          </div>
-          <div class="location-detail">
-            <span class="licon">🕐</span>
-            <span>Mon–Sat: 10am–7pm · Sun: Closed</span>
-          </div>
+          <div class="location-detail"><span class="licon">📍</span><span>5080 Riverside Dr Suite 110, Macon, GA 31210</span></div>
+          <div class="location-detail"><span class="licon">📞</span><a href="tel:+14783096400">(478) 309-6400</a></div>
+          <div class="location-detail"><span class="licon">🕐</span><span>Mon–Sat: 10am–7pm · Sun: Closed</span></div>
           <a href="https://ikrack.com/locations/macon/" class="btn btn-outline" style="margin-top:1.2rem" target="_blank">Store Details →</a>
         </div>
       </div>
@@ -1961,36 +811,15 @@
 <!-- TESTIMONIALS -->
 <section id="testimonials">
   <div class="section-inner">
-    <div class="fade-up" style="text-align:center; margin-bottom: 0;">
+    <div class="fade-up" style="text-align:center;margin-bottom:0;">
       <p class="section-label">Customer Reviews</p>
       <h2 class="section-title">Don't Take Our Word for It.</h2>
-      <p class="section-sub" style="margin: 0.75rem auto 0;">Thousands of satisfied customers in Warner Robins, Bonaire, and Macon trust iKrack for all their device needs.</p>
+      <p class="section-sub" style="margin:0.75rem auto 0;">Thousands of satisfied customers in Warner Robins, Bonaire, and Macon trust iKrack for all their device needs.</p>
     </div>
     <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Brought in my shattered iPhone 14 Pro at noon and it was done by 1:30pm. Screen looks perfect, price was super fair. Will absolutely be coming back!"</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">JM</div>
-          <div><div class="author-name">James M.</div><div class="author-location">Warner Robins, GA</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-up">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"I dropped my Samsung in the pool and these guys saved it with their micro-soldering service. Thought it was a goner. Honestly couldn't believe it. Highly recommend!"</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">SR</div>
-          <div><div class="author-name">Sarah R.</div><div class="author-location">Macon, GA</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-up">
-        <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Bought a refurbished iPhone from iKrack — works flawlessly and saved me hundreds. The staff explained everything. This is the only phone store I'll ever use again."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">DK</div>
-          <div><div class="author-name">Derek K.</div><div class="author-location">Bonaire, GA</div></div>
-        </div>
-      </div>
+      <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p class="testimonial-text">"Brought in my shattered iPhone 14 Pro at noon and it was done by 1:30pm. Screen looks perfect, price was super fair. Will absolutely be coming back!"</p><div class="testimonial-author"><div class="author-avatar">JM</div><div><div class="author-name">James M.</div><div class="author-location">Warner Robins, GA</div></div></div></div>
+      <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p class="testimonial-text">"I dropped my Samsung in the pool and these guys saved it with their micro-soldering service. Thought it was a goner. Honestly couldn't believe it. Highly recommend!"</p><div class="testimonial-author"><div class="author-avatar">SR</div><div><div class="author-name">Sarah R.</div><div class="author-location">Macon, GA</div></div></div></div>
+      <div class="testimonial-card fade-up"><div class="stars">★★★★★</div><p class="testimonial-text">"Bought a refurbished iPhone from iKrack — works flawlessly and saved me hundreds. The staff explained everything. This is the only phone store I'll ever use again."</p><div class="testimonial-author"><div class="author-avatar">DK</div><div><div class="author-name">Derek K.</div><div class="author-location">Bonaire, GA</div></div></div></div>
     </div>
   </div>
 </section>
@@ -2002,7 +831,7 @@
       <p class="section-label" style="margin-bottom:1rem;">Save $10 Today</p>
       <h2 class="section-title">Book Your Repair Online &amp;<br>Save Ten Bucks.</h2>
       <p class="section-sub">Use our instant quote tool to lock in your appointment at either of our two Central Georgia locations. Fast, transparent, guaranteed.</p>
-      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2.5rem;">
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;">
         <a href="https://ikrack.com/instant-quote-widget/" class="btn btn-primary" target="_blank">Get Instant Quote → Save $10</a>
         <a href="tel:+14782879783" class="btn btn-outline">📞 Call Bonaire</a>
         <a href="tel:+14783096400" class="btn btn-outline">📞 Call Macon</a>
@@ -2022,37 +851,9 @@
         <a href="https://www.instagram.com/ikrackcellphonerepair/" class="social-link" target="_blank" aria-label="Instagram">ig</a>
       </div>
     </div>
-    <div class="footer-col">
-      <h4>Repairs</h4>
-      <ul>
-        <li><a href="https://ikrack.com/repair-services/iphone-repairs/" target="_blank">iPhone Repairs</a></li>
-        <li><a href="https://ikrack.com/repair-services/samsung-phone-repairs/" target="_blank">Samsung Repairs</a></li>
-        <li><a href="https://ikrack.com/repair-services/ipad-repairs/" target="_blank">iPad Repairs</a></li>
-        <li><a href="https://ikrack.com/repair-services/computer-repairs/" target="_blank">Computer Repairs</a></li>
-        <li><a href="https://ikrack.com/micro-soldering/" target="_blank">Micro Soldering</a></li>
-        <li><a href="https://ikrack.com/unlocks/" target="_blank">Unlocks</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Buy &amp; Sell</h4>
-      <ul>
-        <li><a href="https://ikrack.com/buy-a-device/" target="_blank">Buy a Device</a></li>
-        <li><a href="https://ikrack.com/sell-a-device/" target="_blank">Sell Your Device</a></li>
-        <li><a href="https://ikrack.com/accessories/" target="_blank">Accessories</a></li>
-        <li><a href="https://ikrack.com/instant-quote-widget/" target="_blank">Instant Quote</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="https://ikrack.com/about-us/" target="_blank">About Us</a></li>
-        <li><a href="https://ikrack.com/blog/" target="_blank">Blog</a></li>
-        <li><a href="https://ikrack.com/faqs/" target="_blank">FAQs</a></li>
-        <li><a href="https://ikrack.com/contact-us/" target="_blank">Contact</a></li>
-        <li><a href="https://ikrack.com/locations/bonaire/" target="_blank">Bonaire</a></li>
-        <li><a href="https://ikrack.com/locations/macon/" target="_blank">Macon</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>Repairs</h4><ul><li><a href="https://ikrack.com/repair-services/iphone-repairs/" target="_blank">iPhone Repairs</a></li><li><a href="https://ikrack.com/repair-services/samsung-phone-repairs/" target="_blank">Samsung Repairs</a></li><li><a href="https://ikrack.com/repair-services/ipad-repairs/" target="_blank">iPad Repairs</a></li><li><a href="https://ikrack.com/repair-services/computer-repairs/" target="_blank">Computer Repairs</a></li><li><a href="https://ikrack.com/micro-soldering/" target="_blank">Micro Soldering</a></li><li><a href="https://ikrack.com/unlocks/" target="_blank">Unlocks</a></li></ul></div>
+    <div class="footer-col"><h4>Buy &amp; Sell</h4><ul><li><a href="https://ikrack.com/buy-a-device/" target="_blank">Buy a Device</a></li><li><a href="https://ikrack.com/sell-a-device/" target="_blank">Sell Your Device</a></li><li><a href="https://ikrack.com/accessories/" target="_blank">Accessories</a></li><li><a href="https://ikrack.com/instant-quote-widget/" target="_blank">Instant Quote</a></li><li><a href="https://www.acima.com/apply" target="_blank">Lease with Acima</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="https://ikrack.com/about-us/" target="_blank">About Us</a></li><li><a href="https://ikrack.com/blog/" target="_blank">Blog</a></li><li><a href="https://ikrack.com/faqs/" target="_blank">FAQs</a></li><li><a href="https://ikrack.com/contact-us/" target="_blank">Contact</a></li><li><a href="https://ikrack.com/locations/bonaire/" target="_blank">Bonaire</a></li><li><a href="https://ikrack.com/locations/macon/" target="_blank">Macon</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 iKrack Mobile. All rights reserved.</span>
@@ -2060,620 +861,47 @@
   </div>
 </footer>
 
-<script>
-  // Mobile menu toggle
-  function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('open');
-  }
-
-  // Scroll animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Staggered children
-  document.querySelectorAll('.repair-grid, .features-grid, .testimonials-grid, .locations-grid').forEach(grid => {
-    grid.querySelectorAll('.repair-card, .feature-card, .testimonial-card, .location-card').forEach((card, i) => {
-      card.style.transitionDelay = `${i * 70}ms`;
-    });
-  });
-
-  // Nav scroll effect
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    nav.style.borderBottomColor = window.scrollY > 50 ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
-  });
-
-  // ─── INSTANT QUOTE TOOL ───
-  const QUOTE_DATA = {
-    iPhone: {
-      label: 'iPhone', icon: '📱',
-      models: {
-        'iPhone 16 Pro Max': {
-          'Screen Replacement': { price: '$229–$279', time: '45–60 min' },
-          'Battery Replacement': { price: '$79–$99', time: '30 min' },
-          'Charging Port': { price: '$89–$119', time: '45 min' },
-          'Back Glass': { price: '$149–$199', time: '60–90 min' },
-          'Camera Repair': { price: '$129–$179', time: '45–60 min' },
-          'Water Damage': { price: '$89–$149', time: '1–2 days' },
-        },
-        'iPhone 16 / 16 Plus': {
-          'Screen Replacement': { price: '$189–$239', time: '45–60 min' },
-          'Battery Replacement': { price: '$69–$89', time: '30 min' },
-          'Charging Port': { price: '$79–$109', time: '45 min' },
-          'Back Glass': { price: '$129–$169', time: '60–90 min' },
-          'Camera Repair': { price: '$109–$149', time: '45–60 min' },
-          'Water Damage': { price: '$79–$139', time: '1–2 days' },
-        },
-        'iPhone 15 Pro Max': {
-          'Screen Replacement': { price: '$199–$249', time: '45–60 min' },
-          'Battery Replacement': { price: '$69–$89', time: '30 min' },
-          'Charging Port': { price: '$79–$109', time: '45 min' },
-          'Back Glass': { price: '$119–$159', time: '60–90 min' },
-          'Camera Repair': { price: '$109–$149', time: '45–60 min' },
-          'Water Damage': { price: '$79–$139', time: '1–2 days' },
-        },
-        'iPhone 15 / 15 Plus': {
-          'Screen Replacement': { price: '$169–$219', time: '30–45 min' },
-          'Battery Replacement': { price: '$59–$79', time: '30 min' },
-          'Charging Port': { price: '$69–$99', time: '30–45 min' },
-          'Back Glass': { price: '$99–$139', time: '60 min' },
-          'Camera Repair': { price: '$99–$139', time: '45 min' },
-          'Water Damage': { price: '$69–$129', time: '1–2 days' },
-        },
-        'iPhone 14 Series': {
-          'Screen Replacement': { price: '$129–$179', time: '30–45 min' },
-          'Battery Replacement': { price: '$49–$69', time: '20–30 min' },
-          'Charging Port': { price: '$59–$89', time: '30–45 min' },
-          'Back Glass': { price: '$89–$129', time: '60 min' },
-          'Camera Repair': { price: '$79–$119', time: '30–45 min' },
-          'Water Damage': { price: '$59–$119', time: '1–2 days' },
-        },
-        'iPhone 13 Series': {
-          'Screen Replacement': { price: '$109–$149', time: '30 min' },
-          'Battery Replacement': { price: '$49–$69', time: '20–30 min' },
-          'Charging Port': { price: '$59–$79', time: '30 min' },
-          'Back Glass': { price: '$79–$119', time: '45–60 min' },
-          'Camera Repair': { price: '$69–$109', time: '30–45 min' },
-          'Water Damage': { price: '$59–$109', time: '1–2 days' },
-        },
-        'iPhone 12 or Older': {
-          'Screen Replacement': { price: '$69–$119', time: '20–30 min' },
-          'Battery Replacement': { price: '$39–$59', time: '20 min' },
-          'Charging Port': { price: '$49–$69', time: '20–30 min' },
-          'Back Glass': { price: '$59–$99', time: '45–60 min' },
-          'Camera Repair': { price: '$49–$89', time: '20–30 min' },
-          'Water Damage': { price: '$49–$99', time: '1–2 days' },
-        },
-      }
-    },
-    Samsung: {
-      label: 'Samsung', icon: '🤖',
-      models: {
-        'Galaxy S25 Series': {
-          'Screen Replacement': { price: '$199–$269', time: '45–75 min' },
-          'Battery Replacement': { price: '$69–$89', time: '30–45 min' },
-          'Charging Port': { price: '$79–$109', time: '45 min' },
-          'Back Glass': { price: '$99–$149', time: '60 min' },
-          'Camera Repair': { price: '$109–$159', time: '45–60 min' },
-          'Water Damage': { price: '$79–$149', time: '1–2 days' },
-        },
-        'Galaxy S24 Series': {
-          'Screen Replacement': { price: '$179–$239', time: '45–75 min' },
-          'Battery Replacement': { price: '$59–$79', time: '30–45 min' },
-          'Charging Port': { price: '$69–$99', time: '45 min' },
-          'Back Glass': { price: '$89–$129', time: '60 min' },
-          'Camera Repair': { price: '$99–$149', time: '45–60 min' },
-          'Water Damage': { price: '$69–$139', time: '1–2 days' },
-        },
-        'Galaxy S23 Series': {
-          'Screen Replacement': { price: '$149–$199', time: '45–60 min' },
-          'Battery Replacement': { price: '$49–$69', time: '30 min' },
-          'Charging Port': { price: '$59–$89', time: '30–45 min' },
-          'Back Glass': { price: '$79–$119', time: '45–60 min' },
-          'Camera Repair': { price: '$79–$129', time: '30–45 min' },
-          'Water Damage': { price: '$59–$129', time: '1–2 days' },
-        },
-        'Galaxy A Series': {
-          'Screen Replacement': { price: '$79–$139', time: '30–45 min' },
-          'Battery Replacement': { price: '$39–$59', time: '20–30 min' },
-          'Charging Port': { price: '$49–$79', time: '30 min' },
-          'Back Glass': { price: '$59–$99', time: '45 min' },
-          'Camera Repair': { price: '$59–$99', time: '30 min' },
-          'Water Damage': { price: '$49–$99', time: '1–2 days' },
-        },
-        'Galaxy Fold / Flip': {
-          'Screen Replacement': { price: '$299–$449', time: '60–120 min' },
-          'Battery Replacement': { price: '$99–$139', time: '45–60 min' },
-          'Charging Port': { price: '$89–$119', time: '45–60 min' },
-          'Hinge Repair': { price: '$149–$249', time: '60–90 min' },
-          'Water Damage': { price: '$99–$199', time: '1–3 days' },
-        },
-      }
-    },
-    iPad: {
-      label: 'iPad', icon: '📋',
-      models: {
-        'iPad Pro (M4/M2)': {
-          'Screen Replacement': { price: '$249–$349', time: '60–90 min' },
-          'Battery Replacement': { price: '$99–$129', time: '45–60 min' },
-          'Charging Port': { price: '$89–$119', time: '45 min' },
-          'Water Damage': { price: '$99–$179', time: '1–3 days' },
-        },
-        'iPad Air / Mini': {
-          'Screen Replacement': { price: '$149–$229', time: '45–75 min' },
-          'Battery Replacement': { price: '$79–$109', time: '30–45 min' },
-          'Charging Port': { price: '$69–$99', time: '45 min' },
-          'Water Damage': { price: '$79–$149', time: '1–3 days' },
-        },
-        'iPad (Standard)': {
-          'Screen Replacement': { price: '$99–$169', time: '30–60 min' },
-          'Battery Replacement': { price: '$59–$89', time: '30 min' },
-          'Charging Port': { price: '$59–$79', time: '30–45 min' },
-          'Water Damage': { price: '$69–$129', time: '1–2 days' },
-        },
-      }
-    },
-    Computer: {
-      label: 'Computer / Laptop', icon: '💻',
-      models: {
-        'MacBook Pro': {
-          'Screen Replacement': { price: '$249–$449', time: '1–2 days' },
-          'Battery Replacement': { price: '$129–$199', time: '60–90 min' },
-          'Keyboard Repair': { price: '$149–$249', time: '1–2 days' },
-          'Charging Port': { price: '$99–$149', time: '45–60 min' },
-          'Water Damage / Micro Solder': { price: '$149–$299', time: '1–3 days' },
-          'SSD Upgrade': { price: '$99–$199', time: '60 min' },
-        },
-        'MacBook Air': {
-          'Screen Replacement': { price: '$199–$349', time: '1–2 days' },
-          'Battery Replacement': { price: '$109–$169', time: '45–75 min' },
-          'Keyboard Repair': { price: '$129–$199', time: '1–2 days' },
-          'Charging Port': { price: '$89–$129', time: '45 min' },
-          'Water Damage / Micro Solder': { price: '$129–$249', time: '1–3 days' },
-          'SSD Upgrade': { price: '$89–$179', time: '60 min' },
-        },
-        'Windows Laptop': {
-          'Screen Replacement': { price: '$99–$249', time: '60–120 min' },
-          'Battery Replacement': { price: '$59–$119', time: '30–60 min' },
-          'Keyboard Repair': { price: '$69–$149', time: '45–90 min' },
-          'Charging Port': { price: '$59–$99', time: '30–60 min' },
-          'Virus Removal': { price: '$49–$89', time: '60–120 min' },
-          'RAM / SSD Upgrade': { price: '$49–$149', time: '30–60 min' },
-        },
-      }
-    },
-    'Other Phone': {
-      label: 'Other Phone', icon: '📲',
-      models: {
-        'Google Pixel': {
-          'Screen Replacement': { price: '$99–$199', time: '30–60 min' },
-          'Battery Replacement': { price: '$49–$79', time: '30 min' },
-          'Charging Port': { price: '$59–$89', time: '30–45 min' },
-          'Water Damage': { price: '$59–$119', time: '1–2 days' },
-        },
-        'Motorola': {
-          'Screen Replacement': { price: '$79–$149', time: '30–60 min' },
-          'Battery Replacement': { price: '$39–$69', time: '20–30 min' },
-          'Charging Port': { price: '$49–$79', time: '30 min' },
-          'Water Damage': { price: '$49–$109', time: '1–2 days' },
-        },
-        'LG / Other Android': {
-          'Screen Replacement': { price: '$69–$139', time: '30–60 min' },
-          'Battery Replacement': { price: '$39–$59', time: '20–30 min' },
-          'Charging Port': { price: '$49–$69', time: '30 min' },
-          'Water Damage': { price: '$49–$99', time: '1–2 days' },
-        },
-      }
-    },
-  };
-
-  let qState = { device: null, model: null, repair: null };
-  let qStep = 0;
-
-  function updateProgress() {
-    const pct = [0, 33, 66, 100];
-    document.getElementById('quoteProgressBar').style.width = pct[qStep] + '%';
-    // update tracker
-    for (let i = 0; i < 4; i++) {
-      const t = document.getElementById('tracker-' + i);
-      t.classList.remove('active', 'done');
-      if (i < qStep) t.classList.add('done');
-      else if (i === qStep) t.classList.add('active');
-    }
-  }
-
-  function setTrackerValue(idx, val) {
-    document.getElementById('tv-' + idx).textContent = val;
-  }
-
-  function renderStep() {
-    const panel = document.getElementById('quotePanelInner');
-    const result = document.getElementById('quoteResult');
-    result.classList.remove('visible');
-    document.getElementById('quotePanel').style.display = 'block';
-    updateProgress();
-
-    if (qStep === 0) {
-      panel.innerHTML = `
-        <p class="qpanel-title">What type of device?</p>
-        <p class="qpanel-sub">Select the device you need repaired.</p>
-        <div class="quote-option-grid cols3">
-          ${Object.entries(QUOTE_DATA).map(([key, d]) => `
-            <div class="qopt" onclick="selectDevice('${key}')">
-              <span class="qopt-icon">${d.icon}</span>${d.label}
-            </div>
-          `).join('')}
-        </div>`;
-    } else if (qStep === 1) {
-      const models = Object.keys(QUOTE_DATA[qState.device].models);
-      panel.innerHTML = `
-        <button class="qpanel-back" onclick="goBack()">← Back</button>
-        <p class="qpanel-title">Which model?</p>
-        <p class="qpanel-sub">Choose the closest model to yours.</p>
-        <div class="quote-option-grid">
-          ${models.map(m => `
-            <div class="qopt" onclick="selectModel('${m.replace(/'/g,"\\'")}')">
-              <span class="qopt-icon">${QUOTE_DATA[qState.device].icon}</span>${m}
-            </div>
-          `).join('')}
-        </div>`;
-    } else if (qStep === 2) {
-      const repairs = Object.keys(QUOTE_DATA[qState.device].models[qState.model]);
-      panel.innerHTML = `
-        <button class="qpanel-back" onclick="goBack()">← Back</button>
-        <p class="qpanel-title">What needs to be fixed?</p>
-        <p class="qpanel-sub">Select the repair type.</p>
-        <div class="quote-option-grid">
-          ${repairs.map(r => `
-            <div class="qopt" onclick="selectRepair('${r.replace(/'/g,"\\'")}')">
-              ${repairIcon(r)}<span style="display:block;margin-top:4px;">${r}</span>
-            </div>
-          `).join('')}
-        </div>`;
-    }
-  }
-
-  function repairIcon(r) {
-    const icons = {
-      'Screen': '🖥️', 'Battery': '🔋', 'Charging': '⚡', 'Back': '🔲',
-      'Camera': '📷', 'Water': '💧', 'Hinge': '🔗', 'Keyboard': '⌨️',
-      'Virus': '🛡️', 'RAM': '💾', 'SSD': '💾', 'Micro': '🔬'
-    };
-    for (const [k, v] of Object.entries(icons)) {
-      if (r.includes(k)) return `<span class="qopt-icon">${v}</span>`;
-    }
-    return `<span class="qopt-icon">🔧</span>`;
-  }
-
-  function selectDevice(key) {
-    qState.device = key;
-    qState.model = null;
-    qState.repair = null;
-    setTrackerValue(0, QUOTE_DATA[key].label);
-    qStep = 1;
-    renderStep();
-  }
-
-  function selectModel(model) {
-    qState.model = model;
-    qState.repair = null;
-    setTrackerValue(1, model.length > 20 ? model.substring(0,18)+'…' : model);
-    qStep = 2;
-    renderStep();
-  }
-
-  function selectRepair(repair) {
-    qState.repair = repair;
-    setTrackerValue(2, repair.length > 18 ? repair.substring(0,16)+'…' : repair);
-    qStep = 3;
-    showResult();
-  }
-
-  function showResult() {
-    updateProgress();
-    const data = QUOTE_DATA[qState.device].models[qState.model][qState.repair];
-    document.getElementById('res-device').textContent = `${qState.model}`;
-    document.getElementById('res-repair').textContent = qState.repair;
-    document.getElementById('res-price').innerHTML = `${data.price}<span>estimate</span>`;
-    document.getElementById('res-time').textContent = data.time;
-    setTrackerValue(3, data.price);
-
-    // hide panel, show result
-    document.getElementById('quotePanel').style.display = 'none';
-    const result = document.getElementById('quoteResult');
-    result.classList.add('visible');
-
-    // mark all steps done
-    for (let i = 0; i < 4; i++) {
-      const t = document.getElementById('tracker-' + i);
-      t.classList.remove('active');
-      t.classList.add('done');
-    }
-    document.getElementById('quoteProgressBar').style.width = '100%';
-  }
-
-  function goBack() {
-    qStep = Math.max(0, qStep - 1);
-    if (qStep === 0) { qState.device = null; setTrackerValue(0, 'Choose a device'); }
-    if (qStep === 1) { qState.model = null; setTrackerValue(1, '—'); }
-    renderStep();
-  }
-
-  function resetQuote() {
-    qState = { device: null, model: null, repair: null };
-    qStep = 0;
-    setTrackerValue(0, 'Choose a device');
-    setTrackerValue(1, '—');
-    setTrackerValue(2, '—');
-    setTrackerValue(3, '—');
-    document.getElementById('quotePanel').style.display = 'block';
-    document.getElementById('quoteResult').classList.remove('visible');
-    renderStep();
-  }
-
-  // init quote tool
-  renderStep();
-
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : '';
-    });
-  });
-
-  // Quote form handler
-  function handleQuote() {
-    const btn = event.target;
-    btn.textContent = '✓ Request Sent!';
-    btn.style.background = '#22c55e';
-    setTimeout(() => {
-      btn.textContent = 'Send My Request →';
-      btn.style.background = '';
-    }, 3000);
-  }
-
-  // ─── THEME TOGGLE ───
-  const THEME_KEY = 'ikrack-theme';
-
-  function applyTheme(theme) {
-    const thumb = document.getElementById('themeThumb');
-    if (theme === 'light') {
-      document.body.classList.add('light-mode');
-      if (thumb) thumb.textContent = '☀️';
-    } else {
-      document.body.classList.remove('light-mode');
-      if (thumb) thumb.textContent = '🌙';
-    }
-    localStorage.setItem(THEME_KEY, theme);
-  }
-
-  function toggleTheme() {
-    const isLight = document.body.classList.contains('light-mode');
-    applyTheme(isLight ? 'dark' : 'light');
-  }
-
-  // Load saved preference on page load (default: dark)
-  (function() {
-    const saved = localStorage.getItem(THEME_KEY);
-    applyTheme(saved === 'light' ? 'light' : 'dark');
-  })();
-
-</script>
-
-<!-- ─── IKRACK ASSISTANT CHATBOT ─── -->
+<!-- ─── CHATBOT ─── -->
 <style>
-  /* ── Chat nav button ── */
   #ikrack-chat-btn:hover { border-color: var(--accent) !important; background: rgba(255,85,51,0.12) !important; }
   #ikrack-chat-btn:active { opacity: 0.8; }
-  #ikrack-chat-btn .chat-badge {
-    position: absolute;
-    top: -3px; right: -3px;
-    width: 8px; height: 8px;
-    background: #4ade80;
-    border-radius: 50%;
-    border: 2px solid var(--bg);
-    animation: pulse 2.5s infinite;
-  }
-
-  /* ── Chat window — compact dropdown from nav ── */
-  #ikrack-chat-window {
-    position: fixed;
-    top: 70px;
-    right: 16px;
-    z-index: 9998;
-    width: 340px;
-    max-height: 520px;
-    background: var(--card-bg);
-    border: 1px solid rgba(255,85,51,0.2);
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
-    transform: scale(0.95) translateY(-10px);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
-    transform-origin: top right;
-  }
-  #ikrack-chat-window.open {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  /* Mobile: same compact style, just wider and lower */
-  @media (max-width: 600px) {
-    #ikrack-chat-window {
-      top: 66px;
-      right: 10px;
-      left: 10px;
-      width: auto;
-      max-height: 70vh;
-      transform-origin: top center;
-    }
-    /* chat btn sized via inline style */
-  }
-
-  /* ── Header ── */
-  .chat-header {
-    background: linear-gradient(135deg, rgba(255,85,51,0.12), rgba(255,85,51,0.03));
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    padding: 0.85rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.65rem;
-    flex-shrink: 0;
-  }
-  .chat-avatar {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #ff8833);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; flex-shrink: 0; position: relative;
-  }
-  .chat-avatar-dot {
-    position: absolute; bottom: 0px; right: 0px;
-    width: 8px; height: 8px;
-    background: #4ade80; border-radius: 50%;
-    border: 1.5px solid var(--card-bg);
-  }
-  .chat-header-info h4 {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.88rem; font-weight: 700;
-    color: var(--white);
-  }
+  #ikrack-chat-window { position: fixed; top: 70px; right: 16px; z-index: 9998; width: 340px; max-height: 520px; background: var(--card-bg); border: 1px solid rgba(255,85,51,0.2); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 16px 48px rgba(0,0,0,0.4); transform: scale(0.95) translateY(-10px); opacity: 0; pointer-events: none; transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1); transform-origin: top right; }
+  #ikrack-chat-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+  @media (max-width: 600px) { #ikrack-chat-window { top: 66px; right: 10px; left: 10px; width: auto; max-height: 70vh; transform-origin: top center; } }
+  .chat-header { background: linear-gradient(135deg, rgba(255,85,51,0.12), rgba(255,85,51,0.03)); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 0.85rem 1rem; display: flex; align-items: center; gap: 0.65rem; flex-shrink: 0; }
+  .chat-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #ff8833); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; position: relative; }
+  .chat-avatar-dot { position: absolute; bottom: 0px; right: 0px; width: 8px; height: 8px; background: #4ade80; border-radius: 50%; border: 1.5px solid var(--card-bg); }
+  .chat-header-info h4 { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--white); }
   .chat-header-info p { font-size: 0.68rem; color: #4ade80; }
-  .chat-close-btn {
-    margin-left: auto;
-    background: none; border: none;
-    color: var(--muted); font-size: 1rem;
-    cursor: pointer; padding: 4px 6px;
-    border-radius: 6px; line-height: 1;
-    transition: color 0.2s, background 0.2s;
-    -webkit-tap-highlight-color: transparent;
-    min-width: 30px; min-height: 30px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .chat-close-btn { margin-left: auto; background: none; border: none; color: var(--muted); font-size: 1rem; cursor: pointer; padding: 4px 6px; border-radius: 6px; line-height: 1; transition: color 0.2s, background 0.2s; -webkit-tap-highlight-color: transparent; min-width: 30px; min-height: 30px; display: flex; align-items: center; justify-content: center; }
   .chat-close-btn:hover, .chat-close-btn:active { color: var(--white); background: rgba(255,255,255,0.08); }
-
-  /* ── Messages ── */
-  .chat-messages {
-    flex: 1; overflow-y: auto;
-    padding: 0.85rem;
-    display: flex; flex-direction: column;
-    gap: 0.6rem;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-  }
+  .chat-messages { flex: 1; overflow-y: auto; padding: 0.85rem; display: flex; flex-direction: column; gap: 0.6rem; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
   .chat-messages::-webkit-scrollbar { width: 3px; }
   .chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
-
   .chat-msg { display: flex; gap: 0.5rem; align-items: flex-end; animation: msgIn 0.2s ease; }
   @keyframes msgIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
   .chat-msg.user { flex-direction: row-reverse; }
-
-  .msg-avatar {
-    width: 24px; height: 24px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #ff8833);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; flex-shrink: 0;
-  }
-  .msg-avatar.user-av {
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--muted); font-size: 0.6rem; font-weight: 600;
-  }
-  .msg-bubble {
-    max-width: 84%; padding: 0.55rem 0.8rem;
-    border-radius: 12px; font-size: 0.82rem; line-height: 1.5;
-  }
-  .chat-msg.bot .msg-bubble {
-    background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text); border-bottom-left-radius: 3px;
-  }
-  .chat-msg.user .msg-bubble {
-    background: var(--accent); color: white; border-bottom-right-radius: 3px;
-  }
-
-  /* ── Chips ── */
+  .msg-avatar { width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), #ff8833); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; flex-shrink: 0; }
+  .msg-avatar.user-av { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-size: 0.6rem; font-weight: 600; }
+  .msg-bubble { max-width: 84%; padding: 0.55rem 0.8rem; border-radius: 12px; font-size: 0.82rem; line-height: 1.5; }
+  .chat-msg.bot .msg-bubble { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-bottom-left-radius: 3px; }
+  .chat-msg.user .msg-bubble { background: var(--accent); color: white; border-bottom-right-radius: 3px; }
   .chat-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0 0.85rem 0.6rem; }
-  .chip {
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 100px; padding: 0.3rem 0.75rem;
-    font-size: 0.75rem; color: var(--text);
-    cursor: pointer; transition: all 0.15s;
-    font-family: 'DM Sans', sans-serif;
-    -webkit-tap-highlight-color: transparent;
-    min-height: 30px; display: inline-flex; align-items: center;
-  }
+  .chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 100px; padding: 0.3rem 0.75rem; font-size: 0.75rem; color: var(--text); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; -webkit-tap-highlight-color: transparent; min-height: 30px; display: inline-flex; align-items: center; }
   .chip:hover, .chip:active { border-color: var(--accent); color: var(--accent); }
-
-  /* ── Typing ── */
   .typing-indicator { display: flex; align-items: center; gap: 0.5rem; padding: 0 0.85rem 0.4rem; }
-  .typing-dots {
-    display: flex; gap: 3px;
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 10px; padding: 0.45rem 0.65rem;
-  }
-  .typing-dots span {
-    width: 5px; height: 5px; background: var(--muted);
-    border-radius: 50%; animation: typingDot 1.2s infinite;
-  }
+  .typing-dots { display: flex; gap: 3px; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.45rem 0.65rem; }
+  .typing-dots span { width: 5px; height: 5px; background: var(--muted); border-radius: 50%; animation: typingDot 1.2s infinite; }
   .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
   .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes typingDot {
-    0%,60%,100% { transform:translateY(0); opacity:0.4; }
-    30% { transform:translateY(-3px); opacity:1; }
-  }
-
-  /* ── Input ── */
-  .chat-input-row {
-    padding: 0.6rem 0.85rem;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    display: flex; gap: 0.4rem; align-items: center;
-    flex-shrink: 0; background: var(--card-bg);
-  }
-  .chat-input {
-    flex: 1; background: var(--surface2);
-    border: 1px solid var(--border); border-radius: 8px;
-    padding: 0.5rem 0.8rem; color: var(--text);
-    font-family: 'DM Sans', sans-serif; font-size: 16px;
-    outline: none; transition: border-color 0.2s;
-    height: 36px; -webkit-appearance: none;
-  }
+  @keyframes typingDot { 0%,60%,100% { transform:translateY(0); opacity:0.4; } 30% { transform:translateY(-3px); opacity:1; } }
+  .chat-input-row { padding: 0.6rem 0.85rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 0.4rem; align-items: center; flex-shrink: 0; background: var(--card-bg); }
+  .chat-input { flex: 1; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 0.8rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; height: 36px; -webkit-appearance: none; }
   .chat-input:focus { border-color: rgba(255,85,51,0.4); }
   .chat-input::placeholder { color: var(--muted); }
-  .chat-send-btn {
-    width: 36px; height: 36px; background: var(--accent);
-    border: none; border-radius: 8px; color: white; font-size: 0.9rem;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s, transform 0.15s; flex-shrink: 0;
-    -webkit-tap-highlight-color: transparent;
-  }
+  .chat-send-btn { width: 36px; height: 36px; background: var(--accent); border: none; border-radius: 8px; color: white; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, transform 0.15s; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
   .chat-send-btn:active { transform: scale(0.92); }
-  .chat-footer-note {
-    text-align: center; font-size: 0.62rem; color: var(--muted);
-    padding: 0.3rem 0.85rem 0.5rem; font-weight: 300;
-  }
-
-  /* light mode */
+  .chat-footer-note { text-align: center; font-size: 0.62rem; color: var(--muted); padding: 0.3rem 0.85rem 0.5rem; font-weight: 300; }
   body.light-mode #ikrack-chat-window { background: #ffffff; border-color: rgba(224,62,30,0.2); }
   body.light-mode .chat-header { background: linear-gradient(135deg,rgba(224,62,30,0.08),rgba(224,62,30,0.02)); }
   body.light-mode .chat-msg.bot .msg-bubble { background: #f0f0f8; border-color: rgba(0,0,0,0.08); color: var(--text); }
@@ -2681,229 +909,246 @@
   body.light-mode .chat-input { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
   body.light-mode .chip { background: #f0f0f8; border-color: rgba(0,0,0,0.1); color: var(--text); }
   body.light-mode .typing-dots { background: #f0f0f8; border-color: rgba(0,0,0,0.08); }
-  body.light-mode #ikrack-chat-btn { border-color: rgba(0,0,0,0.15) !important; }
 </style>
 
-
-
-<!-- Chat window -->
 <div id="ikrack-chat-window">
   <div class="chat-header">
-    <div class="chat-avatar">
-      🤖
-      <span class="chat-avatar-dot"></span>
-    </div>
-    <div class="chat-header-info">
-      <h4>iKrack Assistant</h4>
-      <p>● Online — Here to help</p>
-    </div>
+    <div class="chat-avatar">🤖<span class="chat-avatar-dot"></span></div>
+    <div class="chat-header-info"><h4>iKrack Assistant</h4><p>● Online — Here to help</p></div>
     <button class="chat-close-btn" id="chatCloseBtn" aria-label="Close chat">✕</button>
   </div>
-
   <div class="chat-messages" id="chatMessages"></div>
   <div id="chatChips" class="chat-chips"></div>
   <div id="typingIndicator" class="typing-indicator" style="display:none;">
     <div style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff8833);display:flex;align-items:center;justify-content:center;font-size:0.8rem;">🤖</div>
     <div class="typing-dots"><span></span><span></span><span></span></div>
   </div>
-
   <div class="chat-input-row">
-    <input class="chat-input" id="chatInput" type="text" placeholder="Type a question…" onkeydown="if(event.key='Enter') sendUserMsg()" maxlength="200" autocomplete="off" autocorrect="off" autocapitalize="off">
+    <input class="chat-input" id="chatInput" type="text" placeholder="Type a question…" onkeydown="if(event.key==='Enter') sendUserMsg()" maxlength="200" autocomplete="off" autocorrect="off" autocapitalize="off">
     <button class="chat-send-btn" id="chatSendBtn">➤</button>
   </div>
   <div class="chat-footer-note">iKrack Assistant · Free troubleshooting help</div>
 </div>
 
 <script>
-// ─── CHATBOT ENGINE ───
-let chatOpen = false;
-let chatStarted = false;
+// ─── MOBILE MENU ───
+function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
 
-function toggleChat() {
-  chatOpen = !chatOpen;
-  const win = document.getElementById('ikrack-chat-window');
-  win.classList.toggle('open', chatOpen);
-  if (chatOpen && !chatStarted) {
-    chatStarted = true;
-    setTimeout(() => botSay("Hey there! 👋 I'm the **iKrack Assistant**. I can walk you through troubleshooting steps for common phone issues.\n\nWhat's going on with your device?", MAIN_MENU), 500);
-  }
-  if (chatOpen) {
-    setTimeout(() => {
-      const input = document.getElementById('chatInput');
-      if (input && window.innerWidth > 600) input.focus();
-    }, 400);
-  }
+// ─── SCROLL ANIMATIONS ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), 80); observer.unobserve(entry.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+document.querySelectorAll('.repair-grid, .features-grid, .testimonials-grid, .locations-grid').forEach(grid => {
+  grid.querySelectorAll('.repair-card, .feature-card, .testimonial-card, .location-card').forEach((card, i) => { card.style.transitionDelay = `${i * 70}ms`; });
+});
+
+// ─── NAV SCROLL ───
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.borderBottomColor = window.scrollY > 50 ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.07)';
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id'); });
+  navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--white)' : ''; });
+});
+
+// ─── FORM HANDLER ───
+function handleQuote() {
+  const btn = event.target;
+  btn.textContent = '✓ Request Sent!';
+  btn.style.background = '#22c55e';
+  setTimeout(() => { btn.textContent = 'Send My Request →'; btn.style.background = ''; }, 3000);
 }
 
-// Wire buttons
+// ─── THEME TOGGLE ───
+const THEME_KEY = 'ikrack-theme';
+function applyTheme(theme) {
+  const thumb = document.getElementById('themeThumb');
+  if (theme === 'light') { document.body.classList.add('light-mode'); if (thumb) thumb.textContent = '☀️'; }
+  else { document.body.classList.remove('light-mode'); if (thumb) thumb.textContent = '🌙'; }
+  localStorage.setItem(THEME_KEY, theme);
+}
+function toggleTheme() { applyTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light'); }
+(function() { applyTheme(localStorage.getItem(THEME_KEY) === 'light' ? 'light' : 'dark'); })();
+
+// ─── QUOTE TOOL ───
+const QUOTE_DATA = {
+  iPhone: { label: 'iPhone', icon: '📱', models: {
+    'iPhone 16 Pro Max': { 'Screen Replacement': {price:'$229–$279',time:'45–60 min'}, 'Battery Replacement': {price:'$79–$99',time:'30 min'}, 'Charging Port': {price:'$89–$119',time:'45 min'}, 'Back Glass': {price:'$149–$199',time:'60–90 min'}, 'Camera Repair': {price:'$129–$179',time:'45–60 min'}, 'Water Damage': {price:'$89–$149',time:'1–2 days'} },
+    'iPhone 16 / 16 Plus': { 'Screen Replacement': {price:'$189–$239',time:'45–60 min'}, 'Battery Replacement': {price:'$69–$89',time:'30 min'}, 'Charging Port': {price:'$79–$109',time:'45 min'}, 'Back Glass': {price:'$129–$169',time:'60–90 min'}, 'Camera Repair': {price:'$109–$149',time:'45–60 min'}, 'Water Damage': {price:'$79–$139',time:'1–2 days'} },
+    'iPhone 15 Pro Max': { 'Screen Replacement': {price:'$199–$249',time:'45–60 min'}, 'Battery Replacement': {price:'$69–$89',time:'30 min'}, 'Charging Port': {price:'$79–$109',time:'45 min'}, 'Back Glass': {price:'$119–$159',time:'60–90 min'}, 'Camera Repair': {price:'$109–$149',time:'45–60 min'}, 'Water Damage': {price:'$79–$139',time:'1–2 days'} },
+    'iPhone 15 / 15 Plus': { 'Screen Replacement': {price:'$169–$219',time:'30–45 min'}, 'Battery Replacement': {price:'$59–$79',time:'30 min'}, 'Charging Port': {price:'$69–$99',time:'30–45 min'}, 'Back Glass': {price:'$99–$139',time:'60 min'}, 'Camera Repair': {price:'$99–$139',time:'45 min'}, 'Water Damage': {price:'$69–$129',time:'1–2 days'} },
+    'iPhone 14 Series': { 'Screen Replacement': {price:'$129–$179',time:'30–45 min'}, 'Battery Replacement': {price:'$49–$69',time:'20–30 min'}, 'Charging Port': {price:'$59–$89',time:'30–45 min'}, 'Back Glass': {price:'$89–$129',time:'60 min'}, 'Camera Repair': {price:'$79–$119',time:'30–45 min'}, 'Water Damage': {price:'$59–$119',time:'1–2 days'} },
+    'iPhone 13 Series': { 'Screen Replacement': {price:'$109–$149',time:'30 min'}, 'Battery Replacement': {price:'$49–$69',time:'20–30 min'}, 'Charging Port': {price:'$59–$79',time:'30 min'}, 'Back Glass': {price:'$79–$119',time:'45–60 min'}, 'Camera Repair': {price:'$69–$109',time:'30–45 min'}, 'Water Damage': {price:'$59–$109',time:'1–2 days'} },
+    'iPhone 12 or Older': { 'Screen Replacement': {price:'$69–$119',time:'20–30 min'}, 'Battery Replacement': {price:'$39–$59',time:'20 min'}, 'Charging Port': {price:'$49–$69',time:'20–30 min'}, 'Back Glass': {price:'$59–$99',time:'45–60 min'}, 'Camera Repair': {price:'$49–$89',time:'20–30 min'}, 'Water Damage': {price:'$49–$99',time:'1–2 days'} },
+  }},
+  Samsung: { label: 'Samsung', icon: '🤖', models: {
+    'Galaxy S25 Series': { 'Screen Replacement': {price:'$199–$269',time:'45–75 min'}, 'Battery Replacement': {price:'$69–$89',time:'30–45 min'}, 'Charging Port': {price:'$79–$109',time:'45 min'}, 'Back Glass': {price:'$99–$149',time:'60 min'}, 'Camera Repair': {price:'$109–$159',time:'45–60 min'}, 'Water Damage': {price:'$79–$149',time:'1–2 days'} },
+    'Galaxy S24 Series': { 'Screen Replacement': {price:'$179–$239',time:'45–75 min'}, 'Battery Replacement': {price:'$59–$79',time:'30–45 min'}, 'Charging Port': {price:'$69–$99',time:'45 min'}, 'Back Glass': {price:'$89–$129',time:'60 min'}, 'Camera Repair': {price:'$99–$149',time:'45–60 min'}, 'Water Damage': {price:'$69–$139',time:'1–2 days'} },
+    'Galaxy S23 Series': { 'Screen Replacement': {price:'$149–$199',time:'45–60 min'}, 'Battery Replacement': {price:'$49–$69',time:'30 min'}, 'Charging Port': {price:'$59–$89',time:'30–45 min'}, 'Back Glass': {price:'$79–$119',time:'45–60 min'}, 'Camera Repair': {price:'$79–$129',time:'30–45 min'}, 'Water Damage': {price:'$59–$129',time:'1–2 days'} },
+    'Galaxy A Series': { 'Screen Replacement': {price:'$79–$139',time:'30–45 min'}, 'Battery Replacement': {price:'$39–$59',time:'20–30 min'}, 'Charging Port': {price:'$49–$79',time:'30 min'}, 'Back Glass': {price:'$59–$99',time:'45 min'}, 'Camera Repair': {price:'$59–$99',time:'30 min'}, 'Water Damage': {price:'$49–$99',time:'1–2 days'} },
+    'Galaxy Fold / Flip': { 'Screen Replacement': {price:'$299–$449',time:'60–120 min'}, 'Battery Replacement': {price:'$99–$139',time:'45–60 min'}, 'Charging Port': {price:'$89–$119',time:'45–60 min'}, 'Hinge Repair': {price:'$149–$249',time:'60–90 min'}, 'Water Damage': {price:'$99–$199',time:'1–3 days'} },
+  }},
+  iPad: { label: 'iPad', icon: '📋', models: {
+    'iPad Pro (M4/M2)': { 'Screen Replacement': {price:'$249–$349',time:'60–90 min'}, 'Battery Replacement': {price:'$99–$129',time:'45–60 min'}, 'Charging Port': {price:'$89–$119',time:'45 min'}, 'Water Damage': {price:'$99–$179',time:'1–3 days'} },
+    'iPad Air / Mini': { 'Screen Replacement': {price:'$149–$229',time:'45–75 min'}, 'Battery Replacement': {price:'$79–$109',time:'30–45 min'}, 'Charging Port': {price:'$69–$99',time:'45 min'}, 'Water Damage': {price:'$79–$149',time:'1–3 days'} },
+    'iPad (Standard)': { 'Screen Replacement': {price:'$99–$169',time:'30–60 min'}, 'Battery Replacement': {price:'$59–$89',time:'30 min'}, 'Charging Port': {price:'$59–$79',time:'30–45 min'}, 'Water Damage': {price:'$69–$129',time:'1–2 days'} },
+  }},
+  Computer: { label: 'Computer / Laptop', icon: '💻', models: {
+    'MacBook Pro': { 'Screen Replacement': {price:'$249–$449',time:'1–2 days'}, 'Battery Replacement': {price:'$129–$199',time:'60–90 min'}, 'Keyboard Repair': {price:'$149–$249',time:'1–2 days'}, 'Charging Port': {price:'$99–$149',time:'45–60 min'}, 'Water Damage / Micro Solder': {price:'$149–$299',time:'1–3 days'}, 'SSD Upgrade': {price:'$99–$199',time:'60 min'} },
+    'MacBook Air': { 'Screen Replacement': {price:'$199–$349',time:'1–2 days'}, 'Battery Replacement': {price:'$109–$169',time:'45–75 min'}, 'Keyboard Repair': {price:'$129–$199',time:'1–2 days'}, 'Charging Port': {price:'$89–$129',time:'45 min'}, 'Water Damage / Micro Solder': {price:'$129–$249',time:'1–3 days'}, 'SSD Upgrade': {price:'$89–$179',time:'60 min'} },
+    'Windows Laptop': { 'Screen Replacement': {price:'$99–$249',time:'60–120 min'}, 'Battery Replacement': {price:'$59–$119',time:'30–60 min'}, 'Keyboard Repair': {price:'$69–$149',time:'45–90 min'}, 'Charging Port': {price:'$59–$99',time:'30–60 min'}, 'Virus Removal': {price:'$49–$89',time:'60–120 min'}, 'RAM / SSD Upgrade': {price:'$49–$149',time:'30–60 min'} },
+  }},
+  'Other Phone': { label: 'Other Phone', icon: '📲', models: {
+    'Google Pixel': { 'Screen Replacement': {price:'$99–$199',time:'30–60 min'}, 'Battery Replacement': {price:'$49–$79',time:'30 min'}, 'Charging Port': {price:'$59–$89',time:'30–45 min'}, 'Water Damage': {price:'$59–$119',time:'1–2 days'} },
+    'Motorola': { 'Screen Replacement': {price:'$79–$149',time:'30–60 min'}, 'Battery Replacement': {price:'$39–$69',time:'20–30 min'}, 'Charging Port': {price:'$49–$79',time:'30 min'}, 'Water Damage': {price:'$49–$109',time:'1–2 days'} },
+    'LG / Other Android': { 'Screen Replacement': {price:'$69–$139',time:'30–60 min'}, 'Battery Replacement': {price:'$39–$59',time:'20–30 min'}, 'Charging Port': {price:'$49–$69',time:'30 min'}, 'Water Damage': {price:'$49–$99',time:'1–2 days'} },
+  }},
+};
+
+let qState = { device: null, model: null, repair: null };
+let qStep = 0;
+
+function updateProgress() {
+  const pct = [0, 33, 66, 100];
+  document.getElementById('quoteProgressBar').style.width = pct[qStep] + '%';
+  for (let i = 0; i < 4; i++) {
+    const t = document.getElementById('tracker-' + i);
+    t.classList.remove('active', 'done');
+    if (i < qStep) t.classList.add('done');
+    else if (i === qStep) t.classList.add('active');
+  }
+}
+function setTrackerValue(idx, val) { document.getElementById('tv-' + idx).textContent = val; }
+
+function renderStep() {
+  const panel = document.getElementById('quotePanelInner');
+  document.getElementById('quoteResult').classList.remove('visible');
+  document.getElementById('quotePanel').style.display = 'block';
+  updateProgress();
+  if (qStep === 0) {
+    panel.innerHTML = `<p class="qpanel-title">What type of device?</p><p class="qpanel-sub">Select the device you need repaired.</p><div class="quote-option-grid cols3">${Object.entries(QUOTE_DATA).map(([key, d]) => `<div class="qopt" onclick="selectDevice('${key}')"><span class="qopt-icon">${d.icon}</span>${d.label}</div>`).join('')}</div>`;
+  } else if (qStep === 1) {
+    const models = Object.keys(QUOTE_DATA[qState.device].models);
+    panel.innerHTML = `<button class="qpanel-back" onclick="goBack()">← Back</button><p class="qpanel-title">Which model?</p><p class="qpanel-sub">Choose the closest model to yours.</p><div class="quote-option-grid">${models.map(m => `<div class="qopt" onclick="selectModel('${m.replace(/'/g,"\\'")}')"><span class="qopt-icon">${QUOTE_DATA[qState.device].icon}</span>${m}</div>`).join('')}</div>`;
+  } else if (qStep === 2) {
+    const repairs = Object.keys(QUOTE_DATA[qState.device].models[qState.model]);
+    panel.innerHTML = `<button class="qpanel-back" onclick="goBack()">← Back</button><p class="qpanel-title">What needs to be fixed?</p><p class="qpanel-sub">Select the repair type.</p><div class="quote-option-grid">${repairs.map(r => `<div class="qopt" onclick="selectRepair('${r.replace(/'/g,"\\'")}')"><span class="qopt-icon">${repairIcon(r)}</span>${r}</div>`).join('')}</div>`;
+  }
+}
+function repairIcon(r) { const m={'Screen':'🖥️','Battery':'🔋','Charging':'⚡','Back':'🔲','Camera':'📷','Water':'💧','Hinge':'🔗','Keyboard':'⌨️','Virus':'🛡️','RAM':'💾','SSD':'💾','Micro':'🔬'}; for(const[k,v]of Object.entries(m)){if(r.includes(k))return v;} return '🔧'; }
+function selectDevice(key) { qState.device=key; qState.model=null; qState.repair=null; setTrackerValue(0,QUOTE_DATA[key].label); qStep=1; renderStep(); }
+function selectModel(model) { qState.model=model; qState.repair=null; setTrackerValue(1,model.length>20?model.substring(0,18)+'…':model); qStep=2; renderStep(); }
+function selectRepair(repair) { qState.repair=repair; setTrackerValue(2,repair.length>18?repair.substring(0,16)+'…':repair); qStep=3; showResult(); }
+
+function showResult() {
+  updateProgress();
+  const data = QUOTE_DATA[qState.device].models[qState.model][qState.repair];
+  document.getElementById('res-device').textContent = qState.model;
+  document.getElementById('res-repair').textContent = qState.repair;
+  document.getElementById('res-price').innerHTML = `${data.price}<span>estimate</span>`;
+  document.getElementById('res-time').textContent = data.time;
+  setTrackerValue(3, data.price);
+  document.getElementById('quotePanel').style.display = 'none';
+  document.getElementById('quoteResult').classList.add('visible');
+  for (let i = 0; i < 4; i++) { const t=document.getElementById('tracker-'+i); t.classList.remove('active'); t.classList.add('done'); }
+  document.getElementById('quoteProgressBar').style.width = '100%';
+}
+
+function goBack() {
+  qStep = Math.max(0, qStep - 1);
+  if (qStep === 0) { qState.device=null; setTrackerValue(0,'Choose a device'); }
+  if (qStep === 1) { qState.model=null; setTrackerValue(1,'—'); }
+  renderStep();
+}
+function resetQuote() {
+  qState={device:null,model:null,repair:null}; qStep=0;
+  ['Choose a device','—','—','—'].forEach((v,i) => setTrackerValue(i,v));
+  document.getElementById('quotePanel').style.display = 'block';
+  document.getElementById('quoteResult').classList.remove('visible');
+  renderStep();
+}
+renderStep();
+
+// ─── CHATBOT ───
+let chatOpen = false, chatStarted = false;
+function toggleChat() {
+  chatOpen = !chatOpen;
+  document.getElementById('ikrack-chat-window').classList.toggle('open', chatOpen);
+  if (chatOpen && !chatStarted) { chatStarted=true; setTimeout(() => botSay("Hey there! 👋 I'm the **iKrack Assistant**. I can walk you through troubleshooting steps for common phone issues.\n\nWhat's going on with your device?", MAIN_MENU), 500); }
+  if (chatOpen) { setTimeout(() => { const i=document.getElementById('chatInput'); if(i&&window.innerWidth>600)i.focus(); }, 400); }
+}
 document.getElementById('ikrack-chat-btn').addEventListener('click', toggleChat);
 document.getElementById('chatCloseBtn').addEventListener('click', toggleChat);
 document.getElementById('chatSendBtn').addEventListener('click', sendUserMsg);
 
-// Chat closes via ✕ button or nav icon only
-
-
 const MAIN_MENU = [
-  { label: '📱 Screen issues', key: 'screen' },
-  { label: '🔋 Battery / charging', key: 'battery' },
-  { label: '📵 Phone won\'t turn on', key: 'wont_on' },
-  { label: '🔇 Sound / speaker', key: 'sound' },
-  { label: '📷 Camera problems', key: 'camera' },
-  { label: '🌐 Wi-Fi / connectivity', key: 'wifi' },
-  { label: '💧 Water damage', key: 'water' },
-  { label: '🔥 Overheating', key: 'overheat' },
-  { label: '🐌 Phone is slow', key: 'slow' },
-  { label: '📞 Can\'t make calls', key: 'calls' },
+  {label:'📱 Screen issues',key:'screen'},{label:'🔋 Battery / charging',key:'battery'},{label:'📵 Phone won\'t turn on',key:'wont_on'},
+  {label:'🔇 Sound / speaker',key:'sound'},{label:'📷 Camera problems',key:'camera'},{label:'🌐 Wi-Fi / connectivity',key:'wifi'},
+  {label:'💧 Water damage',key:'water'},{label:'🔥 Overheating',key:'overheat'},{label:'🐌 Phone is slow',key:'slow'},{label:'📞 Can\'t make calls',key:'calls'},
 ];
 
 const FLOWS = {
-  screen: { msg: "Got it — screen issues. What does the screen look like?", chips: [
-    { label: 'Black / won\'t display', key: 'screen_black' },
-    { label: 'Cracked / broken glass', key: 'screen_cracked' },
-    { label: 'Flickering or lines', key: 'screen_flicker' },
-    { label: 'Touch doesn\'t respond', key: 'screen_touch' },
-    { label: 'Dim / dark screen', key: 'screen_dim' },
-  ]},
-  screen_black: { msg: "A black screen can often be fixed at home. Try these steps:\n\n**1.** Hold the power button for 10–15 seconds to force restart.\n**2.** Try a hard reset (Power + Volume Down).\n**3.** Plug into charger for 15+ minutes — may be fully dead.\n**4.** Check for any display via USB-C to external monitor.\n\nIf still black, the display needs professional replacement. 🔧", chips: [
-    { label: '✅ Fixed it!', key: 'great' }, { label: '❌ Still black', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  screen_cracked: { msg: "A cracked screen needs professional repair — DIY risks cutting fingers or damaging the digitizer.\n\n**Quick tips while you wait:**\n• Apply clear tape over the crack.\n• Back up your data ASAP.\n\niKrack replaces screens **same day** starting around **$69**.", chips: [
-    { label: '💰 Get a quote', key: '__quote' }, { label: '📞 Call us now', key: '__call' }, { label: '← Main menu', key: '__main' }
-  ]},
-  screen_flicker: { msg: "Flickering or lines usually means a loose display cable or hardware fault.\n\n**1.** Restart your phone.\n**2.** Update your OS — software bugs can cause this.\n**3.** Try Safe Mode — if it stops, an app is the cause.\n**4.** Turn off Auto-Brightness.\n\nIf it continues, the display connector may be failing.", chips: [
-    { label: '✅ Fixed in Safe Mode', key: 'app_issue' }, { label: '❌ Still flickering', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  screen_touch: { msg: "Unresponsive touch — try this:\n\n**1.** Clean screen with dry microfiber cloth.\n**2.** Remove thick screen protectors.\n**3.** Restart the phone.\n**4.** iPhone: Settings → Accessibility → Touch.\n**5.** Hard reset if still unresponsive.\n\nIf none work, the digitizer may be damaged.", chips: [
-    { label: '✅ Working now!', key: 'great' }, { label: '❌ Still broken', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  screen_dim: { msg: "Dim screen? Try:\n\n**1.** Drag notification shade down — crank brightness up.\n**2.** Turn off Auto-Brightness.\n**3.** Check Night Mode / color filters are off.\n**4.** Disable battery saver mode.\n\nIf dim even at max brightness, the backlight may be failing.", chips: [
-    { label: '✅ Fixed!', key: 'great' }, { label: '❌ Still dim', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  battery: { msg: "Battery or charging issue — what's happening?", chips: [
-    { label: 'Won\'t charge at all', key: 'batt_no_charge' },
-    { label: 'Charges very slowly', key: 'batt_slow' },
-    { label: 'Battery drains fast', key: 'batt_drain' },
-    { label: 'Dies at 20–30%', key: 'batt_inaccurate' },
-    { label: 'Gets hot while charging', key: 'batt_hot' },
-  ]},
-  batt_no_charge: { msg: "Not charging — try:\n\n**1.** Try a different cable and adapter.\n**2.** Clean the charging port with a dry toothpick — lint is the #1 cause.\n**3.** Try wireless charging to confirm if port is the issue.\n**4.** Restart while plugged in.\n\niKrack charging port replacement is quick and affordable. ⚡", chips: [
-    { label: '✅ Charging now!', key: 'great' }, { label: '❌ Still won\'t charge', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  batt_slow: { msg: "Slow charging is usually the cable or charger:\n\n**1.** Use the original adapter — third-party ones underdeliver.\n**2.** Enable Airplane Mode while charging.\n**3.** Close all background apps.\n**4.** Clean the charging port.\n\nIf it used to charge fast, the battery may be degraded.", chips: [
-    { label: '✅ Faster now!', key: 'great' }, { label: '🔋 Check battery health', key: 'batt_health' }, { label: '← Main menu', key: '__main' }
-  ]},
-  batt_drain: { msg: "Fast drain is usually software:\n\n**1.** Settings → Battery — see which app is draining it.\n**2.** Turn off Background App Refresh.\n**3.** Lower brightness, enable adaptive.\n**4.** Turn off 5G if not needed.\n**5.** Disable Location for apps that don't need it.\n\n**iPhone:** Settings → Battery → Battery Health.", chips: [
-    { label: '🔋 Check battery health', key: 'batt_health' }, { label: '✅ That helped!', key: 'great' }, { label: '← Main menu', key: '__main' }
-  ]},
-  batt_health: { msg: "**Checking Battery Health:**\n\n📱 **iPhone:** Settings → Battery → Battery Health. Under **80%** = needs replacement.\n\n🤖 **Samsung:** Settings → Device Care → Battery → Battery Information.\n\niKrack replaces batteries from **$39** with lifetime warranty. 🔋", chips: [
-    { label: '💰 Get a quote', key: '__quote' }, { label: '📞 Call us', key: '__call' }, { label: '← Main menu', key: '__main' }
-  ]},
-  batt_inaccurate: { msg: "Dying at 20–30% is a classic worn battery sign. The battery can no longer hold a full charge.\n\niKrack battery replacement starts at **$39** and takes about 20 minutes. ⚡", chips: [
-    { label: '💰 Get a quote', key: '__quote' }, { label: '📞 Call us', key: '__call' }, { label: '← Main menu', key: '__main' }
-  ]},
-  batt_hot: { msg: "Hot while charging — act now:\n\n⚠️ **Remove the case** — cases trap heat.\n⚠️ **Don\'t charge under pillows.**\n\n**1.** Stop using phone while charging.\n**2.** Avoid sunlight / hot surfaces.\n**3.** Try a different charger.\n\nIf regularly very hot, battery may be swelling — bring it in immediately.", chips: [
-    { label: '📞 Call us urgently', key: '__call' }, { label: '← Main menu', key: '__main' }
-  ]},
-  wont_on: { msg: "Phone won\'t turn on:\n\n**1.** Plug into charger for 15–20 minutes.\n**2.** Hard reset: hold **Power + Volume Down** 10–15s (Android) or until Apple logo (iPhone).\n**3.** Try a different cable and adapter.\n**4.** Look for any signs: vibration, LED, sound.\n\nNo response at all? Battery, port, or motherboard may have failed.", chips: [
-    { label: '✅ It turned on!', key: 'great' }, { label: '❌ Nothing at all', key: 'needs_repair' }, { label: '💧 Got wet recently', key: 'water' }, { label: '← Main menu', key: '__main' }
-  ]},
-  sound: { msg: "Sound or speaker issue — what\'s happening?", chips: [
-    { label: 'No sound at all', key: 'sound_none' },
-    { label: 'Muffled / quiet', key: 'sound_muffled' },
-    { label: 'Earpiece not working', key: 'sound_earpiece' },
-    { label: 'Microphone issue', key: 'sound_mic' },
-  ]},
-  sound_none: { msg: "No sound:\n\n**1.** Check mute switch (iPhone left side — orange = muted).\n**2.** Volume all the way up.\n**3.** Disconnect Bluetooth headphones.\n**4.** Remove any accessory from headphone jack.\n**5.** Restart.\n**6.** Check Do Not Disturb is off.", chips: [
-    { label: '✅ Got sound!', key: 'great' }, { label: '❌ Still silent', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  sound_muffled: { msg: "Muffled speaker is almost always **lint** clogging the grille.\n\n**Fix it:**\n1. Look at the bottom speaker grille.\n2. Use a **dry, soft toothbrush** to gently brush it.\n3. Use compressed air from a distance.\n4. Never use water or sharp objects.", chips: [
-    { label: '✅ Much better!', key: 'great' }, { label: '❌ Still muffled', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  sound_earpiece: { msg: "Can\'t hear calls:\n\n**1.** Make sure you\'re not on speakerphone.\n**2.** Clean earpiece with a soft dry brush.\n**3.** Test with headphones — if fine, earpiece is the issue.\n**4.** Settings → Accessibility → Audio → check balance.\n**5.** Restart.", chips: [
-    { label: '✅ Fixed!', key: 'great' }, { label: '❌ Still no earpiece', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  sound_mic: { msg: "Mic not working:\n\n**1.** Record a voice memo and play it back.\n**2.** Make sure mic holes aren\'t blocked (bottom, back, top).\n**3.** Remove case — it may cover mic.\n**4.** Check app permissions: Settings → Privacy → Microphone.\n**5.** Restart.", chips: [
-    { label: '✅ Works now!', key: 'great' }, { label: '❌ Still broken', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  camera: { msg: "Camera issue — what\'s happening?", chips: [
-    { label: 'App crashes', key: 'cam_crash' },
-    { label: 'Photos are blurry', key: 'cam_blur' },
-    { label: 'Black screen in camera', key: 'cam_black' },
-    { label: 'Flash not working', key: 'cam_flash' },
-  ]},
-  cam_crash: { msg: "Camera crashing:\n\n**1.** Force-close and reopen.\n**2.** Restart phone.\n**3.** Update iOS/Android.\n**4.** Check storage — camera needs 1GB+ free.\n**5.** Clear cache (Android): Settings → Apps → Camera → Clear Cache.", chips: [
-    { label: '✅ Works now!', key: 'great' }, { label: '❌ Still crashing', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  cam_blur: { msg: "Blurry photos:\n\n**1.** Clean lens with microfiber cloth — fingerprints are #1 cause.\n**2.** Remove case covering the lens.\n**3.** Tap the subject to manually focus.\n**4.** Don\'t get too close — 2–3 inch minimum distance.\n**5.** Check if lens glass is cracked.", chips: [
-    { label: '✅ Sharp again!', key: 'great' }, { label: '❌ Still blurry', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  cam_black: { msg: "Black camera screen:\n\n**1.** Force-close and reopen.\n**2.** Restart.\n**3.** Clear camera cache (Android).\n**4.** Free up storage space.\n**5.** Try a third-party camera app — if it works, it\'s a software issue.", chips: [
-    { label: '✅ Camera works!', key: 'great' }, { label: '❌ Still black', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  cam_flash: { msg: "Flash not working:\n\n**1.** Check flash is enabled in camera app.\n**2.** Test flashlight from control center — if that works, hardware is fine.\n**3.** Let phone cool down — overheating disables flash.\n**4.** Restart.\n**5.** Settings → Privacy → Camera and re-enable.", chips: [
-    { label: '✅ Flash is back!', key: 'great' }, { label: '❌ Still broken', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  wifi: { msg: "Connectivity issue — what\'s happening?", chips: [
-    { label: 'Can\'t connect to Wi-Fi', key: 'wifi_no' },
-    { label: 'Wi-Fi keeps dropping', key: 'wifi_drop' },
-    { label: 'No cellular signal', key: 'wifi_cell' },
-    { label: 'Bluetooth not working', key: 'wifi_bt' },
-  ]},
-  wifi_no: { msg: "Can\'t connect to Wi-Fi:\n\n**1.** Toggle Wi-Fi off and back on.\n**2.** Forget the network and reconnect.\n**3.** Restart your router.\n**4.** Try a different network.\n**5.** Reset Network Settings (note: erases saved Wi-Fi passwords).", chips: [
-    { label: '✅ Connected!', key: 'great' }, { label: '❌ Still won\'t connect', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  wifi_drop: { msg: "Wi-Fi dropping:\n\n**1.** Move closer to the router.\n**2.** Check if other devices have same issue.\n**3.** Change router channel in router settings.\n**4.** iPhone: turn off Wi-Fi Assist.\n**5.** Reset Network Settings as last resort.", chips: [
-    { label: '✅ Stable now!', key: 'great' }, { label: '❌ Still dropping', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  wifi_cell: { msg: "No cellular signal:\n\n**1.** Toggle Airplane Mode on 15s, then off.\n**2.** Restart.\n**3.** Reseat SIM card.\n**4.** Manually select carrier in Settings.\n**5.** Update carrier settings (iPhone: Settings → General → About).\n**6.** Test SIM in another phone.", chips: [
-    { label: '✅ Got signal!', key: 'great' }, { label: '❌ Still no signal', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  wifi_bt: { msg: "Bluetooth not working:\n\n**1.** Toggle Bluetooth off and back on.\n**2.** Forget device and re-pair.\n**3.** Restart both devices.\n**4.** Make sure other device is in pairing mode.\n**5.** Reset Network Settings.", chips: [
-    { label: '✅ Connected!', key: 'great' }, { label: '❌ Still not pairing', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  water: { msg: "⚠️ **Act fast — water damage gets worse every minute!**\n\n**Do this NOW:**\n**1.** Power OFF immediately — don\'t charge it.\n**2.** Remove case and SIM.\n**3.** Gently shake out water.\n**4.** Pat dry — NO hair dryer.\n**5.** Leave in dry room with airflow 24–48 hrs.\n**6.** Do NOT put in rice.\n\n⚡ The sooner you bring it in, the better. Water damage starts at **$49**.", chips: [
-    { label: '📞 Call us urgently', key: '__call' }, { label: '💰 Water damage quote', key: '__quote' }, { label: '← Main menu', key: '__main' }
-  ]},
-  overheat: { msg: "Phone overheating:\n\n**Immediate:**\n1. Remove case.\n2. Stop charging, close all apps.\n3. Move away from sunlight / hot car.\n4. Enable Airplane Mode.\n\n**Ongoing:** Reduce brightness, update apps, avoid gaming while charging.\n\nFrequent overheating can signal a failing battery or logic board.", chips: [
-    { label: '✅ Cooled down!', key: 'great' }, { label: '❌ Still overheating', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  slow: { msg: "Phone running slow:\n\n**1.** Restart — clears RAM.\n**2.** Free up storage — keep 10–15% free.\n**3.** Clear app caches (Android).\n**4.** Uninstall unused apps.\n**5.** Update iOS/Android.\n**6.** Check battery health — degraded battery throttles performance.", chips: [
-    { label: '🔋 Check battery health', key: 'batt_health' }, { label: '✅ Running faster!', key: 'great' }, { label: '❌ Still very slow', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  calls: { msg: "Can\'t make calls:\n\n**1.** Check cellular signal (bars at top).\n**2.** Toggle Airplane Mode on/off.\n**3.** Check Do Not Disturb is off.\n**4.** Check call forwarding is off.\n**5.** Verify account standing with carrier.\n**6.** Restart.", chips: [
-    { label: '✅ Calls working!', key: 'great' }, { label: '❌ Still can\'t call', key: 'needs_repair' }, { label: '← Main menu', key: '__main' }
-  ]},
-  great: { msg: "Awesome — glad we sorted that out! 🎉\n\nIf anything else comes up, I\'m right here. And if you ever need a professional repair, iKrack has you covered — **same-day service**, **lifetime warranty**. 🛡️", chips: [
-    { label: '🔁 Another issue', key: '__main' }, { label: '💰 Get a repair quote', key: '__quote' }, { label: '📞 Contact a store', key: '__call' }
-  ]},
-  needs_repair: { msg: "This one needs a professional look. 🔧\n\nBring it to iKrack — we\'ll diagnose it **free**. No fix, no fee.\n\n📍 **Two locations:**\n• Bonaire: (478) 287-9783\n• Macon: (478) 309-6400\n\nBook online and save $10! 💰", chips: [
-    { label: '💰 Get instant quote', key: '__quote' }, { label: '📞 Call Bonaire', key: '__call_bonaire' }, { label: '📞 Call Macon', key: '__call_macon' }, { label: '🔁 Try another issue', key: '__main' }
-  ]},
-  app_issue: { msg: "If the issue only appears outside Safe Mode, a third-party app is the culprit.\n\n**Find it:**\n1. Stay in Safe Mode and confirm it\'s stable.\n2. Restart normally.\n3. Uninstall apps installed before the issue started, one by one.", chips: [
-    { label: '✅ Found the app!', key: 'great' }, { label: '← Main menu', key: '__main' }
-  ]},
+  screen:{msg:"Got it — screen issues. What does the screen look like?",chips:[{label:'Black / won\'t display',key:'screen_black'},{label:'Cracked / broken glass',key:'screen_cracked'},{label:'Flickering or lines',key:'screen_flicker'},{label:'Touch doesn\'t respond',key:'screen_touch'},{label:'Dim / dark screen',key:'screen_dim'}]},
+  screen_black:{msg:"A black screen can often be fixed at home. Try these steps:\n\n**1.** Hold the power button for 10–15 seconds to force restart.\n**2.** Try a hard reset (Power + Volume Down).\n**3.** Plug into charger for 15+ minutes — may be fully dead.\n**4.** Check for any display via USB-C to external monitor.\n\nIf still black, the display needs professional replacement. 🔧",chips:[{label:'✅ Fixed it!',key:'great'},{label:'❌ Still black',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  screen_cracked:{msg:"A cracked screen needs professional repair — DIY risks cutting fingers or damaging the digitizer.\n\n**Quick tips while you wait:**\n• Apply clear tape over the crack.\n• Back up your data ASAP.\n\niKrack replaces screens **same day** starting around **$69**.",chips:[{label:'💰 Get a quote',key:'__quote'},{label:'📞 Call us now',key:'__call'},{label:'← Main menu',key:'__main'}]},
+  screen_flicker:{msg:"Flickering or lines usually means a loose display cable or hardware fault.\n\n**1.** Restart your phone.\n**2.** Update your OS — software bugs can cause this.\n**3.** Try Safe Mode — if it stops, an app is the cause.\n**4.** Turn off Auto-Brightness.\n\nIf it continues, the display connector may be failing.",chips:[{label:'✅ Fixed in Safe Mode',key:'app_issue'},{label:'❌ Still flickering',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  screen_touch:{msg:"Unresponsive touch — try this:\n\n**1.** Clean screen with dry microfiber cloth.\n**2.** Remove thick screen protectors.\n**3.** Restart the phone.\n**4.** iPhone: Settings → Accessibility → Touch.\n**5.** Hard reset if still unresponsive.\n\nIf none work, the digitizer may be damaged.",chips:[{label:'✅ Working now!',key:'great'},{label:'❌ Still broken',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  screen_dim:{msg:"Dim screen? Try:\n\n**1.** Drag notification shade down — crank brightness up.\n**2.** Turn off Auto-Brightness.\n**3.** Check Night Mode / color filters are off.\n**4.** Disable battery saver mode.\n\nIf dim even at max brightness, the backlight may be failing.",chips:[{label:'✅ Fixed!',key:'great'},{label:'❌ Still dim',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  battery:{msg:"Battery or charging issue — what's happening?",chips:[{label:'Won\'t charge at all',key:'batt_no_charge'},{label:'Charges very slowly',key:'batt_slow'},{label:'Battery drains fast',key:'batt_drain'},{label:'Dies at 20–30%',key:'batt_inaccurate'},{label:'Gets hot while charging',key:'batt_hot'}]},
+  batt_no_charge:{msg:"Not charging — try:\n\n**1.** Try a different cable and adapter.\n**2.** Clean the charging port with a dry toothpick — lint is the #1 cause.\n**3.** Try wireless charging to confirm if port is the issue.\n**4.** Restart while plugged in.\n\niKrack charging port replacement is quick and affordable. ⚡",chips:[{label:'✅ Charging now!',key:'great'},{label:'❌ Still won\'t charge',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  batt_slow:{msg:"Slow charging is usually the cable or charger:\n\n**1.** Use the original adapter — third-party ones underdeliver.\n**2.** Enable Airplane Mode while charging.\n**3.** Close all background apps.\n**4.** Clean the charging port.\n\nIf it used to charge fast, the battery may be degraded.",chips:[{label:'✅ Faster now!',key:'great'},{label:'🔋 Check battery health',key:'batt_health'},{label:'← Main menu',key:'__main'}]},
+  batt_drain:{msg:"Fast drain is usually software:\n\n**1.** Settings → Battery — see which app is draining it.\n**2.** Turn off Background App Refresh.\n**3.** Lower brightness, enable adaptive.\n**4.** Turn off 5G if not needed.\n**5.** Disable Location for apps that don't need it.\n\n**iPhone:** Settings → Battery → Battery Health.",chips:[{label:'🔋 Check battery health',key:'batt_health'},{label:'✅ That helped!',key:'great'},{label:'← Main menu',key:'__main'}]},
+  batt_health:{msg:"**Checking Battery Health:**\n\n📱 **iPhone:** Settings → Battery → Battery Health. Under **80%** = needs replacement.\n\n🤖 **Samsung:** Settings → Device Care → Battery → Battery Information.\n\niKrack replaces batteries from **$39** with lifetime warranty. 🔋",chips:[{label:'💰 Get a quote',key:'__quote'},{label:'📞 Call us',key:'__call'},{label:'← Main menu',key:'__main'}]},
+  batt_inaccurate:{msg:"Dying at 20–30% is a classic worn battery sign. The battery can no longer hold a full charge.\n\niKrack battery replacement starts at **$39** and takes about 20 minutes. ⚡",chips:[{label:'💰 Get a quote',key:'__quote'},{label:'📞 Call us',key:'__call'},{label:'← Main menu',key:'__main'}]},
+  batt_hot:{msg:"Hot while charging — act now:\n\n⚠️ **Remove the case** — cases trap heat.\n⚠️ **Don't charge under pillows.**\n\n**1.** Stop using phone while charging.\n**2.** Avoid sunlight / hot surfaces.\n**3.** Try a different charger.\n\nIf regularly very hot, battery may be swelling — bring it in immediately.",chips:[{label:'📞 Call us urgently',key:'__call'},{label:'← Main menu',key:'__main'}]},
+  wont_on:{msg:"Phone won't turn on:\n\n**1.** Plug into charger for 15–20 minutes.\n**2.** Hard reset: hold **Power + Volume Down** 10–15s (Android) or until Apple logo (iPhone).\n**3.** Try a different cable and adapter.\n**4.** Look for any signs: vibration, LED, sound.\n\nNo response at all? Battery, port, or motherboard may have failed.",chips:[{label:'✅ It turned on!',key:'great'},{label:'❌ Nothing at all',key:'needs_repair'},{label:'💧 Got wet recently',key:'water'},{label:'← Main menu',key:'__main'}]},
+  sound:{msg:"Sound or speaker issue — what's happening?",chips:[{label:'No sound at all',key:'sound_none'},{label:'Muffled / quiet',key:'sound_muffled'},{label:'Earpiece not working',key:'sound_earpiece'},{label:'Microphone issue',key:'sound_mic'}]},
+  sound_none:{msg:"No sound:\n\n**1.** Check mute switch (iPhone left side — orange = muted).\n**2.** Volume all the way up.\n**3.** Disconnect Bluetooth headphones.\n**4.** Remove any accessory from headphone jack.\n**5.** Restart.\n**6.** Check Do Not Disturb is off.",chips:[{label:'✅ Got sound!',key:'great'},{label:'❌ Still silent',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  sound_muffled:{msg:"Muffled speaker is almost always **lint** clogging the grille.\n\n**Fix it:**\n1. Look at the bottom speaker grille.\n2. Use a **dry, soft toothbrush** to gently brush it.\n3. Use compressed air from a distance.\n4. Never use water or sharp objects.",chips:[{label:'✅ Much better!',key:'great'},{label:'❌ Still muffled',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  sound_earpiece:{msg:"Can't hear calls:\n\n**1.** Make sure you're not on speakerphone.\n**2.** Clean earpiece with a soft dry brush.\n**3.** Test with headphones — if fine, earpiece is the issue.\n**4.** Settings → Accessibility → Audio → check balance.\n**5.** Restart.",chips:[{label:'✅ Fixed!',key:'great'},{label:'❌ Still no earpiece',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  sound_mic:{msg:"Mic not working:\n\n**1.** Record a voice memo and play it back.\n**2.** Make sure mic holes aren't blocked (bottom, back, top).\n**3.** Remove case — it may cover mic.\n**4.** Check app permissions: Settings → Privacy → Microphone.\n**5.** Restart.",chips:[{label:'✅ Works now!',key:'great'},{label:'❌ Still broken',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  camera:{msg:"Camera issue — what's happening?",chips:[{label:'App crashes',key:'cam_crash'},{label:'Photos are blurry',key:'cam_blur'},{label:'Black screen in camera',key:'cam_black'},{label:'Flash not working',key:'cam_flash'}]},
+  cam_crash:{msg:"Camera crashing:\n\n**1.** Force-close and reopen.\n**2.** Restart phone.\n**3.** Update iOS/Android.\n**4.** Check storage — camera needs 1GB+ free.\n**5.** Clear cache (Android): Settings → Apps → Camera → Clear Cache.",chips:[{label:'✅ Works now!',key:'great'},{label:'❌ Still crashing',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  cam_blur:{msg:"Blurry photos:\n\n**1.** Clean lens with microfiber cloth — fingerprints are #1 cause.\n**2.** Remove case covering the lens.\n**3.** Tap the subject to manually focus.\n**4.** Don't get too close — 2–3 inch minimum distance.\n**5.** Check if lens glass is cracked.",chips:[{label:'✅ Sharp again!',key:'great'},{label:'❌ Still blurry',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  cam_black:{msg:"Black camera screen:\n\n**1.** Force-close and reopen.\n**2.** Restart.\n**3.** Clear camera cache (Android).\n**4.** Free up storage space.\n**5.** Try a third-party camera app — if it works, it's a software issue.",chips:[{label:'✅ Camera works!',key:'great'},{label:'❌ Still black',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  cam_flash:{msg:"Flash not working:\n\n**1.** Check flash is enabled in camera app.\n**2.** Test flashlight from control center — if that works, hardware is fine.\n**3.** Let phone cool down — overheating disables flash.\n**4.** Restart.\n**5.** Settings → Privacy → Camera and re-enable.",chips:[{label:'✅ Flash is back!',key:'great'},{label:'❌ Still broken',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  wifi:{msg:"Connectivity issue — what's happening?",chips:[{label:'Can\'t connect to Wi-Fi',key:'wifi_no'},{label:'Wi-Fi keeps dropping',key:'wifi_drop'},{label:'No cellular signal',key:'wifi_cell'},{label:'Bluetooth not working',key:'wifi_bt'}]},
+  wifi_no:{msg:"Can't connect to Wi-Fi:\n\n**1.** Toggle Wi-Fi off and back on.\n**2.** Forget the network and reconnect.\n**3.** Restart your router.\n**4.** Try a different network.\n**5.** Reset Network Settings (note: erases saved Wi-Fi passwords).",chips:[{label:'✅ Connected!',key:'great'},{label:'❌ Still won\'t connect',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  wifi_drop:{msg:"Wi-Fi dropping:\n\n**1.** Move closer to the router.\n**2.** Check if other devices have same issue.\n**3.** Change router channel in router settings.\n**4.** iPhone: turn off Wi-Fi Assist.\n**5.** Reset Network Settings as last resort.",chips:[{label:'✅ Stable now!',key:'great'},{label:'❌ Still dropping',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  wifi_cell:{msg:"No cellular signal:\n\n**1.** Toggle Airplane Mode on 15s, then off.\n**2.** Restart.\n**3.** Reseat SIM card.\n**4.** Manually select carrier in Settings.\n**5.** Update carrier settings (iPhone: Settings → General → About).\n**6.** Test SIM in another phone.",chips:[{label:'✅ Got signal!',key:'great'},{label:'❌ Still no signal',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  wifi_bt:{msg:"Bluetooth not working:\n\n**1.** Toggle Bluetooth off and back on.\n**2.** Forget device and re-pair.\n**3.** Restart both devices.\n**4.** Make sure other device is in pairing mode.\n**5.** Reset Network Settings.",chips:[{label:'✅ Connected!',key:'great'},{label:'❌ Still not pairing',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  water:{msg:"⚠️ **Act fast — water damage gets worse every minute!**\n\n**Do this NOW:**\n**1.** Power OFF immediately — don't charge it.\n**2.** Remove case and SIM.\n**3.** Gently shake out water.\n**4.** Pat dry — NO hair dryer.\n**5.** Leave in dry room with airflow 24–48 hrs.\n**6.** Do NOT put in rice.\n\n⚡ The sooner you bring it in, the better. Water damage starts at **$49**.",chips:[{label:'📞 Call us urgently',key:'__call'},{label:'💰 Water damage quote',key:'__quote'},{label:'← Main menu',key:'__main'}]},
+  overheat:{msg:"Phone overheating:\n\n**Immediate:**\n1. Remove case.\n2. Stop charging, close all apps.\n3. Move away from sunlight / hot car.\n4. Enable Airplane Mode.\n\n**Ongoing:** Reduce brightness, update apps, avoid gaming while charging.\n\nFrequent overheating can signal a failing battery or logic board.",chips:[{label:'✅ Cooled down!',key:'great'},{label:'❌ Still overheating',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  slow:{msg:"Phone running slow:\n\n**1.** Restart — clears RAM.\n**2.** Free up storage — keep 10–15% free.\n**3.** Clear app caches (Android).\n**4.** Uninstall unused apps.\n**5.** Update iOS/Android.\n**6.** Check battery health — degraded battery throttles performance.",chips:[{label:'🔋 Check battery health',key:'batt_health'},{label:'✅ Running faster!',key:'great'},{label:'❌ Still very slow',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  calls:{msg:"Can't make calls:\n\n**1.** Check cellular signal (bars at top).\n**2.** Toggle Airplane Mode on/off.\n**3.** Check Do Not Disturb is off.\n**4.** Check call forwarding is off.\n**5.** Verify account standing with carrier.\n**6.** Restart.",chips:[{label:'✅ Calls working!',key:'great'},{label:'❌ Still can\'t call',key:'needs_repair'},{label:'← Main menu',key:'__main'}]},
+  great:{msg:"Awesome — glad we sorted that out! 🎉\n\nIf anything else comes up, I'm right here. And if you ever need a professional repair, iKrack has you covered — **same-day service**, **lifetime warranty**. 🛡️",chips:[{label:'🔁 Another issue',key:'__main'},{label:'💰 Get a repair quote',key:'__quote'},{label:'📞 Contact a store',key:'__call'}]},
+  needs_repair:{msg:"This one needs a professional look. 🔧\n\nBring it to iKrack — we'll diagnose it **free**. No fix, no fee.\n\n📍 **Two locations:**\n• Bonaire: (478) 287-9783\n• Macon: (478) 309-6400\n\nBook online and save $10! 💰",chips:[{label:'💰 Get instant quote',key:'__quote'},{label:'📞 Call Bonaire',key:'__call_bonaire'},{label:'📞 Call Macon',key:'__call_macon'},{label:'🔁 Try another issue',key:'__main'}]},
+  app_issue:{msg:"If the issue only appears outside Safe Mode, a third-party app is the culprit.\n\n**Find it:**\n1. Stay in Safe Mode and confirm it's stable.\n2. Restart normally.\n3. Uninstall apps installed before the issue started, one by one.",chips:[{label:'✅ Found the app!',key:'great'},{label:'← Main menu',key:'__main'}]},
 };
 
 const KEYWORD_MAP = [
-  { words: ['screen','display','crack','shatter','black','dark','dim','flicker','touch'], key: 'screen' },
-  { words: ['battery','charge','charging','drain','fast','die','percent','slow charge'], key: 'battery' },
-  { words: ['turn on','wont on','dead','no power','not turning'], key: 'wont_on' },
-  { words: ['sound','speaker','audio','loud','quiet','muffled','mic','microphone','hear'], key: 'sound' },
-  { words: ['camera','photo','picture','blur','blurry','flash','selfie','lens'], key: 'camera' },
-  { words: ['wifi','wi-fi','internet','connect','signal','cellular','bluetooth','4g','5g'], key: 'wifi' },
-  { words: ['water','wet','dropped','liquid','spill','rain','pool','sink'], key: 'water' },
-  { words: ['hot','heat','overheat','warm','burning'], key: 'overheat' },
-  { words: ['slow','lag','freeze','stuck','sluggish','performance'], key: 'slow' },
-  { words: ['call','calls','phone call','dial','receive'], key: 'calls' },
-  { words: ['quote','price','cost','how much','estimate'], key: '__quote' },
-  { words: ['hi','hello','hey','help','start'], key: '__main_greet' },
+  {words:['screen','display','crack','shatter','black','dark','dim','flicker','touch'],key:'screen'},
+  {words:['battery','charge','charging','drain','fast','die','percent','slow charge'],key:'battery'},
+  {words:['turn on','wont on','dead','no power','not turning'],key:'wont_on'},
+  {words:['sound','speaker','audio','loud','quiet','muffled','mic','microphone','hear'],key:'sound'},
+  {words:['camera','photo','picture','blur','blurry','flash','selfie','lens'],key:'camera'},
+  {words:['wifi','wi-fi','internet','connect','signal','cellular','bluetooth','4g','5g'],key:'wifi'},
+  {words:['water','wet','dropped','liquid','spill','rain','pool','sink'],key:'water'},
+  {words:['hot','heat','overheat','warm','burning'],key:'overheat'},
+  {words:['slow','lag','freeze','stuck','sluggish','performance'],key:'slow'},
+  {words:['call','calls','phone call','dial','receive'],key:'calls'},
+  {words:['quote','price','cost','how much','estimate'],key:'__quote'},
+  {words:['hi','hello','hey','help','start'],key:'__main_greet'},
 ];
 
 function matchKeyword(text) {
   const t = text.toLowerCase();
-  for (const e of KEYWORD_MAP) {
-    if (e.words.some(w => t.includes(w))) return e.key;
-  }
+  for (const e of KEYWORD_MAP) { if (e.words.some(w => t.includes(w))) return e.key; }
   return null;
 }
 
@@ -2912,78 +1157,48 @@ function addMsg(role, text) {
   const div = document.createElement('div');
   div.className = 'chat-msg ' + role;
   const isBot = role === 'bot';
-  div.innerHTML = '<div class="msg-avatar ' + (isBot ? '' : 'user-av') + '">' + (isBot ? '🤖' : 'You') + '</div><div class="msg-bubble">' + formatText(text) + '</div>';
+  div.innerHTML = `<div class="msg-avatar ${isBot?'':'user-av'}">${isBot?'🤖':'You'}</div><div class="msg-bubble">${formatText(text)}</div>`;
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
-
-function formatText(t) {
-  return t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-}
-
+function formatText(t) { return t.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
 function setChips(chips) {
   const c = document.getElementById('chatChips');
   c.innerHTML = '';
-  (chips || []).forEach(ch => {
-    const btn = document.createElement('button');
-    btn.className = 'chip';
-    btn.textContent = ch.label;
-    btn.addEventListener('click', () => handleChip(ch));
-    c.appendChild(btn);
-  });
+  (chips||[]).forEach(ch => { const btn=document.createElement('button'); btn.className='chip'; btn.textContent=ch.label; btn.addEventListener('click',()=>handleChip(ch)); c.appendChild(btn); });
 }
-
-function showTyping() {
-  document.getElementById('typingIndicator').style.display = 'flex';
-  document.getElementById('chatMessages').scrollTop = 99999;
-}
-function hideTyping() { document.getElementById('typingIndicator').style.display = 'none'; }
-
+function showTyping() { document.getElementById('typingIndicator').style.display='flex'; document.getElementById('chatMessages').scrollTop=99999; }
+function hideTyping() { document.getElementById('typingIndicator').style.display='none'; }
 function botSay(text, chips) {
   setChips([]);
   showTyping();
-  setTimeout(() => {
-    hideTyping();
-    addMsg('bot', text);
-    if (chips) setChips(chips);
-    document.getElementById('chatMessages').scrollTop = 99999;
-  }, 900);
+  setTimeout(() => { hideTyping(); addMsg('bot',text); if(chips)setChips(chips); document.getElementById('chatMessages').scrollTop=99999; }, 900);
 }
-
 function handleChip(chip) {
-  if (chip.key === '__main') { addMsg('user', chip.label); botSay("Sure! What else can I help you with? 😊", MAIN_MENU); return; }
-  if (chip.key === '__main_greet') { botSay("Hey! 👋 What\'s going on with your device?", MAIN_MENU); return; }
-  if (chip.key === '__quote') {
-    addMsg('user', chip.label);
-    botSay("Use our **Instant Quote Tool** on the page to get a price in seconds. 👆\n\n📞 Bonaire: (478) 287-9783\n📞 Macon: (478) 309-6400", [{ label: '🔁 Back to main menu', key: '__main' }]);
-    setTimeout(() => { if(document.getElementById('quote')) document.getElementById('quote').scrollIntoView({behavior:'smooth'}); }, 1400);
-    return;
-  }
-  if (chip.key === '__call') { addMsg('user', chip.label); botSay("Give us a call! 📞\n\n• **Bonaire:** (478) 287-9783\n• **Macon:** (478) 309-6400\n\nMon–Sat: 10am–7pm", [{ label: '📞 Call Bonaire', key: '__call_bonaire' },{ label: '📞 Call Macon', key: '__call_macon' },{ label: '🔁 Main menu', key: '__main' }]); return; }
-  if (chip.key === '__call_bonaire') { window.location.href = 'tel:+14782879783'; return; }
-  if (chip.key === '__call_macon') { window.location.href = 'tel:+14783096400'; return; }
-  const flow = FLOWS[chip.key];
-  if (!flow) return;
-  addMsg('user', chip.label);
-  botSay(flow.msg, flow.chips);
+  if(chip.key==='__main'){addMsg('user',chip.label);botSay("Sure! What else can I help you with? 😊",MAIN_MENU);return;}
+  if(chip.key==='__main_greet'){botSay("Hey! 👋 What's going on with your device?",MAIN_MENU);return;}
+  if(chip.key==='__quote'){addMsg('user',chip.label);botSay("Use our **Instant Quote Tool** on the page to get a price in seconds. 👆\n\n📞 Bonaire: (478) 287-9783\n📞 Macon: (478) 309-6400",[{label:'🔁 Back to main menu',key:'__main'}]);setTimeout(()=>{if(document.getElementById('quote'))document.getElementById('quote').scrollIntoView({behavior:'smooth'});},1400);return;}
+  if(chip.key==='__call'){addMsg('user',chip.label);botSay("Give us a call! 📞\n\n• **Bonaire:** (478) 287-9783\n• **Macon:** (478) 309-6400\n\nMon–Sat: 10am–7pm",[{label:'📞 Call Bonaire',key:'__call_bonaire'},{label:'📞 Call Macon',key:'__call_macon'},{label:'🔁 Main menu',key:'__main'}]);return;}
+  if(chip.key==='__call_bonaire'){window.location.href='tel:+14782879783';return;}
+  if(chip.key==='__call_macon'){window.location.href='tel:+14783096400';return;}
+  const flow=FLOWS[chip.key];
+  if(!flow)return;
+  addMsg('user',chip.label);
+  botSay(flow.msg,flow.chips);
 }
-
 function sendUserMsg() {
-  const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  addMsg('user', text);
+  const input=document.getElementById('chatInput');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  addMsg('user',text);
   setChips([]);
-  const key = matchKeyword(text);
-  if (key === '__main_greet') { botSay("Hey! 👋 What\'s going on with your device?", MAIN_MENU); return; }
-  if (key === '__quote') { botSay("Use our **Instant Quote Tool** above to get a price estimate in seconds. 👆", [{ label: '🔁 Main menu', key: '__main' }]); setTimeout(() => { if(document.getElementById('quote')) document.getElementById('quote').scrollIntoView({behavior:'smooth'}); }, 1200); return; }
-  if (key && FLOWS[key]) { botSay(FLOWS[key].msg, FLOWS[key].chips); return; }
-  botSay("I\'m not sure about that one, but I\'m happy to help! Pick a topic below or call us.", MAIN_MENU);
+  const key=matchKeyword(text);
+  if(key==='__main_greet'){botSay("Hey! 👋 What's going on with your device?",MAIN_MENU);return;}
+  if(key==='__quote'){botSay("Use our **Instant Quote Tool** above to get a price estimate in seconds. 👆",[{label:'🔁 Main menu',key:'__main'}]);setTimeout(()=>{if(document.getElementById('quote'))document.getElementById('quote').scrollIntoView({behavior:'smooth'});},1200);return;}
+  if(key&&FLOWS[key]){botSay(FLOWS[key].msg,FLOWS[key].chips);return;}
+  botSay("I'm not sure about that one, but I'm happy to help! Pick a topic below or call us.",MAIN_MENU);
 }
-
-// Chat opens on button click only
-
 </script>
 
 </body>

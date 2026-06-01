@@ -154,7 +154,40 @@
   .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.04em; color: var(--white); margin-bottom: 1.5rem; }
   .hero-title em { font-style: normal; color: var(--accent); }
   .hero-sub { font-size: 1.05rem; color: var(--muted); line-height: 1.7; margin-bottom: 2.5rem; max-width: 460px; font-weight: 300; }
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .hero-acima {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(30,63,160,0.12);
+    border: 1px solid rgba(30,100,255,0.28);
+    border-radius: 14px;
+    padding: 0.85rem 1.1rem;
+    margin-bottom: 2.25rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+    max-width: 520px;
+  }
+  .hero-acima::before { content: ''; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(30,100,255,0.07) 0%, transparent 60%); pointer-events: none; }
+  .hero-acima:hover { border-color: rgba(30,100,255,0.5); background: rgba(30,63,160,0.18); }
+  .hero-acima-logo { background: rgba(30,63,160,0.25); border: 1px solid rgba(30,100,255,0.3); border-radius: 9px; width: 52px; height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; z-index: 1; gap: 1px; }
+  .hero-acima-wordmark { font-family: 'Arial Black', Arial, sans-serif; font-weight: 900; font-size: 0.9rem; color: #4d90fe; line-height: 1; letter-spacing: -0.02em; }
+  .hero-acima-sub { font-size: 0.42rem; color: #6a90d0; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+  .hero-acima-text { z-index: 1; }
+  .hero-acima-badge { display: inline-block; background: rgba(30,100,255,0.15); border: 1px solid rgba(30,100,255,0.3); color: #a0c4ff; font-size: 0.6rem; font-weight: 700; padding: 0.12rem 0.55rem; border-radius: 100px; letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 0.2rem; }
+  .hero-acima-title { font-family: 'Syne', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--white); line-height: 1.2; }
+  .hero-acima-desc { font-size: 0.72rem; color: var(--muted); font-weight: 300; line-height: 1.4; }
+  .hero-acima-desc strong { color: #a0c4ff; font-weight: 600; }
+  .hero-acima-btn { background: var(--acima-blue); color: #fff; border: none; border-radius: 8px; padding: 0.55rem 1rem; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; white-space: nowrap; flex-shrink: 0; z-index: 1; display: flex; align-items: center; gap: 0.25rem; transition: background 0.2s; }
+  .hero-acima:hover .hero-acima-btn { background: var(--acima-blue-hover); }
+  body.light-mode .hero-acima { background: rgba(23,64,176,0.06); border-color: rgba(23,64,176,0.22); }
+  body.light-mode .hero-acima-badge { background: rgba(23,64,176,0.1); border-color: rgba(23,64,176,0.22); color: #1740b0; }
+  body.light-mode .hero-acima-title { color: #1a1a2e; }
+  body.light-mode .hero-acima-wordmark { color: #1740b0; }
+  body.light-mode .hero-acima-logo { background: rgba(23,64,176,0.1); border-color: rgba(23,64,176,0.2); }
   .hero-stats { display: flex; gap: 2.5rem; }
   .stat-item { display: flex; flex-direction: column; }
   .stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--white); letter-spacing: -0.03em; }
@@ -395,6 +428,7 @@
     .hero-visual { display: none; }
     .hero-sub { margin: 0 auto 2.5rem; }
     .hero-actions { justify-content: center; }
+    .hero-acima { margin-left: auto; margin-right: auto; }
     .hero-stats { justify-content: center; gap: 2rem; width: 100%; }
     .repairs-header { flex-direction: column; align-items: flex-start; }
     .repair-grid { grid-template-columns: 1fr 1fr; }
@@ -434,6 +468,8 @@
     .hero-actions .btn { justify-content: center; padding: 0.9rem 1.2rem; font-size: 1rem; border-radius: 12px; min-height: 52px; }
     .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
     .stat-num { font-size: 1.5rem; }
+    .hero-acima { grid-template-columns: auto 1fr; max-width: 100%; }
+    .hero-acima-btn { display: none; }
     .repair-grid { grid-template-columns: 1fr; gap: 1px; }
     .repair-card { padding: 1.5rem 1.25rem; border-radius: 0; }
     .repairs-header { margin-bottom: 2rem; }
@@ -591,6 +627,22 @@
         <a href="#quote" class="btn btn-primary">→ Get Repair Quote</a>
         <a href="#devices" class="btn btn-outline">Buy / Sell a Device</a>
       </div>
+
+      <!-- ─── ACIMA HERO BAR ─── -->
+      <a href="https://www.acima.com/apply" target="_blank" rel="noopener" class="hero-acima">
+        <div class="hero-acima-logo">
+          <div class="hero-acima-wordmark">acima</div>
+          <div class="hero-acima-sub">leasing</div>
+        </div>
+        <div class="hero-acima-text">
+          <div class="hero-acima-badge">No Credit Needed</div>
+          <div class="hero-acima-title">Shop Without Using Credit</div>
+          <div class="hero-acima-desc">Lease up to <strong>$5,000</strong> — phones, repairs &amp; more. Use in-store today.</div>
+        </div>
+        <div class="hero-acima-btn">Apply Now →</div>
+      </a>
+      <!-- ─── END ACIMA HERO BAR ─── -->
+
       <div class="hero-stats">
         <div class="stat-item"><span class="stat-num">12+</span><span class="stat-label">Years in Business</span></div>
         <div class="stat-item"><span class="stat-num">50k+</span><span class="stat-label">Devices Repaired</span></div>

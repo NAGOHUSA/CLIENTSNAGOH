@@ -2,42 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="iKrack">
-<meta name="theme-color" content="#0a0a0f">
-<title>iKrack Mobile — Repair · Buy · Sell · Book Online</title>
+<title>iKrack Mobile — Book Your Repair</title>
 
-<!-- Open Graph / Social Share -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://ikrack.com/" />
-<meta property="og:title" content="iKrack Mobile — Smartphone Repair Service" />
-<meta property="og:description" content="Same-day repairs, lifetime warranty. iPhone, Samsung, iPad & more. Two locations in Central Georgia — Bonaire & Macon. Book online!" />
-<meta property="og:image" content="https://clients.nagoh.us/ikrack/share-image.jpg" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:site_name" content="iKrack Mobile" />
-
-<!-- Twitter / iMessage card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="iKrack Mobile — Smartphone Repair Service" />
-<meta name="twitter:description" content="Same-day repairs, lifetime warranty. iPhone, Samsung, iPad & more. Two locations in Central Georgia — Bonaire & Macon." />
-<meta name="twitter:image" content="https://clients.nagoh.us/ikrack/share-image.jpg" />
-
-<meta name="description" content="iKrack Mobile — Central Georgia's trusted smartphone repair shop since 2012. Same-day iPhone, Samsung, iPad & computer repairs. Book online!" />
-<meta name="keywords" content="phone repair, iPhone repair, Samsung repair, iPad repair, Macon GA, Bonaire GA, Warner Robins, screen replacement, battery replacement, iKrack" />
-<link rel="icon" type="image/jpeg" href="https://ikrack.com/wp-content/uploads/2020/11/iKrack-Logo.jpg" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-
-<!-- FullCalendar (free, open-source) -->
-<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
-
+<!-- Styles - All Local, No External Dependencies -->
 <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   :root {
     --bg: #0a0a0f;
     --surface: #111118;
@@ -49,492 +24,789 @@
     --muted: #7a7a8c;
     --white: #ffffff;
     --card-bg: #13131c;
-    --acima-blue: #1e3fa0;
     --success: #22c55e;
+    --error: #ef4444;
   }
 
-  body.light-mode {
-    --bg: #f4f4f8;
-    --surface: #eaeaf0;
-    --surface2: #e0e0ea;
-    --border: rgba(0,0,0,0.08);
-    --accent: #e03e1e;
-    --accent2: #ff6644;
-    --text: #1a1a2e;
-    --muted: #5a5a72;
-    --white: #1a1a2e;
-    --card-bg: #ffffff;
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    padding: 20px;
+    line-height: 1.5;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
-  
-  /* Navigation */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,15,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.5rem; color: var(--white); text-decoration: none; letter-spacing: -0.03em; }
-  .nav-logo span { color: var(--accent); }
-  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--white); }
-  .nav-phones { display: flex; flex-direction: column; gap: 2px; font-size: 0.72rem; color: var(--muted); text-align: right; }
-  .nav-phones a { color: var(--muted); text-decoration: none; }
-  .nav-phones a:hover { color: var(--accent); }
-  
-  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.6rem 1.4rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.875rem; text-decoration: none; cursor: pointer; border: none; transition: all 0.2s; }
-  .btn-primary { background: var(--accent); color: white; }
-  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,85,51,0.35); }
-  .btn-outline { background: transparent; color: var(--white); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
-  
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-  .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-  
-  .theme-toggle { width: 44px; height: 24px; border-radius: 100px; background: var(--surface2); border: 1px solid var(--border); cursor: pointer; position: relative; flex-shrink: 0; }
-  .theme-toggle-thumb { position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); transition: transform 0.3s; display: flex; align-items: center; justify-content: center; font-size: 10px; }
-  body.light-mode .theme-toggle-thumb { transform: translateX(20px); }
-  
-  section { padding: 100px 2rem; }
-  .section-inner { max-width: 1200px; margin: 0 auto; width: 100%; }
-  .section-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
-  .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: var(--white); line-height: 1.1; margin-bottom: 1rem; }
-  .section-sub { color: var(--muted); font-size: 1rem; max-width: 560px; line-height: 1.7; font-weight: 300; }
-  
-  /* Hero */
-  #hero { min-height: 70vh; display: flex; align-items: center; padding: 100px 2rem 60px; text-align: center; }
-  .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.04em; color: var(--white); margin-bottom: 1rem; }
-  .hero-title em { font-style: normal; color: var(--accent); }
-  .hero-sub { font-size: 1.05rem; color: var(--muted); max-width: 600px; margin: 1rem auto; }
-  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+  .header h1 span {
+    color: var(--accent);
+  }
+  .header p {
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+
   /* Booking Grid */
-  .booking-grid { display: grid; grid-template-columns: 1fr 380px; gap: 2rem; margin-top: 3rem; align-items: start; }
-  .booking-panel { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem; }
-  .booking-sidebar { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 1.5rem; position: sticky; top: 100px; }
-  .booking-form-group { margin-bottom: 1.2rem; }
-  .booking-form-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; letter-spacing: 0.03em; }
-  .booking-form-group input, .booking-form-group select, .booking-form-group textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 1rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border 0.2s; }
-  .booking-form-group input:focus, .booking-form-group select:focus { border-color: var(--accent); }
-  .selected-slot { background: rgba(255,85,51,0.08); border-radius: 12px; padding: 0.75rem; margin: 1rem 0; text-align: center; border: 1px solid rgba(255,85,51,0.2); }
-  
-  /* Calendar Styling */
-  .fc { background: var(--card-bg); border-radius: 16px; overflow: hidden; --fc-border-color: rgba(255,255,255,0.1); --fc-page-bg-color: var(--card-bg); --fc-neutral-bg-color: var(--surface2); --fc-button-bg-color: var(--surface2); --fc-button-border-color: var(--border); --fc-button-text-color: var(--text); --fc-button-hover-bg-color: var(--accent); --fc-event-bg-color: var(--accent); --fc-event-border-color: var(--accent); --fc-today-bg-color: rgba(255,85,51,0.12); }
-  .fc .fc-button-primary:not(:disabled):active, .fc .fc-button-primary:not(:disabled).fc-button-active { background: var(--accent); border-color: var(--accent); }
-  .fc .fc-button-primary:hover { background: var(--accent2); border-color: var(--accent2); }
-  .fc-daygrid-day-number, .fc-col-header-cell-cushion { color: var(--text); }
-  .fc-daygrid-day.fc-day-today { background: rgba(255,85,51,0.08); }
-  
-  /* Cards */
-  .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem; }
-  .service-card, .feature-card, .testimonial-card, .location-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; transition: transform 0.2s, border-color 0.2s; }
-  .service-card:hover, .feature-card:hover { transform: translateY(-3px); border-color: var(--accent); }
-  
-  /* Footer */
-  footer { background: var(--surface); border-top: 1px solid var(--border); padding: 3rem 2rem; margin-top: 2rem; }
-  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-  
-  /* Toast */
-  .confirmation-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 0.75rem 1.5rem; border-radius: 40px; font-size: 0.85rem; z-index: 1000; opacity: 0; transition: opacity 0.2s; pointer-events: none; font-weight: 500; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-  .confirmation-toast.show { opacity: 1; }
-  
-  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-  .fade-up.visible { opacity: 1; transform: translateY(0); }
-  
-  .mobile-cta-bar { display: none; }
-  
-  @media (max-width: 960px) {
-    .booking-grid { grid-template-columns: 1fr; }
-    .booking-sidebar { position: static; margin-top: 1rem; }
-    .nav-links, .nav-phones { display: none; }
-    .hamburger { display: flex; }
-    section { padding: 60px 1.25rem; }
-    .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+    margin-top: 2rem;
   }
-  
-  @media (max-width: 600px) {
-    .mobile-cta-bar { display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 97; background: var(--card-bg); border-top: 1px solid var(--border); padding: 0.75rem 1rem; gap: 0.75rem; backdrop-filter: blur(20px); }
-    .mobile-cta-bar a { flex: 1; display: flex; align-items: center; justify-content: center; padding: 0.7rem; border-radius: 10px; font-weight: 600; text-decoration: none; }
-    .mobile-cta-bar .cta-call { background: var(--surface2); color: var(--text); border: 1px solid var(--border); }
-    .mobile-cta-bar .cta-quote { background: var(--accent); color: white; }
-    body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
-    .footer-inner { grid-template-columns: 1fr; }
+
+  /* Calendar Container */
+  .calendar-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.5rem;
+  }
+
+  /* Custom Calendar Styles (replaces FullCalendar) */
+  .custom-calendar {
+    width: 100%;
+  }
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .calendar-nav {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .calendar-nav button, .view-toggle button {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+  .calendar-nav button:hover, .view-toggle button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .calendar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .view-toggle {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .view-toggle button.active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  /* Week View */
+  .week-view {
+    overflow-x: auto;
+  }
+  .week-grid {
+    display: grid;
+    grid-template-columns: 80px repeat(7, 1fr);
+    min-width: 700px;
+  }
+  .week-hour {
+    border-top: 1px solid var(--border);
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--muted);
+    text-align: right;
+  }
+  .week-day-header {
+    text-align: center;
+    padding: 0.75rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .week-day-header .day-name {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .week-day-header .day-date {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .week-day-header.today {
+    background: rgba(255,85,51,0.15);
+    border-radius: 8px;
+  }
+  .week-slot {
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
+    padding: 0.5rem;
+    min-height: 60px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .week-slot:hover {
+    background: rgba(255,85,51,0.1);
+  }
+  .week-slot.booked {
+    background: rgba(108,117,125,0.2);
+    cursor: not-allowed;
+  }
+  .week-slot.booked:hover {
+    background: rgba(108,117,125,0.3);
+  }
+  .week-slot.selected {
+    background: rgba(255,85,51,0.3);
+    border: 1px solid var(--accent);
+  }
+  .slot-time {
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+  .slot-status {
+    font-size: 0.65rem;
+    margin-top: 0.25rem;
+  }
+  .slot-status.available {
+    color: var(--success);
+  }
+  .slot-status.booked {
+    color: #6c757d;
+  }
+
+  /* Month View */
+  .month-view {
+    overflow-x: auto;
+  }
+  .month-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    min-width: 600px;
+  }
+  .month-day-header {
+    text-align: center;
+    padding: 0.75rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .month-day {
+    min-height: 100px;
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+    vertical-align: top;
+    cursor: pointer;
+  }
+  .month-day:hover {
+    background: rgba(255,85,51,0.05);
+  }
+  .month-day.today {
+    background: rgba(255,85,51,0.1);
+  }
+  .month-day-number {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .month-day-slots {
+    font-size: 0.7rem;
+    color: var(--muted);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    position: sticky;
+    top: 20px;
+  }
+  .sidebar h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .selected-slot {
+    background: rgba(255,85,51,0.1);
+    border-radius: 12px;
+    padding: 0.75rem;
+    margin: 1rem 0;
+    text-align: center;
+    border: 1px solid rgba(255,85,51,0.3);
+  }
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.5px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.7rem 1rem;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    width: 100%;
+  }
+  .btn-primary:hover {
+    background: var(--accent2);
+    transform: translateY(-1px);
+  }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Toast Notification */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 24px;
+    border-radius: 40px;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .toast.show {
+    opacity: 1;
+  }
+  .toast.success {
+    background: var(--success);
+  }
+  .toast.error {
+    background: var(--error);
+  }
+
+  /* Debug Panel */
+  .debug-panel {
+    margin-top: 2rem;
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 1rem;
+    font-family: monospace;
+    font-size: 11px;
+    border: 1px solid var(--border);
+  }
+  .debug-panel pre {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin-top: 0.5rem;
+  }
+
+  /* Location Cards */
+  .locations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .location-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .location-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  .location-card p {
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+  .location-card a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  hr {
+    border-color: var(--border);
+    margin: 2rem 0;
+  }
+
+  @media (max-width: 800px) {
+    .booking-grid {
+      grid-template-columns: 1fr;
+    }
+    body {
+      padding: 15px;
+    }
+    .week-grid {
+      min-width: 600px;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="mobile-cta-bar">
-  <a href="tel:+14782879783" class="cta-call">📞 Call Us</a>
-  <a href="#appointment" class="cta-quote" onclick="document.getElementById('appointment').scrollIntoView({behavior:'smooth'});return false;">📅 Book Now</a>
+<div class="container">
+  <div class="header">
+    <h1>i<span>K</span>rack</h1>
+    <p>Same-day repairs · Lifetime warranty · Two GA locations</p>
+  </div>
+
+  <div class="booking-grid">
+    <div class="calendar-container">
+      <!-- Custom Calendar -->
+      <div class="custom-calendar">
+        <div class="calendar-header">
+          <div class="calendar-nav">
+            <button onclick="previousWeek()">← Prev</button>
+            <button onclick="goToToday()">Today</button>
+            <button onclick="nextWeek()">Next →</button>
+          </div>
+          <div class="calendar-title" id="calendarTitle">Loading...</div>
+          <div class="view-toggle">
+            <button id="weekViewBtn" class="active" onclick="setView('week')">Week</button>
+            <button id="monthViewBtn" onclick="setView('month')">Month</button>
+          </div>
+        </div>
+        <div id="weekView" class="week-view"></div>
+        <div id="monthView" class="month-view" style="display: none;"></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.7rem; text-align: center; color: var(--muted);">
+        🕐 Available: Mon–Sat, 10am–7pm (hourly slots)
+      </p>
+    </div>
+
+    <div class="sidebar">
+      <h3>📅 Book Your Repair</h3>
+      <div class="selected-slot" id="selectedSlotDisplay">
+        <span style="color: var(--muted);">No time selected</span>
+      </div>
+
+      <div class="form-group">
+        <label>Full Name *</label>
+        <input type="text" id="bookName" placeholder="John Smith">
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number *</label>
+        <input type="tel" id="bookPhone" placeholder="(478) 287-9783">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="bookEmail" placeholder="you@example.com">
+      </div>
+
+      <div class="form-group">
+        <label>Location *</label>
+        <select id="bookLocation">
+          <option value="Bonaire">📍 Bonaire - 122 Margie Dr, Warner Robins</option>
+          <option value="Macon">📍 Macon - 5080 Riverside Dr Suite 110</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Device / Issue</label>
+        <textarea id="bookIssue" rows="2" placeholder="iPhone 14 Pro - cracked screen"></textarea>
+      </div>
+
+      <button class="btn btn-primary" id="confirmBtn">✅ Confirm Appointment</button>
+      <p style="font-size: 0.7rem; color: var(--muted); margin-top: 1rem; text-align: center;">
+        Free diagnostic · Lifetime warranty on parts
+      </p>
+    </div>
+  </div>
+
+  <!-- Locations -->
+  <hr>
+  <div class="locations">
+    <div class="location-card">
+      <h3>📍 Bonaire</h3>
+      <p>122 Margie Dr, Warner Robins, GA 31088</p>
+      <p>📞 <a href="tel:+14782879783">(478) 287-9783</a></p>
+      <p>🕐 Mon–Sat: 10am–7pm | Sun: Closed</p>
+    </div>
+    <div class="location-card">
+      <h3>📍 Macon</h3>
+      <p>5080 Riverside Dr Suite 110, Macon, GA 31210</p>
+      <p>📞 <a href="tel:+14783096400">(478) 309-6400</a></p>
+      <p>🕐 Mon–Sat: 10am–7pm | Sun: Closed</p>
+    </div>
+  </div>
+
+  <!-- Debug Panel -->
+  <div class="debug-panel">
+    <strong>🔧 Status:</strong><br>
+    <span id="debugStatus">Ready to book</span>
+    <pre id="debugLog"></pre>
+  </div>
 </div>
-
-<nav>
-  <a href="#hero" class="nav-logo">i<span>K</span>rack</a>
-  <ul class="nav-links">
-    <li><a href="#repairs">Repairs</a></li>
-    <li><a href="#features">Why Us</a></li>
-    <li><a href="#devices">Buy & Sell</a></li>
-    <li><a href="#appointment">📅 Book Now</a></li>
-    <li><a href="#locations">Locations</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:0.6rem;">
-    <div class="nav-phones"><a href="tel:+14782879783">Bonaire · (478) 287-9783</a><a href="tel:+14783096400">Macon · (478) 309-6400</a></div>
-    <button class="theme-toggle" onclick="toggleTheme()"><div class="theme-toggle-thumb" id="themeThumb">🌙</div></button>
-    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu" style="display:none; position:fixed; top:64px; left:0; right:0; bottom:0; background:var(--bg); backdrop-filter:blur(20px); z-index:99; flex-direction:column; padding:2rem; gap:1rem;">
-  <a href="#repairs" style="color:var(--text); text-decoration:none; font-size:1.3rem;">Repairs</a>
-  <a href="#features" style="color:var(--text); text-decoration:none; font-size:1.3rem;">Why Us</a>
-  <a href="#devices" style="color:var(--text); text-decoration:none; font-size:1.3rem;">Buy & Sell</a>
-  <a href="#appointment" style="color:var(--accent); text-decoration:none; font-size:1.3rem;">📅 Book Appointment</a>
-  <a href="#locations" style="color:var(--text); text-decoration:none; font-size:1.3rem;">Locations</a>
-  <a href="tel:+14782879783" style="color:var(--accent); text-decoration:none;">Bonaire: (478) 287-9783</a>
-  <a href="tel:+14783096400" style="color:var(--accent); text-decoration:none;">Macon: (478) 309-6400</a>
-</div>
-
-<!-- Hero -->
-<section id="hero">
-  <div class="section-inner">
-    <h1 class="hero-title">Fast Repairs.<br><em>Easy Booking.</em></h1>
-    <p class="hero-sub">Book your repair appointment online in seconds. Same-day service, lifetime warranty, and two convenient locations in Central Georgia.</p>
-    <a href="#appointment" class="btn btn-primary" style="margin-top:1rem;">📅 Schedule Now →</a>
-  </div>
-</section>
-
-<!-- APPOINTMENT BOOKING SECTION -->
-<section id="appointment">
-  <div class="section-inner">
-    <div class="fade-up">
-      <p class="section-label">Online Booking</p>
-      <h2 class="section-title">Book Your Repair<br>in Under 60 Seconds</h2>
-      <p class="section-sub">Choose a date, time, and location. We'll confirm your slot instantly. Free diagnosis with every repair.</p>
-    </div>
-    <div class="booking-grid fade-up">
-      <div class="booking-panel">
-        <div id="calendar"></div>
-        <div style="margin-top:1rem; text-align:center; font-size:0.75rem; color:var(--muted);">
-          <span>✅ Available slots: Mon–Sat, 10am – 7pm</span>
-        </div>
-      </div>
-      <div class="booking-sidebar">
-        <h3 style="font-family:'Syne'; font-size:1.2rem; margin-bottom:0.5rem;">Confirm Details</h3>
-        <p style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem;">Select a time slot from the calendar first.</p>
-        <div class="selected-slot" id="selectedSlotDisplay">
-          <span style="color:var(--muted);">No slot selected</span>
-        </div>
-        <div class="booking-form-group">
-          <label>Full Name *</label>
-          <input type="text" id="bookName" placeholder="John Smith">
-        </div>
-        <div class="booking-form-group">
-          <label>Phone Number *</label>
-          <input type="tel" id="bookPhone" placeholder="(478) 287-9783">
-        </div>
-        <div class="booking-form-group">
-          <label>Email (optional)</label>
-          <input type="email" id="bookEmail" placeholder="you@example.com">
-        </div>
-        <div class="booking-form-group">
-          <label>Location *</label>
-          <select id="bookLocation">
-            <option value="Bonaire">Bonaire - 122 Margie Dr, Warner Robins</option>
-            <option value="Macon">Macon - 5080 Riverside Dr Suite 110</option>
-          </select>
-        </div>
-        <div class="booking-form-group">
-          <label>Device / Issue</label>
-          <textarea id="bookIssue" rows="2" placeholder="iPhone 14 Pro - cracked screen"></textarea>
-        </div>
-        <button class="btn btn-primary" style="width:100%; justify-content:center;" id="confirmBookingBtn">Confirm Appointment →</button>
-        <p style="font-size:0.7rem; color:var(--muted); margin-top:1rem; text-align:center;">* You'll receive a confirmation. Free diagnostic included.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Repairs Section -->
-<section id="repairs" style="background:var(--surface);">
-  <div class="section-inner">
-    <div class="section-label">Repair Services</div>
-    <h2 class="section-title">We Fix Everything</h2>
-    <div class="service-grid">
-      <div class="service-card">📱 iPhone Repair</div>
-      <div class="service-card">🤖 Samsung / Android</div>
-      <div class="service-card">📟 iPad & Tablets</div>
-      <div class="service-card">💻 Mac & PC</div>
-      <div class="service-card">🔧 Micro Soldering</div>
-      <div class="service-card">💧 Water Damage Repair</div>
-    </div>
-  </div>
-</section>
-
-<!-- Features Section -->
-<section id="features">
-  <div class="section-inner">
-    <div class="section-label">Why iKrack</div>
-    <h2 class="section-title">Lifetime Warranty · Same-Day</h2>
-    <div class="service-grid">
-      <div class="feature-card">🛡️ Lifetime warranty on parts & labor</div>
-      <div class="feature-card">⚡ Most repairs done in 30-60 min</div>
-      <div class="feature-card">🔧 OEM-quality components</div>
-      <div class="feature-card">💰 Price match guarantee</div>
-    </div>
-  </div>
-</section>
-
-<!-- Buy/Sell Section -->
-<section id="devices" style="background:var(--surface);">
-  <div class="section-inner">
-    <div class="section-label">Buy & Sell</div>
-    <h2 class="section-title">Great Deals on Pre-Owned</h2>
-    <p class="section-sub">Save up to 30% off retail, fully inspected phones with warranty.</p>
-    <a href="#" class="btn btn-primary" style="margin-top:1rem;">Shop Devices →</a>
-  </div>
-</section>
-
-<!-- Locations Section -->
-<section id="locations">
-  <div class="section-inner">
-    <div class="section-label">Our Stores</div>
-    <h2 class="section-title">Two GA Locations</h2>
-    <div class="service-grid">
-      <div class="location-card">
-        <h3>📍 Bonaire</h3>
-        <p>122 Margie Dr, Warner Robins, GA 31088</p>
-        <p>📞 <a href="tel:+14782879783" style="color:var(--accent);">(478) 287-9783</a></p>
-        <p>🕐 Mon–Sat: 10am–7pm</p>
-      </div>
-      <div class="location-card">
-        <h3>📍 Macon</h3>
-        <p>5080 Riverside Dr Suite 110, Macon, GA 31210</p>
-        <p>📞 <a href="tel:+14783096400" style="color:var(--accent);">(478) 309-6400</a></p>
-        <p>🕐 Mon–Sat: 10am–7pm</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials Section -->
-<section id="testimonials" style="background:var(--surface);">
-  <div class="section-inner">
-    <div class="section-label">Reviews</div>
-    <h2 class="section-title">What Our Customers Say</h2>
-    <div class="service-grid">
-      <div class="testimonial-card">⭐⭐⭐⭐⭐ "Fast, friendly, and honest. Fixed my iPhone in 45 minutes!" – James M.</div>
-      <div class="testimonial-card">⭐⭐⭐⭐⭐ "Saved my water-damaged phone when others said it was impossible." – Sarah R.</div>
-      <div class="testimonial-card">⭐⭐⭐⭐⭐ "Best repair shop in Central Georgia. Lifetime warranty gives me peace of mind." – Derek K.</div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <a href="#hero" class="nav-logo" style="font-size:1.3rem;">i<span>K</span>rack</a>
-      <p>Since 2012 · Central Georgia's trusted repair experts</p>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <p>Bonaire: (478) 287-9783<br>Macon: (478) 309-6400</p>
-    </div>
-    <div>
-      <h4>Hours</h4>
-      <p>Mon–Sat: 10am–7pm<br>Sunday: Closed</p>
-    </div>
-    <div>
-      <h4>Follow</h4>
-      <a href="#" style="color:var(--muted);">Facebook</a> · <a href="#" style="color:var(--muted);">Instagram</a>
-    </div>
-  </div>
-  <div style="text-align:center; margin-top:2rem; padding-top:2rem; border-top:1px solid var(--border); font-size:0.8rem; color:var(--muted);">
-    © 2026 iKrack Mobile. All rights reserved.
-  </div>
-</footer>
 
 <script>
 // ============================================
-// GOOGLE SHEETS WEBHOOK - YOUR DEPLOYMENT URL
+// CONFIGURATION
 // ============================================
-const GOOGLE_SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyPVMUG7e6JtqZwYNQRP3Fa05ArWwHGX9COYVH_u-yo_Z1d3gQ4JLoSFPexGRBLXCZT/exec";
+// REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT URL AFTER DEPLOYING
+const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyPVMUG7e6JtqZwYNQRP3Fa05ArWwHGX9COYVH_u-yo_Z1d3gQ4JLoSFPexGRBLXCZT/exec";
 
-// ============================================
-// THEME TOGGLE & MOBILE MENU
-// ============================================
-function toggleMenu() { 
-  const m = document.getElementById('mobileMenu'); 
-  m.style.display = m.style.display === 'flex' ? 'none' : 'flex'; 
-}
+// Business hours: 10am to 7pm (last slot 6pm)
+const START_HOUR = 10;
+const END_HOUR = 18; // 6pm (slot ends at 7pm)
 
-function applyTheme(theme) { 
-  const thumb = document.getElementById('themeThumb'); 
-  if(theme === 'light') { 
-    document.body.classList.add('light-mode'); 
-    if(thumb) thumb.textContent = '☀️'; 
-  } else { 
-    document.body.classList.remove('light-mode'); 
-    if(thumb) thumb.textContent = '🌙'; 
-  } 
-  localStorage.setItem('ikrack-theme', theme); 
-}
-function toggleTheme() { 
-  applyTheme(document.body.classList.contains('light-mode') ? 'dark' : 'light'); 
-}
-applyTheme(localStorage.getItem('ikrack-theme') === 'light' ? 'light' : 'dark');
-
-// Scroll animations
-const observer = new IntersectionObserver((entries) => { 
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); 
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// ============================================
-// BOOKING CALENDAR & LOGIC
-// ============================================
 let selectedSlot = null;
-const timeSlots = [10, 11, 12, 13, 14, 15, 16, 17, 18]; // 10am to 6pm (last slot ends 7pm)
+let currentView = 'week';
+let currentDate = new Date();
+let bookedSlots = [];
 
-function getAvailableSlotsForDate(date) {
-  if (date.getDay() === 0) return []; // Sunday closed
-  return timeSlots;
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
+function debugLog(message, data = null) {
+  const debugStatus = document.getElementById('debugStatus');
+  const debugLog = document.getElementById('debugLog');
+  const timestamp = new Date().toLocaleTimeString();
+  debugStatus.innerHTML = `📡 ${message} (${timestamp})`;
+  if (data) {
+    debugLog.innerHTML = JSON.stringify(data, null, 2) + '\n\n' + debugLog.innerHTML;
+  }
+  console.log(`[${timestamp}] ${message}`, data || '');
 }
 
-const calendarEl = document.getElementById('calendar');
-let calendar = null;
-
-function buildCalendar() {
-  calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'timeGridWeek',
-    headerToolbar: { left: 'prev,next today', center: 'title', right: 'timeGridWeek,dayGridMonth' },
-    views: { 
-      timeGridWeek: { slotMinTime: '10:00:00', slotMaxTime: '19:00:00', slotDuration: '01:00:00' },
-      dayGridMonth: { }
-    },
-    selectable: true,
-    selectMirror: true,
-    select: function(info) {
-      let startTime = info.start;
-      if (info.view.type === 'dayGridMonth') {
-        alert('Please switch to Week view to select a specific time slot.');
-        return;
-      }
-      const hour = startTime.getHours();
-      if (startTime.getDay() === 0) { alert("We're closed on Sundays. Please choose another day."); return; }
-      if (hour < 10 || hour >= 19) { alert("Available hours: 10am to 7pm. Please select a valid time."); return; }
-      
-      selectedSlot = { 
-        start: startTime, 
-        startStr: startTime.toISOString(), 
-        display: startTime.toLocaleString() 
-      };
-      document.getElementById('selectedSlotDisplay').innerHTML = `<strong>📅 Selected:</strong> ${startTime.toLocaleDateString()} at ${startTime.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}<br><span style="font-size:0.7rem;">Click Confirm to book</span>`;
-      calendar.unselect();
-    },
-    eventClick: function(info) {
-      if (info.event.title === 'Booked') { 
-        alert('This slot is already taken. Please choose another.'); 
-        return false; 
-      }
-      const start = info.event.start;
-      selectedSlot = { 
-        start: start, 
-        startStr: start.toISOString(), 
-        display: start.toLocaleString() 
-      };
-      document.getElementById('selectedSlotDisplay').innerHTML = `<strong>📅 Selected:</strong> ${start.toLocaleDateString()} at ${start.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}<br><span style="font-size:0.7rem;">Click Confirm to book</span>`;
-    },
-    events: function(info, successCallback) {
-      let events = [];
-      const startDate = info.start;
-      const endDate = info.end;
-      let current = new Date(startDate);
-      
-      // Load already booked slots
-      const bookedSlots = JSON.parse(localStorage.getItem('ikrack_booked_slots') || '[]');
-      
-      while (current <= endDate) {
-        if (current.getDay() !== 0) {
-          const slots = getAvailableSlotsForDate(current);
-          slots.forEach(hour => {
-            const slotStart = new Date(current);
-            slotStart.setHours(hour, 0, 0, 0);
-            if (slotStart >= info.start && slotStart < info.end) {
-              const slotKey = slotStart.toISOString();
-              const isBooked = bookedSlots.includes(slotKey);
-              events.push({
-                title: isBooked ? 'Booked' : 'Available',
-                start: slotStart,
-                end: new Date(slotStart.getTime() + 60*60*1000),
-                color: isBooked ? '#6c757d' : '#ff5533',
-                textColor: 'white',
-                editable: false
-              });
-            }
-          });
-        }
-        current.setDate(current.getDate() + 1);
-      }
-      successCallback(events);
-    },
-    slotMinTime: '10:00:00',
-    slotMaxTime: '19:00:00',
-    allDaySlot: false,
-    nowIndicator: true
-  });
-  calendar.render();
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add('show'), 10);
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
 }
 
-buildCalendar();
+// Load booked slots from localStorage
+function loadBookedSlots() {
+  const stored = localStorage.getItem('ikrack_booked_slots');
+  if (stored) {
+    bookedSlots = JSON.parse(stored);
+  }
+  debugLog(`Loaded ${bookedSlots.length} booked slots from storage`);
+}
+
+// Save booked slot
+function saveBookedSlot(slotISO) {
+  if (!bookedSlots.includes(slotISO)) {
+    bookedSlots.push(slotISO);
+    localStorage.setItem('ikrack_booked_slots', JSON.stringify(bookedSlots));
+    debugLog(`Slot saved: ${slotISO}`);
+  }
+}
+
+// Check if a slot is booked
+function isSlotBooked(date, hour) {
+  const slotDate = new Date(date);
+  slotDate.setHours(hour, 0, 0, 0);
+  return bookedSlots.includes(slotDate.toISOString());
+}
+
+// Format date for display
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+}
+
+function formatTime(hour) {
+  const suffix = hour >= 12 ? 'PM' : 'AM';
+  const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
+  return `${displayHour}:00 ${suffix}`;
+}
+
+// ============================================
+// CALENDAR RENDERING
+// ============================================
+function getWeekDates(baseDate) {
+  const dates = [];
+  const start = new Date(baseDate);
+  const day = start.getDay();
+  const diff = start.getDate() - day + (day === 0 ? -6 : 1);
+  start.setDate(diff);
+  
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(start);
+    date.setDate(start.getDate() + i);
+    dates.push(date);
+  }
+  return dates;
+}
+
+function getMonthDates(year, month) {
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const startDay = firstDay.getDay();
+  const dates = [];
+  
+  // Previous month days
+  const prevMonthLastDay = new Date(year, month, 0).getDate();
+  for (let i = startDay - 1; i >= 0; i--) {
+    dates.push(new Date(year, month - 1, prevMonthLastDay - i));
+  }
+  
+  // Current month days
+  for (let i = 1; i <= lastDay.getDate(); i++) {
+    dates.push(new Date(year, month, i));
+  }
+  
+  // Next month days
+  const remaining = 42 - dates.length;
+  for (let i = 1; i <= remaining; i++) {
+    dates.push(new Date(year, month + 1, i));
+  }
+  
+  return dates;
+}
+
+function renderWeekView() {
+  const weekDates = getWeekDates(currentDate);
+  const container = document.getElementById('weekView');
+  const title = `${formatDate(weekDates[0])} - ${formatDate(weekDates[6])}`;
+  document.getElementById('calendarTitle').innerText = title;
+  
+  // Build header
+  let html = `<div class="week-grid">`;
+  html += `<div class="week-day-header"></div>`;
+  
+  for (let i = 0; i < weekDates.length; i++) {
+    const date = weekDates[i];
+    const isToday = date.toDateString() === new Date().toDateString();
+    const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+    const dayDate = date.getDate();
+    html += `<div class="week-day-header ${isToday ? 'today' : ''}">
+              <div class="day-name">${dayName}</div>
+              <div class="day-date">${dayDate}</div>
+            </div>`;
+  }
+  
+  // Build time slots
+  for (let hour = START_HOUR; hour <= END_HOUR; hour++) {
+    html += `<div class="week-hour">${formatTime(hour)}</div>`;
+    for (let i = 0; i < weekDates.length; i++) {
+      const date = weekDates[i];
+      const isSunday = date.getDay() === 0;
+      const isBooked = isSunday ? false : isSlotBooked(date, hour);
+      const isSelected = selectedSlot && 
+        selectedSlot.date.toDateString() === date.toDateString() && 
+        selectedSlot.hour === hour;
+      
+      let slotClass = 'week-slot';
+      if (isSunday) slotClass += ' booked';
+      if (isBooked) slotClass += ' booked';
+      if (isSelected) slotClass += ' selected';
+      
+      const onclick = (!isSunday && !isBooked) ? `selectTimeSlot('${date.toISOString()}', ${hour})` : '';
+      
+      html += `<div class="${slotClass}" onclick="${onclick}">
+                ${!isSunday && !isBooked ? `<div class="slot-status available">✅ Available</div>` : 
+                  isSunday ? `<div class="slot-status booked">Closed</div>` : 
+                  `<div class="slot-status booked">Booked</div>`}
+              </div>`;
+    }
+  }
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function renderMonthView() {
+  const monthDates = getMonthDates(currentDate.getFullYear(), currentDate.getMonth());
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const title = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+  document.getElementById('calendarTitle').innerText = title;
+  
+  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  
+  let html = `<div class="month-grid">`;
+  for (let i = 0; i < dayNames.length; i++) {
+    html += `<div class="month-day-header">${dayNames[i]}</div>`;
+  }
+  
+  for (let i = 0; i < monthDates.length; i++) {
+    const date = monthDates[i];
+    const isCurrentMonth = date.getMonth() === currentDate.getMonth();
+    const isToday = date.toDateString() === new Date().toDateString();
+    const dayClass = `month-day ${isToday ? 'today' : ''}`;
+    const slotCount = isCurrentMonth && date.getDay() !== 0 ? (END_HOUR - START_HOUR + 1) : 0;
+    const bookedCount = isCurrentMonth && date.getDay() !== 0 ? 
+      [...Array(END_HOUR - START_HOUR + 1).keys()].map(h => START_HOUR + h).filter(h => isSlotBooked(date, h)).length : 0;
+    
+    html += `<div class="${dayClass}" onclick="goToDate('${date.toISOString()}')">
+              <div class="month-day-number">${date.getDate()}</div>
+              <div class="month-day-slots">
+                ${isCurrentMonth && date.getDay() !== 0 ? 
+                  `${slotCount - bookedCount} available slots` : 
+                  date.getDay() === 0 ? 'Closed' : ''}
+              </div>
+            </div>`;
+  }
+  html += `</div>`;
+  document.getElementById('monthView').innerHTML = html;
+}
+
+function selectTimeSlot(dateISO, hour) {
+  const date = new Date(dateISO);
+  if (date.getDay() === 0) {
+    showToast('We are closed on Sundays', 'error');
+    return;
+  }
+  if (isSlotBooked(date, hour)) {
+    showToast('This slot is already booked', 'error');
+    return;
+  }
+  
+  selectedSlot = {
+    date: date,
+    hour: hour,
+    display: `${date.toLocaleDateString()} at ${formatTime(hour)}`,
+    startStr: new Date(date.setHours(hour, 0, 0, 0)).toISOString()
+  };
+  
+  document.getElementById('selectedSlotDisplay').innerHTML = `
+    <strong>✅ Selected:</strong><br>
+    ${selectedSlot.display}
+  `;
+  
+  debugLog('Time slot selected', selectedSlot);
+  
+  if (currentView === 'week') renderWeekView();
+}
+
+function goToDate(dateISO) {
+  currentDate = new Date(dateISO);
+  if (currentView === 'week') {
+    renderWeekView();
+  } else {
+    renderMonthView();
+  }
+}
+
+function previousWeek() {
+  currentDate.setDate(currentDate.getDate() - 7);
+  if (currentView === 'week') renderWeekView();
+  else renderMonthView();
+}
+
+function nextWeek() {
+  currentDate.setDate(currentDate.getDate() + 7);
+  if (currentView === 'week') renderWeekView();
+  else renderMonthView();
+}
+
+function goToToday() {
+  currentDate = new Date();
+  if (currentView === 'week') renderWeekView();
+  else renderMonthView();
+}
+
+function setView(view) {
+  currentView = view;
+  const weekBtn = document.getElementById('weekViewBtn');
+  const monthBtn = document.getElementById('monthViewBtn');
+  const weekView = document.getElementById('weekView');
+  const monthView = document.getElementById('monthView');
+  
+  if (view === 'week') {
+    weekBtn.classList.add('active');
+    monthBtn.classList.remove('active');
+    weekView.style.display = 'block';
+    monthView.style.display = 'none';
+    renderWeekView();
+  } else {
+    weekBtn.classList.remove('active');
+    monthBtn.classList.add('active');
+    weekView.style.display = 'none';
+    monthView.style.display = 'block';
+    renderMonthView();
+  }
+}
 
 // ============================================
 // SAVE BOOKING TO GOOGLE SHEETS
 // ============================================
 async function saveBookingToGoogleSheets(bookingData) {
+  debugLog('Saving booking to Google Sheets...', bookingData);
+  
   try {
-    const response = await fetch(GOOGLE_SHEETS_WEBHOOK_URL, {
+    const response = await fetch(GOOGLE_SHEETS_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(bookingData)
     });
+    debugLog('Request sent successfully');
     return { success: true };
   } catch (error) {
-    console.error('Google Sheets save failed:', error);
+    debugLog(`Error: ${error.message}`);
     return { success: false, error: error.message };
   }
-}
-
-function showToast(message, isError = false) {
-  const toast = document.createElement('div');
-  toast.className = 'confirmation-toast';
-  if (isError) toast.style.background = '#f0ad4e';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.classList.add('show'), 10);
-  setTimeout(() => { 
-    toast.classList.remove('show'); 
-    setTimeout(() => toast.remove(), 500); 
-  }, 5000);
 }
 
 // ============================================
 // CONFIRM BOOKING HANDLER
 // ============================================
-document.getElementById('confirmBookingBtn').addEventListener('click', async function() {
+document.getElementById('confirmBtn').addEventListener('click', async function() {
   const name = document.getElementById('bookName').value.trim();
   const phone = document.getElementById('bookPhone').value.trim();
   const email = document.getElementById('bookEmail').value.trim();
   const location = document.getElementById('bookLocation').value;
   const issue = document.getElementById('bookIssue').value.trim();
   
-  if (!selectedSlot) { 
-    alert('Please select a date and time slot from the calendar first.'); 
-    return; 
+  if (!selectedSlot) {
+    showToast('Please select a date and time first', 'error');
+    return;
   }
-  if (!name || !phone) { 
-    alert('Please enter your name and phone number to confirm.'); 
-    return; 
+  if (!name || !phone) {
+    showToast('Please enter your name and phone number', 'error');
+    return;
   }
   
   const booking = {
@@ -544,64 +816,63 @@ document.getElementById('confirmBookingBtn').addEventListener('click', async fun
     phone: phone,
     email: email || 'Not provided',
     location: location,
-    issue: issue || 'To be diagnosed',
     slot: selectedSlot.display,
     slotISO: selectedSlot.startStr,
+    issue: issue || 'To be diagnosed',
     status: 'Confirmed'
   };
   
-  // Show loading
-  const btn = document.getElementById('confirmBookingBtn');
-  const originalText = btn.textContent;
-  btn.textContent = '⏳ Saving...';
+  debugLog('Booking data prepared', booking);
+  
+  const btn = document.getElementById('confirmBtn');
   btn.disabled = true;
+  btn.textContent = '⏳ Saving...';
   
   // Save to Google Sheets
   const result = await saveBookingToGoogleSheets(booking);
   
-  if (result.success) {
-    // Mark slot as booked
-    let bookedSlots = JSON.parse(localStorage.getItem('ikrack_booked_slots') || '[]');
-    bookedSlots.push(selectedSlot.startStr);
-    localStorage.setItem('ikrack_booked_slots', JSON.stringify(bookedSlots));
-    
-    // Save to local backup
-    let bookings = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
-    bookings.push(booking);
-    localStorage.setItem('ikrack_bookings', JSON.stringify(bookings));
-    
-    showToast(`✅ Appointment confirmed for ${selectedSlot.display} at ${location}. We'll send a reminder!`);
-    
-    // Reset form
-    selectedSlot = null;
-    document.getElementById('selectedSlotDisplay').innerHTML = '<span style="color:var(--muted);">No slot selected</span>';
-    document.getElementById('bookName').value = '';
-    document.getElementById('bookPhone').value = '';
-    document.getElementById('bookEmail').value = '';
-    document.getElementById('bookIssue').value = '';
-    
-    // Refresh calendar
-    if (calendar) calendar.refetchEvents();
-    
-    document.getElementById('appointment').scrollIntoView({ behavior: 'smooth' });
-  } else {
-    // Fallback: save locally
-    let backups = JSON.parse(localStorage.getItem('ikrack_bookings_backup') || '[]');
-    backups.push(booking);
-    localStorage.setItem('ikrack_bookings_backup', JSON.stringify(backups));
-    
-    showToast(`⚠️ Saved locally! We'll contact you within 30 min to confirm: ${selectedSlot.display}`, true);
-    
-    selectedSlot = null;
-    document.getElementById('selectedSlotDisplay').innerHTML = '<span style="color:var(--muted);">No slot selected</span>';
-    document.getElementById('bookName').value = '';
-    document.getElementById('bookPhone').value = '';
-    if (calendar) calendar.refetchEvents();
-  }
+  // Always save locally and mark slot as booked
+  saveBookedSlot(selectedSlot.startStr);
   
-  btn.textContent = originalText;
+  let allBookings = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
+  allBookings.push(booking);
+  localStorage.setItem('ikrack_bookings', JSON.stringify(allBookings));
+  
+  showToast(`✅ Booked! ${selectedSlot.display} at ${location}`, 'success');
+  debugLog(`Booking saved! Total bookings: ${allBookings.length}`);
+  
+  // Reset form
+  selectedSlot = null;
+  document.getElementById('selectedSlotDisplay').innerHTML = '<span style="color: var(--muted);">No time selected</span>';
+  document.getElementById('bookName').value = '';
+  document.getElementById('bookPhone').value = '';
+  document.getElementById('bookEmail').value = '';
+  document.getElementById('bookIssue').value = '';
+  
+  // Refresh calendar
+  if (currentView === 'week') renderWeekView();
+  else renderMonthView();
+  
   btn.disabled = false;
+  btn.textContent = '✅ Confirm Appointment';
 });
+
+// ============================================
+// INITIALIZATION
+// ============================================
+loadBookedSlots();
+renderWeekView();
+
+// Check URL config
+if (GOOGLE_SHEETS_URL.includes('YOUR_DEPLOYMENT_ID')) {
+  debugLog('⚠️ Please update GOOGLE_SHEETS_URL with your actual Web App URL');
+}
+
+// View saved bookings with ?bookings in URL
+if (window.location.hash === '#bookings' || window.location.search.includes('bookings=true')) {
+  const allBookings = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
+  debugLog(`📋 ALL BOOKINGS (${allBookings.length} total)`, allBookings);
+}
 </script>
 
 </body>

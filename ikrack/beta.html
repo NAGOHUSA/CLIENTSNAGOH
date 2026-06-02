@@ -4,15 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>iKrack Mobile — Book Your Repair</title>
-
-<!-- Styles - All Local, No External Dependencies -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   :root {
     --bg: #0a0a0f;
     --surface: #111118;
@@ -28,203 +22,197 @@
     --error: #ef4444;
   }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    padding: 20px;
+    font-family: 'DM Sans', sans-serif;
+    padding: 24px;
     line-height: 1.5;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
+  .container { max-width: 1400px; margin: 0 auto; }
 
   /* Header */
   .header {
-    margin-bottom: 2rem;
     text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
   }
-  .header h1 {
-    font-size: 2.5rem;
+  .logo {
+    font-family: 'Syne', sans-serif;
     font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 0.5rem;
   }
-  .header h1 span {
-    color: var(--accent);
-  }
-  .header p {
-    color: var(--muted);
-    margin-top: 0.5rem;
-  }
+  .logo span { color: var(--accent); }
+  .header p { color: var(--muted); font-size: 0.9rem; }
 
-  /* Booking Grid */
+  /* Layout */
   .booking-grid {
     display: grid;
     grid-template-columns: 1fr 380px;
     gap: 2rem;
-    margin-top: 2rem;
+    align-items: start;
   }
 
-  /* Calendar Container */
+  /* Calendar */
   .calendar-container {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: 1.75rem;
   }
 
-  /* Custom Calendar Styles (replaces FullCalendar) */
-  .custom-calendar {
-    width: 100%;
-  }
-  .calendar-header {
+  .cal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
+    gap: 1rem;
     flex-wrap: wrap;
-    gap: 0.5rem;
   }
-  .calendar-nav {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .calendar-nav button, .view-toggle button {
+
+  .cal-nav { display: flex; gap: 0.5rem; }
+
+  .cal-btn {
     background: var(--surface2);
     border: 1px solid var(--border);
     color: var(--text);
-    padding: 0.5rem 1rem;
+    padding: 0.45rem 1rem;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 0.875rem;
-    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: all 0.18s;
+    white-space: nowrap;
   }
-  .calendar-nav button:hover, .view-toggle button:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-  .calendar-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-  .view-toggle {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .view-toggle button.active {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
+  .cal-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .cal-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-  /* Week View */
-  .week-view {
-    overflow-x: auto;
-  }
-  .week-grid {
-    display: grid;
-    grid-template-columns: 80px repeat(7, 1fr);
-    min-width: 700px;
-  }
-  .week-hour {
-    border-top: 1px solid var(--border);
-    padding: 0.5rem;
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-align: right;
-  }
-  .week-day-header {
-    text-align: center;
-    padding: 0.75rem;
-    font-weight: 600;
-    border-bottom: 1px solid var(--border);
-  }
-  .week-day-header .day-name {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-  .week-day-header .day-date {
+  .cal-title {
+    font-family: 'Syne', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
-  }
-  .week-day-header.today {
-    background: rgba(255,85,51,0.15);
-    border-radius: 8px;
-  }
-  .week-slot {
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
-    padding: 0.5rem;
-    min-height: 60px;
-    cursor: pointer;
-    transition: background 0.2s;
-    position: relative;
-  }
-  .week-slot:hover {
-    background: rgba(255,85,51,0.1);
-  }
-  .week-slot.booked {
-    background: rgba(108,117,125,0.2);
-    cursor: not-allowed;
-  }
-  .week-slot.booked:hover {
-    background: rgba(108,117,125,0.3);
-  }
-  .week-slot.selected {
-    background: rgba(255,85,51,0.3);
-    border: 1px solid var(--accent);
-  }
-  .slot-time {
-    font-size: 0.7rem;
-    color: var(--muted);
-  }
-  .slot-status {
-    font-size: 0.65rem;
-    margin-top: 0.25rem;
-  }
-  .slot-status.available {
-    color: var(--success);
-  }
-  .slot-status.booked {
-    color: #6c757d;
+    color: var(--white);
   }
 
-  /* Month View */
-  .month-view {
-    overflow-x: auto;
+  .view-toggle { display: flex; gap: 0.5rem; }
+
+  /* Week view */
+  .week-view { overflow-x: auto; }
+  .week-grid {
+    display: grid;
+    grid-template-columns: 72px repeat(7, 1fr);
+    min-width: 640px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
   }
+
+  .wg-corner { background: var(--surface2); border-bottom: 1px solid var(--border); }
+  .wg-day-head {
+    background: var(--surface2);
+    text-align: center;
+    padding: 0.65rem 0.25rem;
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .wg-day-head.today { background: rgba(255,85,51,0.15); }
+  .wg-day-name { font-size: 0.7rem; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .wg-day-num { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); line-height: 1.2; }
+  .wg-day-head.today .wg-day-num { color: var(--accent); }
+
+  .wg-time {
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    padding: 0.5rem 0.5rem;
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 52px;
+  }
+
+  .wg-slot {
+    border-left: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    padding: 0.35rem 0.4rem;
+    min-height: 52px;
+    cursor: pointer;
+    transition: background 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wg-slot:hover { background: rgba(255,85,51,0.1); }
+  .wg-slot.closed { background: rgba(255,255,255,0.015); cursor: default; }
+  .wg-slot.closed:hover { background: rgba(255,255,255,0.015); }
+  .wg-slot.booked { background: rgba(108,117,125,0.12); cursor: not-allowed; }
+  .wg-slot.booked:hover { background: rgba(108,117,125,0.18); }
+  .wg-slot.selected { background: rgba(255,85,51,0.22); outline: 2px solid var(--accent); outline-offset: -2px; }
+  .slot-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.02em; }
+  .slot-label.avail { color: var(--success); }
+  .slot-label.closed-lbl { color: rgba(255,255,255,0.15); font-size: 0.6rem; }
+  .slot-label.booked-lbl { color: rgba(255,255,255,0.2); }
+
+  /* Month view */
   .month-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    min-width: 600px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    min-width: 420px;
   }
-  .month-day-header {
+  .mg-head {
+    background: var(--surface2);
     text-align: center;
-    padding: 0.75rem;
+    padding: 0.6rem;
+    font-size: 0.72rem;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
     border-bottom: 1px solid var(--border);
   }
-  .month-day {
-    min-height: 100px;
-    border: 1px solid var(--border);
+  .mg-day {
+    min-height: 80px;
     padding: 0.5rem;
-    vertical-align: top;
+    border-top: 1px solid var(--border);
+    border-left: 1px solid var(--border);
     cursor: pointer;
+    transition: background 0.15s;
+    vertical-align: top;
   }
-  .month-day:hover {
-    background: rgba(255,85,51,0.05);
-  }
-  .month-day.today {
-    background: rgba(255,85,51,0.1);
-  }
-  .month-day-number {
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-  .month-day-slots {
-    font-size: 0.7rem;
+  .mg-day:hover { background: rgba(255,85,51,0.06); }
+  .mg-day.other-month { opacity: 0.3; }
+  .mg-day.today { background: rgba(255,85,51,0.1); }
+  .mg-day.closed-day { cursor: default; }
+  .mg-day.closed-day:hover { background: none; }
+  .mg-num { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--white); }
+  .mg-day.today .mg-num { color: var(--accent); }
+  .mg-slots { font-size: 0.65rem; color: var(--muted); margin-top: 0.25rem; }
+  .mg-slots.avail { color: var(--success); }
+
+  /* Hint text */
+  .cal-hint {
+    text-align: center;
+    font-size: 0.72rem;
     color: var(--muted);
+    margin-top: 0.75rem;
+    font-style: italic;
   }
 
   /* Sidebar */
@@ -232,33 +220,44 @@
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 1.5rem;
+    padding: 1.75rem;
     position: sticky;
-    top: 20px;
+    top: 24px;
   }
   .sidebar h3 {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 1.25rem;
   }
-  .selected-slot {
-    background: rgba(255,85,51,0.1);
+
+  .selected-slot-box {
+    background: rgba(255,85,51,0.08);
+    border: 1px solid rgba(255,85,51,0.2);
     border-radius: 12px;
-    padding: 0.75rem;
-    margin: 1rem 0;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1.25rem;
     text-align: center;
-    border: 1px solid rgba(255,85,51,0.3);
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.88rem;
+    color: var(--muted);
   }
-  .form-group {
-    margin-bottom: 1rem;
-  }
+  .selected-slot-box.has-slot { color: var(--white); font-weight: 500; }
+  .selected-slot-box strong { display: block; font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem; font-weight: 600; }
+
+  .form-group { margin-bottom: 1rem; }
   .form-group label {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: var(--muted);
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.5px;
+    margin-bottom: 0.35rem;
   }
   .form-group input,
   .form-group select,
@@ -269,121 +268,99 @@
     border-radius: 10px;
     padding: 0.7rem 1rem;
     color: var(--text);
+    font-family: 'DM Sans', sans-serif;
     font-size: 0.9rem;
-    font-family: inherit;
     outline: none;
     transition: border-color 0.2s;
+    -webkit-appearance: none;
   }
   .form-group input:focus,
   .form-group select:focus,
-  .form-group textarea:focus {
-    border-color: var(--accent);
-  }
-  .btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
+  .form-group textarea:focus { border-color: var(--accent); }
+  .form-group textarea { resize: none; }
+
+  .btn-confirm {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
     border: none;
+    border-radius: 10px;
+    padding: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    font-size: 0.9rem;
+    margin-top: 0.25rem;
+    letter-spacing: 0.01em;
   }
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-    width: 100%;
-  }
-  .btn-primary:hover {
-    background: var(--accent2);
-    transform: translateY(-1px);
-  }
-  .btn-primary:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
+  .btn-confirm:hover:not(:disabled) { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,85,51,0.3); }
+  .btn-confirm:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+  .btn-note { font-size: 0.7rem; color: var(--muted); text-align: center; margin-top: 0.75rem; }
 
-  /* Toast Notification */
+  /* Toast */
   .toast {
     position: fixed;
-    bottom: 20px;
+    bottom: 28px;
     left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 24px;
-    border-radius: 40px;
+    transform: translateX(-50%) translateY(20px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 100px;
     color: white;
-    font-weight: 500;
-    z-index: 1000;
+    font-weight: 600;
+    font-size: 0.88rem;
+    z-index: 9999;
     opacity: 0;
-    transition: opacity 0.3s;
     pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    white-space: nowrap;
+    font-family: 'DM Sans', sans-serif;
   }
-  .toast.show {
-    opacity: 1;
-  }
-  .toast.success {
-    background: var(--success);
-  }
-  .toast.error {
-    background: var(--error);
-  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.success { background: var(--success); }
+  .toast.error { background: var(--error); }
 
-  /* Debug Panel */
-  .debug-panel {
+  /* Status log */
+  .status-panel {
     margin-top: 2rem;
-    background: var(--surface2);
-    border-radius: 12px;
-    padding: 1rem;
-    font-family: monospace;
-    font-size: 11px;
+    background: var(--surface);
     border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    font-family: monospace;
+    font-size: 0.75rem;
   }
-  .debug-panel pre {
-    overflow-x: auto;
-    white-space: pre-wrap;
-    margin-top: 0.5rem;
-  }
+  .status-panel h4 { color: var(--muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  #statusLog { color: var(--muted); line-height: 1.8; }
+  #statusLog span { display: block; }
+  #statusLog .log-ok { color: var(--success); }
+  #statusLog .log-err { color: var(--error); }
+  #statusLog .log-info { color: var(--accent2); }
 
-  /* Location Cards */
-  .locations {
+  /* Locations */
+  .locations-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
   }
-  .location-card {
+  .loc-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 1.5rem;
+    padding: 1.25rem 1.5rem;
   }
-  .location-card h3 {
-    margin-bottom: 0.5rem;
-  }
-  .location-card p {
-    color: var(--muted);
-    margin-bottom: 0.5rem;
-  }
-  .location-card a {
-    color: var(--accent);
-    text-decoration: none;
-  }
+  .loc-card h4 { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .loc-card p { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.25rem; }
+  .loc-card a { color: var(--accent); text-decoration: none; }
 
-  hr {
-    border-color: var(--border);
-    margin: 2rem 0;
-  }
+  hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 
-  @media (max-width: 800px) {
-    .booking-grid {
-      grid-template-columns: 1fr;
-    }
-    body {
-      padding: 15px;
-    }
-    .week-grid {
-      min-width: 600px;
-    }
+  @media (max-width: 860px) {
+    .booking-grid { grid-template-columns: 1fr; }
+    .sidebar { position: static; }
+    .locations-row { grid-template-columns: 1fr; }
+    body { padding: 16px; }
   }
 </style>
 </head>
@@ -391,489 +368,374 @@
 
 <div class="container">
   <div class="header">
-    <h1>i<span>K</span>rack</h1>
-    <p>Same-day repairs · Lifetime warranty · Two GA locations</p>
+    <a href="https://ikrack.com" class="logo">i<span>K</span>rack</a>
+    <p>Same-day repairs · Lifetime warranty · Two Georgia locations</p>
   </div>
 
   <div class="booking-grid">
+
+    <!-- ── CALENDAR ── -->
     <div class="calendar-container">
-      <!-- Custom Calendar -->
-      <div class="custom-calendar">
-        <div class="calendar-header">
-          <div class="calendar-nav">
-            <button onclick="previousWeek()">← Prev</button>
-            <button onclick="goToToday()">Today</button>
-            <button onclick="nextWeek()">Next →</button>
-          </div>
-          <div class="calendar-title" id="calendarTitle">Loading...</div>
-          <div class="view-toggle">
-            <button id="weekViewBtn" class="active" onclick="setView('week')">Week</button>
-            <button id="monthViewBtn" onclick="setView('month')">Month</button>
-          </div>
+      <div class="cal-header">
+        <div class="cal-nav">
+          <button class="cal-btn" onclick="navigate(-1)">← Prev</button>
+          <button class="cal-btn" onclick="goToday()">Today</button>
+          <button class="cal-btn" onclick="navigate(1)">Next →</button>
         </div>
-        <div id="weekView" class="week-view"></div>
-        <div id="monthView" class="month-view" style="display: none;"></div>
+        <div class="cal-title" id="calTitle">—</div>
+        <div class="view-toggle">
+          <button class="cal-btn active" id="btnWeek" onclick="setView('week')">Week</button>
+          <button class="cal-btn" id="btnMonth" onclick="setView('month')">Month</button>
+        </div>
       </div>
-      <p style="margin-top: 1rem; font-size: 0.7rem; text-align: center; color: var(--muted);">
-        🕐 Available: Mon–Sat, 10am–7pm (hourly slots)
-      </p>
+
+      <div id="weekView"></div>
+      <div id="monthView" style="display:none;"></div>
+
+      <p class="cal-hint">🕐 Open Mon–Sat · 10am–7pm · Click any green slot to select</p>
     </div>
 
+    <!-- ── SIDEBAR / FORM ── -->
     <div class="sidebar">
       <h3>📅 Book Your Repair</h3>
-      <div class="selected-slot" id="selectedSlotDisplay">
-        <span style="color: var(--muted);">No time selected</span>
+
+      <div class="selected-slot-box" id="slotBox">
+        Select a time slot on the calendar
       </div>
 
       <div class="form-group">
         <label>Full Name *</label>
-        <input type="text" id="bookName" placeholder="John Smith">
+        <input type="text" id="fName" placeholder="John Smith" autocomplete="name">
       </div>
-
       <div class="form-group">
         <label>Phone Number *</label>
-        <input type="tel" id="bookPhone" placeholder="(478) 287-9783">
+        <input type="tel" id="fPhone" placeholder="(478) 287-9783" autocomplete="tel">
       </div>
-
       <div class="form-group">
         <label>Email</label>
-        <input type="email" id="bookEmail" placeholder="you@example.com">
+        <input type="email" id="fEmail" placeholder="you@example.com" autocomplete="email">
       </div>
-
       <div class="form-group">
         <label>Location *</label>
-        <select id="bookLocation">
-          <option value="Bonaire">📍 Bonaire - 122 Margie Dr, Warner Robins</option>
-          <option value="Macon">📍 Macon - 5080 Riverside Dr Suite 110</option>
+        <select id="fLocation">
+          <option value="Bonaire">📍 Bonaire — 122 Margie Dr, Warner Robins</option>
+          <option value="Macon">📍 Macon — 5080 Riverside Dr Suite 110</option>
         </select>
       </div>
-
       <div class="form-group">
         <label>Device / Issue</label>
-        <textarea id="bookIssue" rows="2" placeholder="iPhone 14 Pro - cracked screen"></textarea>
+        <textarea id="fIssue" rows="2" placeholder="e.g. iPhone 15 Pro — cracked screen"></textarea>
       </div>
 
-      <button class="btn btn-primary" id="confirmBtn">✅ Confirm Appointment</button>
-      <p style="font-size: 0.7rem; color: var(--muted); margin-top: 1rem; text-align: center;">
-        Free diagnostic · Lifetime warranty on parts
-      </p>
+      <button class="btn-confirm" id="confirmBtn" onclick="submitBooking()">
+        ✅ Confirm Appointment
+      </button>
+      <p class="btn-note">Free diagnostic · No fix, no fee · Lifetime warranty on parts</p>
     </div>
   </div>
 
-  <!-- Locations -->
+  <!-- ── LOCATIONS ── -->
   <hr>
-  <div class="locations">
-    <div class="location-card">
-      <h3>📍 Bonaire</h3>
+  <div class="locations-row">
+    <div class="loc-card">
+      <h4>📍 Bonaire</h4>
       <p>122 Margie Dr, Warner Robins, GA 31088</p>
       <p>📞 <a href="tel:+14782879783">(478) 287-9783</a></p>
-      <p>🕐 Mon–Sat: 10am–7pm | Sun: Closed</p>
+      <p>🕐 Mon–Sat: 10am–7pm · Sun: Closed</p>
     </div>
-    <div class="location-card">
-      <h3>📍 Macon</h3>
+    <div class="loc-card">
+      <h4>📍 Macon</h4>
       <p>5080 Riverside Dr Suite 110, Macon, GA 31210</p>
       <p>📞 <a href="tel:+14783096400">(478) 309-6400</a></p>
-      <p>🕐 Mon–Sat: 10am–7pm | Sun: Closed</p>
+      <p>🕐 Mon–Sat: 10am–7pm · Sun: Closed</p>
     </div>
   </div>
 
-  <!-- Debug Panel -->
-  <div class="debug-panel">
-    <strong>🔧 Status:</strong><br>
-    <span id="debugStatus">Ready to book</span>
-    <pre id="debugLog"></pre>
+  <!-- ── STATUS LOG ── -->
+  <div class="status-panel">
+    <h4>🔧 Connection Log</h4>
+    <div id="statusLog"><span class="log-info">Ready.</span></div>
   </div>
 </div>
 
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <script>
-// ============================================
-// CONFIGURATION
-// ============================================
-// REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT URL AFTER DEPLOYING
-const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbyPVMUG7e6JtqZwYNQRP3Fa05ArWwHGX9COYVH_u-yo_Z1d3gQ4JLoSFPexGRBLXCZT/exec";
+// ── CONFIG ──────────────────────────────────────────
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyPVMUG7e6JtqZwYNQRP3Fa05ArWwHGX9COYVH_u-yo_Z1d3gQ4JLoSFPexGRBLXCZT/exec";
+const START_HOUR = 10;  // 10am
+const END_HOUR   = 18;  // last slot 6pm (ends 7pm)
 
-// Business hours: 10am to 7pm (last slot 6pm)
-const START_HOUR = 10;
-const END_HOUR = 18; // 6pm (slot ends at 7pm)
-
-let selectedSlot = null;
+// ── STATE ───────────────────────────────────────────
 let currentView = 'week';
 let currentDate = new Date();
-let bookedSlots = [];
+let selectedSlot = null;  // { date: Date, hour: Number, label: String, iso: String }
+let bookedSlots  = JSON.parse(localStorage.getItem('ikrack_booked') || '[]');
 
-// ============================================
-// HELPER FUNCTIONS
-// ============================================
-function debugLog(message, data = null) {
-  const debugStatus = document.getElementById('debugStatus');
-  const debugLog = document.getElementById('debugLog');
-  const timestamp = new Date().toLocaleTimeString();
-  debugStatus.innerHTML = `📡 ${message} (${timestamp})`;
-  if (data) {
-    debugLog.innerHTML = JSON.stringify(data, null, 2) + '\n\n' + debugLog.innerHTML;
+// ── UTILS ───────────────────────────────────────────
+function fmt12(h) {
+  const s = h >= 12 ? 'PM' : 'AM';
+  return `${h > 12 ? h-12 : h === 0 ? 12 : h}:00 ${s}`;
+}
+function dateKey(date, hour) {
+  const d = new Date(date);
+  d.setHours(hour, 0, 0, 0);
+  return d.toISOString();
+}
+function isBooked(date, hour) {
+  return bookedSlots.includes(dateKey(date, hour));
+}
+function isSunday(date) { return date.getDay() === 0; }
+function isToday(date) { return date.toDateString() === new Date().toDateString(); }
+
+function log(msg, cls='log-info') {
+  const el = document.getElementById('statusLog');
+  const ts = new Date().toLocaleTimeString();
+  el.innerHTML = `<span class="${cls}">[${ts}] ${msg}</span>` + el.innerHTML;
+}
+
+function toast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = `toast ${type} show`;
+  setTimeout(() => t.classList.remove('show'), 4000);
+}
+
+// ── SLOT SELECTION ──────────────────────────────────
+function selectSlot(dateISO, hour) {
+  const date = new Date(dateISO);
+  if (isSunday(date) || isBooked(date, hour)) return;
+
+  selectedSlot = {
+    date, hour,
+    label: `${date.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})} at ${fmt12(hour)}`,
+    iso: dateKey(date, hour)
+  };
+
+  const box = document.getElementById('slotBox');
+  box.className = 'selected-slot-box has-slot';
+  box.innerHTML = `<div><strong>Selected Time</strong>${selectedSlot.label}</div>`;
+
+  log(`Slot selected: ${selectedSlot.label}`);
+  renderCalendar();
+}
+
+// ── WEEK VIEW ────────────────────────────────────────
+function weekStart(d) {
+  const s = new Date(d);
+  const day = s.getDay();
+  s.setDate(s.getDate() - (day === 0 ? 6 : day - 1));
+  s.setHours(0,0,0,0);
+  return s;
+}
+
+function renderWeek() {
+  const start = weekStart(currentDate);
+  const days  = Array.from({length:7}, (_,i) => {
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    return d;
+  });
+
+  document.getElementById('calTitle').textContent =
+    `${days[0].toLocaleDateString('en-US',{month:'short',day:'numeric'})} – ${days[6].toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}`;
+
+  let html = `<div class="week-view"><div class="week-grid">`;
+
+  // Corner + day headers
+  html += `<div class="wg-corner"></div>`;
+  days.forEach(d => {
+    html += `<div class="wg-day-head${isToday(d)?' today':''}">
+      <div class="wg-day-name">${d.toLocaleDateString('en-US',{weekday:'short'})}</div>
+      <div class="wg-day-num">${d.getDate()}</div>
+    </div>`;
+  });
+
+  // Time rows
+  for (let h = START_HOUR; h <= END_HOUR; h++) {
+    html += `<div class="wg-time">${fmt12(h)}</div>`;
+    days.forEach(d => {
+      const sun    = isSunday(d);
+      const booked = !sun && isBooked(d, h);
+      const sel    = !sun && !booked && selectedSlot &&
+                     selectedSlot.date.toDateString() === d.toDateString() &&
+                     selectedSlot.hour === h;
+      let cls = 'wg-slot';
+      if (sun)    cls += ' closed';
+      if (booked) cls += ' booked';
+      if (sel)    cls += ' selected';
+
+      const onclick = (!sun && !booked)
+        ? `onclick="selectSlot('${d.toISOString()}',${h})"`
+        : '';
+
+      let lbl = '';
+      if (sun)         lbl = `<span class="slot-label closed-lbl">Closed</span>`;
+      else if (booked) lbl = `<span class="slot-label booked-lbl">Booked</span>`;
+      else             lbl = `<span class="slot-label avail">✓</span>`;
+
+      html += `<div class="${cls}" ${onclick}>${lbl}</div>`;
+    });
   }
-  console.log(`[${timestamp}] ${message}`, data || '');
+
+  html += `</div></div>`;
+  document.getElementById('weekView').innerHTML = html;
 }
 
-function showToast(message, type = 'success') {
-  const toast = document.createElement('div');
-  toast.className = `toast ${type}`;
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.classList.add('show'), 10);
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 300);
-  }, 4000);
-}
+// ── MONTH VIEW ───────────────────────────────────────
+function renderMonth() {
+  const y = currentDate.getFullYear();
+  const m = currentDate.getMonth();
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calTitle').textContent = `${MONTHS[m]} ${y}`;
 
-// Load booked slots from localStorage
-function loadBookedSlots() {
-  const stored = localStorage.getItem('ikrack_booked_slots');
-  if (stored) {
-    bookedSlots = JSON.parse(stored);
-  }
-  debugLog(`Loaded ${bookedSlots.length} booked slots from storage`);
-}
+  const firstDay = new Date(y, m, 1).getDay();
+  const daysInMonth = new Date(y, m+1, 0).getDate();
+  const prevDays = new Date(y, m, 0).getDate();
 
-// Save booked slot
-function saveBookedSlot(slotISO) {
-  if (!bookedSlots.includes(slotISO)) {
-    bookedSlots.push(slotISO);
-    localStorage.setItem('ikrack_booked_slots', JSON.stringify(bookedSlots));
-    debugLog(`Slot saved: ${slotISO}`);
-  }
-}
+  // pad to Monday start
+  const offset = firstDay === 0 ? 6 : firstDay - 1;
 
-// Check if a slot is booked
-function isSlotBooked(date, hour) {
-  const slotDate = new Date(date);
-  slotDate.setHours(hour, 0, 0, 0);
-  return bookedSlots.includes(slotDate.toISOString());
-}
-
-// Format date for display
-function formatDate(date) {
-  return date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
-}
-
-function formatTime(hour) {
-  const suffix = hour >= 12 ? 'PM' : 'AM';
-  const displayHour = hour > 12 ? hour - 12 : hour === 0 ? 12 : hour;
-  return `${displayHour}:00 ${suffix}`;
-}
-
-// ============================================
-// CALENDAR RENDERING
-// ============================================
-function getWeekDates(baseDate) {
-  const dates = [];
-  const start = new Date(baseDate);
-  const day = start.getDay();
-  const diff = start.getDate() - day + (day === 0 ? -6 : 1);
-  start.setDate(diff);
-  
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(start);
-    date.setDate(start.getDate() + i);
-    dates.push(date);
-  }
-  return dates;
-}
-
-function getMonthDates(year, month) {
-  const firstDay = new Date(year, month, 1);
-  const lastDay = new Date(year, month + 1, 0);
-  const startDay = firstDay.getDay();
-  const dates = [];
-  
-  // Previous month days
-  const prevMonthLastDay = new Date(year, month, 0).getDate();
-  for (let i = startDay - 1; i >= 0; i--) {
-    dates.push(new Date(year, month - 1, prevMonthLastDay - i));
-  }
-  
-  // Current month days
-  for (let i = 1; i <= lastDay.getDate(); i++) {
-    dates.push(new Date(year, month, i));
-  }
-  
-  // Next month days
-  const remaining = 42 - dates.length;
-  for (let i = 1; i <= remaining; i++) {
-    dates.push(new Date(year, month + 1, i));
-  }
-  
-  return dates;
-}
-
-function renderWeekView() {
-  const weekDates = getWeekDates(currentDate);
-  const container = document.getElementById('weekView');
-  const title = `${formatDate(weekDates[0])} - ${formatDate(weekDates[6])}`;
-  document.getElementById('calendarTitle').innerText = title;
-  
-  // Build header
-  let html = `<div class="week-grid">`;
-  html += `<div class="week-day-header"></div>`;
-  
-  for (let i = 0; i < weekDates.length; i++) {
-    const date = weekDates[i];
-    const isToday = date.toDateString() === new Date().toDateString();
-    const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
-    const dayDate = date.getDate();
-    html += `<div class="week-day-header ${isToday ? 'today' : ''}">
-              <div class="day-name">${dayName}</div>
-              <div class="day-date">${dayDate}</div>
-            </div>`;
-  }
-  
-  // Build time slots
-  for (let hour = START_HOUR; hour <= END_HOUR; hour++) {
-    html += `<div class="week-hour">${formatTime(hour)}</div>`;
-    for (let i = 0; i < weekDates.length; i++) {
-      const date = weekDates[i];
-      const isSunday = date.getDay() === 0;
-      const isBooked = isSunday ? false : isSlotBooked(date, hour);
-      const isSelected = selectedSlot && 
-        selectedSlot.date.toDateString() === date.toDateString() && 
-        selectedSlot.hour === hour;
-      
-      let slotClass = 'week-slot';
-      if (isSunday) slotClass += ' booked';
-      if (isBooked) slotClass += ' booked';
-      if (isSelected) slotClass += ' selected';
-      
-      const onclick = (!isSunday && !isBooked) ? `selectTimeSlot('${date.toISOString()}', ${hour})` : '';
-      
-      html += `<div class="${slotClass}" onclick="${onclick}">
-                ${!isSunday && !isBooked ? `<div class="slot-status available">✅ Available</div>` : 
-                  isSunday ? `<div class="slot-status booked">Closed</div>` : 
-                  `<div class="slot-status booked">Booked</div>`}
-              </div>`;
-    }
-  }
-  html += `</div>`;
-  container.innerHTML = html;
-}
-
-function renderMonthView() {
-  const monthDates = getMonthDates(currentDate.getFullYear(), currentDate.getMonth());
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const title = `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
-  document.getElementById('calendarTitle').innerText = title;
-  
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  
   let html = `<div class="month-grid">`;
-  for (let i = 0; i < dayNames.length; i++) {
-    html += `<div class="month-day-header">${dayNames[i]}</div>`;
+  ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].forEach(n => {
+    html += `<div class="mg-head">${n}</div>`;
+  });
+
+  const totalCells = Math.ceil((offset + daysInMonth) / 7) * 7;
+  for (let i = 0; i < totalCells; i++) {
+    let date, inMonth = true;
+    if (i < offset) {
+      date = new Date(y, m-1, prevDays - offset + i + 1);
+      inMonth = false;
+    } else if (i - offset >= daysInMonth) {
+      date = new Date(y, m+1, i - offset - daysInMonth + 1);
+      inMonth = false;
+    } else {
+      date = new Date(y, m, i - offset + 1);
+    }
+
+    const sun   = isSunday(date);
+    const today = isToday(date);
+    let cls = 'mg-day';
+    if (!inMonth) cls += ' other-month';
+    if (today)    cls += ' today';
+    if (sun)      cls += ' closed-day';
+
+    const avail = !sun && inMonth
+      ? Array.from({length: END_HOUR - START_HOUR + 1}, (_,k) => START_HOUR+k)
+          .filter(h => !isBooked(date, h)).length
+      : 0;
+
+    const onclick = (!sun && inMonth) ? `onclick="goToDate('${date.toISOString()}')"` : '';
+
+    html += `<div class="${cls}" ${onclick}>
+      <div class="mg-num">${date.getDate()}</div>
+      ${inMonth ? `<div class="mg-slots${avail>0?' avail':''}">${sun ? 'Closed' : `${avail} open`}</div>` : ''}
+    </div>`;
   }
-  
-  for (let i = 0; i < monthDates.length; i++) {
-    const date = monthDates[i];
-    const isCurrentMonth = date.getMonth() === currentDate.getMonth();
-    const isToday = date.toDateString() === new Date().toDateString();
-    const dayClass = `month-day ${isToday ? 'today' : ''}`;
-    const slotCount = isCurrentMonth && date.getDay() !== 0 ? (END_HOUR - START_HOUR + 1) : 0;
-    const bookedCount = isCurrentMonth && date.getDay() !== 0 ? 
-      [...Array(END_HOUR - START_HOUR + 1).keys()].map(h => START_HOUR + h).filter(h => isSlotBooked(date, h)).length : 0;
-    
-    html += `<div class="${dayClass}" onclick="goToDate('${date.toISOString()}')">
-              <div class="month-day-number">${date.getDate()}</div>
-              <div class="month-day-slots">
-                ${isCurrentMonth && date.getDay() !== 0 ? 
-                  `${slotCount - bookedCount} available slots` : 
-                  date.getDay() === 0 ? 'Closed' : ''}
-              </div>
-            </div>`;
-  }
+
   html += `</div>`;
   document.getElementById('monthView').innerHTML = html;
 }
 
-function selectTimeSlot(dateISO, hour) {
-  const date = new Date(dateISO);
-  if (date.getDay() === 0) {
-    showToast('We are closed on Sundays', 'error');
-    return;
-  }
-  if (isSlotBooked(date, hour)) {
-    showToast('This slot is already booked', 'error');
-    return;
-  }
-  
-  selectedSlot = {
-    date: date,
-    hour: hour,
-    display: `${date.toLocaleDateString()} at ${formatTime(hour)}`,
-    startStr: new Date(date.setHours(hour, 0, 0, 0)).toISOString()
-  };
-  
-  document.getElementById('selectedSlotDisplay').innerHTML = `
-    <strong>✅ Selected:</strong><br>
-    ${selectedSlot.display}
-  `;
-  
-  debugLog('Time slot selected', selectedSlot);
-  
-  if (currentView === 'week') renderWeekView();
+// ── NAV ──────────────────────────────────────────────
+function renderCalendar() {
+  if (currentView === 'week') renderWeek();
+  else renderMonth();
 }
 
-function goToDate(dateISO) {
-  currentDate = new Date(dateISO);
-  if (currentView === 'week') {
-    renderWeekView();
-  } else {
-    renderMonthView();
-  }
+function navigate(dir) {
+  if (currentView === 'week') currentDate.setDate(currentDate.getDate() + dir * 7);
+  else currentDate.setMonth(currentDate.getMonth() + dir);
+  renderCalendar();
 }
 
-function previousWeek() {
-  currentDate.setDate(currentDate.getDate() - 7);
-  if (currentView === 'week') renderWeekView();
-  else renderMonthView();
+function goToday() { currentDate = new Date(); renderCalendar(); }
+
+function setView(v) {
+  currentView = v;
+  document.getElementById('btnWeek').classList.toggle('active', v === 'week');
+  document.getElementById('btnMonth').classList.toggle('active', v === 'month');
+  document.getElementById('weekView').style.display  = v === 'week'  ? 'block' : 'none';
+  document.getElementById('monthView').style.display = v === 'month' ? 'block' : 'none';
+  renderCalendar();
 }
 
-function nextWeek() {
-  currentDate.setDate(currentDate.getDate() + 7);
-  if (currentView === 'week') renderWeekView();
-  else renderMonthView();
+function goToDate(iso) {
+  currentDate = new Date(iso);
+  setView('week');
 }
 
-function goToToday() {
-  currentDate = new Date();
-  if (currentView === 'week') renderWeekView();
-  else renderMonthView();
-}
+// ── SUBMIT ───────────────────────────────────────────
+async function submitBooking() {
+  const name     = document.getElementById('fName').value.trim();
+  const phone    = document.getElementById('fPhone').value.trim();
+  const email    = document.getElementById('fEmail').value.trim();
+  const location = document.getElementById('fLocation').value;
+  const issue    = document.getElementById('fIssue').value.trim();
 
-function setView(view) {
-  currentView = view;
-  const weekBtn = document.getElementById('weekViewBtn');
-  const monthBtn = document.getElementById('monthViewBtn');
-  const weekView = document.getElementById('weekView');
-  const monthView = document.getElementById('monthView');
-  
-  if (view === 'week') {
-    weekBtn.classList.add('active');
-    monthBtn.classList.remove('active');
-    weekView.style.display = 'block';
-    monthView.style.display = 'none';
-    renderWeekView();
-  } else {
-    weekBtn.classList.remove('active');
-    monthBtn.classList.add('active');
-    weekView.style.display = 'none';
-    monthView.style.display = 'block';
-    renderMonthView();
-  }
-}
+  if (!selectedSlot) { toast('Please select a date & time first', 'error'); return; }
+  if (!name)  { toast('Please enter your name', 'error'); return; }
+  if (!phone) { toast('Please enter your phone number', 'error'); return; }
 
-// ============================================
-// SAVE BOOKING TO GOOGLE SHEETS
-// ============================================
-async function saveBookingToGoogleSheets(bookingData) {
-  debugLog('Saving booking to Google Sheets...', bookingData);
-  
-  try {
-    const response = await fetch(GOOGLE_SHEETS_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(bookingData)
-    });
-    debugLog('Request sent successfully');
-    return { success: true };
-  } catch (error) {
-    debugLog(`Error: ${error.message}`);
-    return { success: false, error: error.message };
-  }
-}
-
-// ============================================
-// CONFIRM BOOKING HANDLER
-// ============================================
-document.getElementById('confirmBtn').addEventListener('click', async function() {
-  const name = document.getElementById('bookName').value.trim();
-  const phone = document.getElementById('bookPhone').value.trim();
-  const email = document.getElementById('bookEmail').value.trim();
-  const location = document.getElementById('bookLocation').value;
-  const issue = document.getElementById('bookIssue').value.trim();
-  
-  if (!selectedSlot) {
-    showToast('Please select a date and time first', 'error');
-    return;
-  }
-  if (!name || !phone) {
-    showToast('Please enter your name and phone number', 'error');
-    return;
-  }
-  
   const booking = {
-    timestamp: new Date().toISOString(),
-    bookingId: 'BK' + Date.now(),
-    name: name,
-    phone: phone,
-    email: email || 'Not provided',
-    location: location,
-    slot: selectedSlot.display,
-    slotISO: selectedSlot.startStr,
-    issue: issue || 'To be diagnosed',
-    status: 'Confirmed'
+    timestamp : new Date().toISOString(),
+    bookingId : 'BK' + Date.now(),
+    name, phone,
+    email     : email || 'Not provided',
+    location,
+    slot      : selectedSlot.label,
+    slotISO   : selectedSlot.iso,
+    issue     : issue || 'To be diagnosed',
+    status    : 'Confirmed'
   };
-  
-  debugLog('Booking data prepared', booking);
-  
+
   const btn = document.getElementById('confirmBtn');
   btn.disabled = true;
-  btn.textContent = '⏳ Saving...';
-  
-  // Save to Google Sheets
-  const result = await saveBookingToGoogleSheets(booking);
-  
-  // Always save locally and mark slot as booked
-  saveBookedSlot(selectedSlot.startStr);
-  
-  let allBookings = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
-  allBookings.push(booking);
-  localStorage.setItem('ikrack_bookings', JSON.stringify(allBookings));
-  
-  showToast(`✅ Booked! ${selectedSlot.display} at ${location}`, 'success');
-  debugLog(`Booking saved! Total bookings: ${allBookings.length}`);
-  
-  // Reset form
-  selectedSlot = null;
-  document.getElementById('selectedSlotDisplay').innerHTML = '<span style="color: var(--muted);">No time selected</span>';
-  document.getElementById('bookName').value = '';
-  document.getElementById('bookPhone').value = '';
-  document.getElementById('bookEmail').value = '';
-  document.getElementById('bookIssue').value = '';
-  
-  // Refresh calendar
-  if (currentView === 'week') renderWeekView();
-  else renderMonthView();
-  
+  btn.textContent = '⏳ Saving…';
+  log('Sending booking to Google Sheets…');
+
+  try {
+    // Use no-cors — Apps Script CORS can be tricky; the POST still lands in Sheets
+    await fetch(WEBAPP_URL, {
+      method  : 'POST',
+      mode    : 'no-cors',
+      headers : { 'Content-Type': 'application/json' },
+      body    : JSON.stringify(booking)
+    });
+
+    // Mark slot as booked locally
+    bookedSlots.push(selectedSlot.iso);
+    localStorage.setItem('ikrack_booked', JSON.stringify(bookedSlots));
+
+    // Store booking record locally too
+    const all = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
+    all.push(booking);
+    localStorage.setItem('ikrack_bookings', JSON.stringify(all));
+
+    log(`✅ Booking saved! ${booking.bookingId} — ${selectedSlot.label} @ ${location}`, 'log-ok');
+    toast(`✅ Booked! ${selectedSlot.label} at ${location}`, 'success');
+
+    // Reset form
+    selectedSlot = null;
+    document.getElementById('slotBox').className = 'selected-slot-box';
+    document.getElementById('slotBox').textContent = 'Select a time slot on the calendar';
+    ['fName','fPhone','fEmail','fIssue'].forEach(id => document.getElementById(id).value = '');
+    renderCalendar();
+
+  } catch (err) {
+    log(`❌ Error: ${err.message}`, 'log-err');
+    toast('Network error — please try calling us directly', 'error');
+  }
+
   btn.disabled = false;
   btn.textContent = '✅ Confirm Appointment';
-});
-
-// ============================================
-// INITIALIZATION
-// ============================================
-loadBookedSlots();
-renderWeekView();
-
-// Check URL config
-if (GOOGLE_SHEETS_URL.includes('YOUR_DEPLOYMENT_ID')) {
-  debugLog('⚠️ Please update GOOGLE_SHEETS_URL with your actual Web App URL');
 }
 
-// View saved bookings with ?bookings in URL
-if (window.location.hash === '#bookings' || window.location.search.includes('bookings=true')) {
-  const allBookings = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
-  debugLog(`📋 ALL BOOKINGS (${allBookings.length} total)`, allBookings);
-}
+// ── INIT ─────────────────────────────────────────────
+log(`Loaded — ${bookedSlots.length} locally tracked bookings`);
+renderCalendar();
 </script>
-
 </body>
 </html>

@@ -232,11 +232,27 @@
       overflow: hidden;
     }
 
-    .hero-photo-img {
+    /* Hero: show Christine's face = left half of the split image */
+    .hero-photo-img-wrap {
       width: 100%;
-      display: block;
-      object-fit: cover;
       aspect-ratio: 4/5;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/68fad9bd5e982f7b6bced7a9/a48f0fd1-b245-49f8-8b86-4e6d5a38a4e2/Untitled+design+%284%29.png?format=750w');
+      background-size: 200% auto;
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+
+    /* About card: show full image (face + logo side by side) */
+    .about-img-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background-image: url('https://images.squarespace-cdn.com/content/v1/68fad9bd5e982f7b6bced7a9/a48f0fd1-b245-49f8-8b86-4e6d5a38a4e2/Untitled+design+%284%29.png?format=750w');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     }
 
     /* Glass overlay on image bottom */
@@ -351,12 +367,7 @@
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
 
-    .about-img {
-      width: 100%; border-radius: var(--radius-md);
-      aspect-ratio: 1/1; object-fit: cover; object-position: top;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-    }
+    /* .about-img replaced by .about-img-wrap above */
 
     .about-card-name {
       font-family: 'Cormorant Garamond', serif;
@@ -713,16 +724,8 @@
 
   <div class="hero-right">
     <div class="hero-photo-card">
-      <img
-        src="https://images.squarespace-cdn.com/content/v1/68fad9bd5e982f7b6bced7a9/a48f0fd1-b245-49f8-8b86-4e6d5a38a4e2/Untitled+design+%284%29.png?format=750w"
-        alt="Christine — Clarity Bookkeeping"
-        class="hero-photo-img"
-        onerror="this.style.display='none'; this.parentElement.querySelector('.hero-photo-fallback').style.display='flex';"
-      />
-      <!-- fallback if image fails -->
-      <div class="hero-photo-fallback" style="display:none; aspect-ratio:4/5; background:linear-gradient(135deg,#ede9e1,#d4b06a22); align-items:center; justify-content:center; font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--ink-muted);">
-        Clarity Bookkeeping
-      </div>
+      <!-- Left half = Christine's face, right half = logo. background-size:200% shows only left half -->
+      <div class="hero-photo-img-wrap" role="img" aria-label="Christine Thompson — Clarity Bookkeeping"></div>
       <div class="hero-photo-overlay">
         <div class="hero-photo-name">Christine Thompson</div>
         <div class="hero-photo-title">Owner &amp; Professional Bookkeeper</div>
@@ -764,12 +767,8 @@
   <div class="container">
     <div class="about-inner">
       <div class="about-card reveal">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/68fad9bd5e982f7b6bced7a9/a48f0fd1-b245-49f8-8b86-4e6d5a38a4e2/Untitled+design+%284%29.png?format=750w"
-          alt="Christine Thompson"
-          class="about-img"
-          onerror="this.style.background='#ede9e1'; this.style.minHeight='220px';"
-        />
+        <!-- Full image: Christine face + logo side by side -->
+        <div class="about-img-wrap" role="img" aria-label="Christine Thompson and Clarity Bookkeeping logo"></div>
         <div class="about-card-name">Christine Thompson</div>
         <div class="about-card-title">Owner · Clarity Bookkeeping by Christine LLC</div>
         <div class="about-detail-row">

@@ -545,15 +545,15 @@
   #booking { background: var(--surface); }
   .booking-section-grid {
     display: grid;
-    grid-template-columns: 1fr 420px;
-    gap: 3rem;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
     margin-top: 3rem;
     align-items: start;
   }
-  @media (max-width: 1000px) { .booking-section-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  @media (max-width: 860px) { .booking-section-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
   /* Date chip row */
-  .bk-date-scroll { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; scrollbar-width: none; margin-bottom: 1.25rem; }
+  .bk-date-scroll { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.75rem; margin-bottom: 1.25rem; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
   .bk-date-scroll::-webkit-scrollbar { display: none; }
   .bk-date-chip { flex-shrink: 0; width: 68px; background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 14px; padding: 0.75rem 0.25rem; text-align: center; cursor: pointer; transition: all 0.18s; }
   .bk-date-chip:hover { border-color: rgba(255,85,51,0.4); }
@@ -577,12 +577,12 @@
   .bk-slot-clear { font-size: 0.72rem; color: var(--muted); cursor: pointer; text-decoration: underline; }
 
   /* Form card */
-  .bk-form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.25rem 2rem; }
+  .bk-form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2rem 1.75rem; width: 100%; min-width: 0; }
   .bk-form-card h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
   .bk-form-card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
   .bk-fg { margin-bottom: 1rem; }
   .bk-fg label { display: block; font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 0.3rem; }
-  .bk-fg input, .bk-fg select, .bk-fg textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 0.9rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; }
+  .bk-fg input, .bk-fg select, .bk-fg textarea { width: 100%; min-width: 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 0.75rem 0.9rem; color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; outline: none; transition: border-color 0.2s; -webkit-appearance: none; box-sizing: border-box; }
   .bk-fg input:focus, .bk-fg select:focus, .bk-fg textarea:focus { border-color: var(--accent); }
   .bk-fg textarea { resize: none; }
   .bk-submit { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 12px; padding: 0.9rem; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s; margin-top: 0.25rem; min-height: 52px; }
@@ -962,7 +962,7 @@
 
 <!-- ── BOOKING ─────────────────────────────── -->
 <section id="booking">
-  <div class="section-inner">
+  <div class="section-inner" style="overflow:hidden;">
     <div class="fade-up">
       <p class="section-label">Book Online — Save $10</p>
       <h2 class="section-title">Pick a Time.<br><span style="color:var(--accent)">We'll Be Ready.</span></h2>

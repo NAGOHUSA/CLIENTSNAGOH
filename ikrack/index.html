@@ -543,14 +543,15 @@
 
     /* ── BOOKING SECTION ── */
   #booking { background: var(--surface); }
+
+  /* Single column — date/time on top, form below */
   .booking-section-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 2.5rem;
     margin-top: 3rem;
-    align-items: start;
+    max-width: 800px;
   }
-  @media (max-width: 860px) { .booking-section-grid { grid-template-columns: 1fr; gap: 2rem; } }
 
   /* Date chip row */
   .bk-date-scroll { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.75rem; margin-bottom: 1.25rem; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
@@ -564,7 +565,8 @@
   .bk-date-chip.sel .bk-dc-num { color: var(--accent); }
 
   /* Time grid */
-  .bk-time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.65rem; margin-bottom: 1.5rem; }
+  .bk-time-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.65rem; margin-bottom: 1.5rem; }
+  @media (max-width: 600px) { .bk-time-grid { grid-template-columns: repeat(3, 1fr); } }
   .bk-time-chip { background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 0.9rem 0.5rem; text-align: center; cursor: pointer; transition: all 0.18s; font-size: 0.92rem; color: var(--muted); font-weight: 500; min-height: 54px; display: flex; align-items: center; justify-content: center; }
   .bk-time-chip:hover { border-color: rgba(255,85,51,0.4); color: var(--text); }
   .bk-time-chip.sel { border-color: var(--accent); background: rgba(255,85,51,0.1); color: var(--white); font-weight: 600; }
@@ -577,7 +579,7 @@
   .bk-slot-clear { font-size: 0.72rem; color: var(--muted); cursor: pointer; text-decoration: underline; }
 
   /* Form card */
-  .bk-form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2rem 1.75rem; width: 100%; min-width: 0; }
+  .bk-form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; width: 100%; }
   .bk-form-card h3 { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; letter-spacing: -0.02em; }
   .bk-form-card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.5rem; font-weight: 300; }
   .bk-fg { margin-bottom: 1rem; }
@@ -962,7 +964,7 @@
 
 <!-- ── BOOKING ─────────────────────────────── -->
 <section id="booking">
-  <div class="section-inner" style="overflow:hidden;">
+  <div class="section-inner">
     <div class="fade-up">
       <p class="section-label">Book Online — Save $10</p>
       <h2 class="section-title">Pick a Time.<br><span style="color:var(--accent)">We'll Be Ready.</span></h2>
@@ -970,7 +972,7 @@
     </div>
     <div class="booking-section-grid fade-up">
 
-      <!-- LEFT: Date + Time picker -->
+      <!-- TOP: Date + Time picker -->
       <div>
         <div style="margin-bottom:1.25rem;">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.85rem;">
@@ -999,7 +1001,7 @@
         </div>
       </div>
 
-      <!-- RIGHT: Form -->
+      <!-- BOTTOM: Form -->
       <div class="bk-form-card">
         <div id="bkFormWrap">
           <h3>Your Details</h3>

@@ -1423,18 +1423,26 @@ function bkIsClosed(date) { return date.getDay()===0; }
 
 function bkRenderDates() {
   const today = new Date(); today.setHours(0,0,0,0);
-  const start = new Date(today); start.setDate(today.getDate() + bkWeekOff * 14);
+  const start = new Date(today);
+  start.setDate(today.getDate() + bkWeekOff * 14);
+  const scroll = document.getElementById('bkDateScroll');
+  if (!scroll) return;
   let html = '';
   for (let i = 0; i < 14; i++) {
-    const d = new Date(start); d.setDate(start.getDate() + i);
-    const closed = bkIsClosed(d);
+    const d = new Date(start);
+    d.setDate(start.getDate() + i);
+    const closed = d.getDay() === 0; // Sunday closed
     const sel    = bkSelDate && d.toDateString() === bkSelDate.toDateString();
-    html += `<div class="bk-date-chip${closed?' off':''}${sel?' sel':''}" onclick="${closed?'':'bkPickDate(''+d.toISOString()+'')'}">
-      <div class="bk-dc-day">${d.toLocaleDateString('en-US',{weekday:'short'})}</div>
+    const past   = d < today;
+    if (past) continue; // skip past dates silently
+    html += `<div class="bk-date-chip${closed ? ' off' : ''}${sel ? ' sel' : ''}"
+      onclick="${closed ? '' : 'bkPickDate(\'' + d.toISOString() + '\')'}"
+      style="cursor:${closed ? 'default' : 'pointer'}">
+      <div class="bk-dc-day">${d.toLocaleDateString('en-US', {weekday: 'short'})}</div>
       <div class="bk-dc-num">${d.getDate()}</div>
     </div>`;
   }
-  document.getElementById('bkDateScroll').innerHTML = html;
+  scroll.innerHTML = html || '<div style="color:var(--muted);font-size:0.85rem;padding:0.5rem;">No dates available</div>';
 }
 
 function bkPickDate(iso) {
@@ -1448,15 +1456,17 @@ function bkPickDate(iso) {
 
 function bkRenderTimes() {
   const grid = document.getElementById('bkTimeGrid');
+  if (!grid) return;
   if (!bkSelDate) {
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:0.85rem;padding:1.5rem 0;">← Pick a date first</div>`;
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--muted);font-size:0.85rem;padding:1.5rem 0;">← Pick a date first</div>';
     return;
   }
   let html = '';
   for (let h = BK_START; h <= BK_END; h++) {
     const booked = bkIsBooked(bkSelDate, h);
     const sel    = bkSelHour === h;
-    html += `<div class="bk-time-chip${booked?' bkd':''}${sel?' sel':''}" onclick="${booked?'':'bkPickTime('+h+')'}">${bkFmt(h)}</div>`;
+    html += `<div class="bk-time-chip${booked ? ' bkd' : ''}${sel ? ' sel' : ''}"
+      onclick="${booked ? '' : 'bkPickTime(' + h + ')'}">${bkFmt(h)}</div>`;
   }
   grid.innerHTML = html;
 }
@@ -1466,10 +1476,11 @@ function bkPickTime(h) {
   const d = bkSelDate;
   bkSlot = {
     date: d, hour: h,
-    label: `${d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})} at ${bkFmt(h)}`,
-    iso:   bkKey(d, h)
+    label: d.toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'}) + ' at ' + bkFmt(h),
+    iso: bkKey(d, h)
   };
-  document.getElementById('bkSlotText').textContent = `${d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'})} at ${bkFmt(h)}`;
+  document.getElementById('bkSlotText').textContent =
+    d.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'}) + ' at ' + bkFmt(h);
   document.getElementById('bkSlotPill').classList.add('show');
   bkRenderTimes();
 }
@@ -1492,36 +1503,49 @@ async function bkSubmit() {
   const location = document.getElementById('bkLocation').value;
   const issue    = document.getElementById('bkIssue').value.trim();
 
-  if (!bkSlot)  { alert('Please select a date and time.'); return; }
+  if (!bkSlot)  { alert('Please select a date and time first.'); return; }
   if (!name)    { alert('Please enter your name.'); return; }
   if (!phone)   { alert('Please enter your phone number.'); return; }
 
   const id = 'BK' + Date.now();
-  const payload = { timestamp: new Date().toISOString(), bookingId: id, name, phone, email: email||'Not provided', location, slot: bkSlot.label, slotISO: bkSlot.iso, issue: issue||'To be diagnosed', status: 'Confirmed' };
+  const payload = {
+    timestamp: new Date().toISOString(), bookingId: id, name, phone,
+    email: email || 'Not provided', location,
+    slot: bkSlot.label, slotISO: bkSlot.iso,
+    issue: issue || 'To be diagnosed', status: 'Confirmed'
+  };
 
   const btn = document.getElementById('bkSubmitBtn');
   btn.disabled = true; btn.textContent = '⏳ Confirming…';
 
   try {
-    await fetch(BK_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
+    await fetch(BK_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
     bkBooked.push(bkSlot.iso);
     localStorage.setItem('ikrack_booked', JSON.stringify(bkBooked));
-    const all = JSON.parse(localStorage.getItem('ikrack_bookings')||'[]');
-    all.push(payload); localStorage.setItem('ikrack_bookings', JSON.stringify(all));
-    bkLastId = id;
+    const all = JSON.parse(localStorage.getItem('ikrack_bookings') || '[]');
+    all.push(payload);
+    localStorage.setItem('ikrack_bookings', JSON.stringify(all));
   } catch(e) {}
 
-  // Show confirm regardless (no-cors can't confirm server receipt)
-  btn.disabled = false; btn.textContent = '✅ Confirm Appointment';
+  bkLastId = id;
+  btn.disabled = false;
+  btn.textContent = '✅ Confirm Appointment';
   document.getElementById('bkFormWrap').style.display = 'none';
   document.getElementById('bkConfirmBox').classList.add('show');
   document.getElementById('bkConfirmId').textContent = id;
-  document.getElementById('bkConfirmDetails').innerHTML = `<strong>${bkSlot.label}</strong><br>📍 ${location}<br>${name} · ${phone}`;
+  document.getElementById('bkConfirmDetails').innerHTML =
+    '<strong>' + bkSlot.label + '</strong><br>📍 ' + location + '<br>' + name + ' · ' + phone;
 }
 
 function bkCopyId() {
   if (!bkLastId) return;
-  navigator.clipboard.writeText(bkLastId).then(() => alert('Booking ID copied: ' + bkLastId)).catch(() => alert('Your Booking ID: ' + bkLastId));
+  navigator.clipboard.writeText(bkLastId)
+    .then(() => alert('Booking ID copied: ' + bkLastId))
+    .catch(() => alert('Your Booking ID: ' + bkLastId));
 }
 
 function bkReset() {
@@ -1535,8 +1559,11 @@ function bkReset() {
   bkRenderTimes();
 }
 
-// Init on load
-bkRenderDates();
+// Wait for DOM then render
+document.addEventListener('DOMContentLoaded', function() {
+  bkRenderDates();
+  bkRenderTimes();
+});
 </script>
 
 </body>

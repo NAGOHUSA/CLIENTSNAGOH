@@ -389,9 +389,94 @@
       .process-steps .step-card:last-child { grid-column: auto; max-width: 100%; margin: 0; }
       .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
     }
+    /* ── STEP CTA LINK (inside process card) ── */
+    .step-card--cta {
+      border: 1px solid rgba(184,146,74,0.3) !important;
+      background: linear-gradient(145deg, rgba(255,255,255,0.75), rgba(240,228,200,0.3)) !important;
+    }
+    .step-cta-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.2rem;
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); text-decoration: none;
+      border-bottom: 1px solid rgba(184,146,74,0.3);
+      padding-bottom: 2px;
+      transition: color 0.3s, border-color 0.3s, gap 0.3s;
+    }
+    .step-cta-link svg { width: 13px; height: 13px; transition: transform 0.3s var(--ease); }
+    .step-cta-link:hover { color: var(--ink); border-color: var(--ink); gap: 0.75rem; }
+    .step-cta-link:hover svg { transform: translateX(3px); }
+
+    /* ── ONBOARDING BRIDGE SECTION ── */
+    .onboarding-bridge { padding: 90px 0; }
+    .bridge-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--glass-shadow);
+      padding: 3rem 3.5rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 3rem; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .bridge-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-lt), transparent);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .bridge-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg);
+      background: linear-gradient(140deg, rgba(255,255,255,0.4) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .bridge-eyebrow { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; }
+    .bridge-eyebrow::before { content: ''; width: 20px; height: 1px; background: var(--gold); }
+    .bridge-eyebrow span { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .bridge-h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.7rem, 2.5vw, 2.3rem); font-weight: 300; color: var(--ink); line-height: 1.18;
+      margin-bottom: 0.9rem;
+    }
+    .bridge-h2 em { font-style: italic; }
+    .bridge-body { font-size: 0.9rem; font-weight: 300; line-height: 1.78; color: var(--ink-soft); max-width: 52ch; }
+    .bridge-checklist { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.5rem; }
+    .bridge-check { display: flex; align-items: center; gap: 0.65rem; font-size: 0.84rem; font-weight: 300; color: var(--ink-soft); }
+    .bridge-check::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: var(--gold-pale); border: 1px solid rgba(184,146,74,0.25); display: flex; align-items: center; justify-content: center; flex-shrink: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23b8924a' stroke-width='2.5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: 10px; background-repeat: no-repeat; background-position: center; }
+    .bridge-right { flex-shrink: 0; text-align: center; z-index: 1; }
+    .bridge-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); background: var(--ink);
+      padding: 1rem 2rem; border-radius: 100px; text-decoration: none;
+      box-shadow: 0 6px 24px rgba(13,16,24,0.22);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+      white-space: nowrap;
+    }
+    .bridge-cta svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease); }
+    .bridge-cta:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(184,146,74,0.3); }
+    .bridge-cta:hover svg { transform: translateX(3px); }
+    .bridge-note { font-size: 0.68rem; color: var(--ink-muted); margin-top: 0.7rem; }
+    @media (max-width: 760px) {
+      .bridge-card { grid-template-columns: 1fr; padding: 2rem 1.8rem; }
+      .bridge-right { text-align: left; }
+    }
+
+    /* ── PAGE TRANSITION OVERLAY ── */
+    #page-transition {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--cream);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+    #page-transition.fade-out { opacity: 1; pointer-events: all; }
+    #page-transition.fade-in  { opacity: 0; pointer-events: none; }
+
   </style>
 </head>
 <body>
+
+<div id="page-transition"></div>
 
 <div class="bg-canvas">
   <div class="blob blob-1"></div>
@@ -717,10 +802,14 @@
         <div class="step-title">Review Your Proposal</div>
         <p class="step-desc">I'll send a clear, flat-rate proposal outlining recommended services and pricing. You choose what fits your needs — no hidden fees.</p>
       </div>
-      <div class="step-card reveal d4">
+      <div class="step-card step-card--cta reveal d4">
         <div class="step-num">04</div>
         <div class="step-title">Sign &amp; Onboard</div>
-        <p class="step-desc">Once your engagement letter is signed, you'll receive access to my secure client portal and onboarding forms to get everything started.</p>
+        <p class="step-desc">Once your engagement letter is signed, you'll receive access to the secure client portal and onboarding forms to get everything started.</p>
+        <a href="onboarding.html" class="step-cta-link transition-link">
+          Start Onboarding
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
       <div class="step-card reveal d1">
         <div class="step-num">05</div>
@@ -736,6 +825,32 @@
         <div class="step-num">07</div>
         <div class="step-title">Monthly Clarity</div>
         <p class="step-desc">Every month you receive polished financial statements. You always know where you stand — and who to call when you have questions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ONBOARDING BRIDGE ── -->
+<section class="onboarding-bridge">
+  <div class="container">
+    <div class="bridge-card reveal">
+      <div>
+        <div class="bridge-eyebrow"><span>Already a Client?</span></div>
+        <h2 class="bridge-h2">Ready to get started?<br/><em>Complete your onboarding.</em></h2>
+        <p class="bridge-body">Once your engagement letter is signed, use the secure onboarding form to share your business details, grant QuickBooks access, and upload any relevant documents — all in one place, at your own pace.</p>
+        <div class="bridge-checklist">
+          <div class="bridge-check">Business &amp; contact information</div>
+          <div class="bridge-check">Services selection &amp; bookkeeping status</div>
+          <div class="bridge-check">QuickBooks Online access guide included</div>
+          <div class="bridge-check">Secure document uploads — save &amp; return anytime</div>
+        </div>
+      </div>
+      <div class="bridge-right">
+        <a href="onboarding.html" class="bridge-cta transition-link">
+          Begin Onboarding
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="bridge-note">Takes about 10 minutes · Save &amp; return anytime</div>
       </div>
     </div>
   </div>
@@ -843,6 +958,23 @@
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+  // ── PAGE TRANSITION ──
+  const overlay = document.getElementById('page-transition');
+
+  // Fade in on load (arriving from onboarding page)
+  window.addEventListener('load', () => {
+    overlay.classList.remove('fade-out');
+  });
+
+  // Intercept all transition-link clicks for smooth fade-out
+  document.querySelectorAll('.transition-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      overlay.classList.add('fade-out');
+      setTimeout(() => { window.location.href = href; }, 420);
+    });
+  });
 </script>
 </body>
 </html>

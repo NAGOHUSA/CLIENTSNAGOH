@@ -222,39 +222,50 @@
     }
 
     .hero-photo-card {
-      position: relative; width: 100%; max-width: 460px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
+      position: relative; width: 100%; max-width: 420px;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
       border-radius: var(--radius-lg);
-      backdrop-filter: blur(24px) saturate(1.3);
-      -webkit-backdrop-filter: blur(24px) saturate(1.3);
-      box-shadow: 0 24px 80px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+      box-shadow: 0 8px 48px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
       overflow: hidden;
-      padding-bottom: 1.6rem;
+      padding: 1rem 1rem 1.5rem;
     }
 
-    /* Full split image — Christine's face left, Clarity logo right */
+    /* Full split image with its own rounded corners inside the card */
     .hero-photo-img-wrap {
       width: 100%;
-      aspect-ratio: 3/2;
+      aspect-ratio: 16/9;
       background-image: url('https://images.squarespace-cdn.com/content/v1/68fad9bd5e982f7b6bced7a9/a48f0fd1-b245-49f8-8b86-4e6d5a38a4e2/Untitled+design+%284%29.png?format=750w');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
+      border-radius: 10px;
+      margin-bottom: 1.2rem;
     }
 
-    /* Name / title below the image — matches about card */
+    /* Name / title */
     .hero-photo-meta {
-      padding: 1.1rem 1.5rem 0;
+      padding: 0 0.5rem;
     }
     .hero-photo-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem; font-weight: 400; color: var(--ink); line-height: 1.2;
+      font-size: 1.5rem; font-weight: 400; color: var(--ink); line-height: 1.2;
+      margin-bottom: 0.2rem;
     }
     .hero-photo-title {
       font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--gold); margin-top: 0.25rem;
+      color: var(--gold); margin-bottom: 1rem;
     }
+
+    /* Contact rows inside hero card */
+    .hero-contact-row {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.82rem; color: var(--ink-soft);
+      margin-top: 0.45rem;
+    }
+    .hero-contact-row svg { width: 14px; height: 14px; color: var(--gold); flex-shrink: 0; }
+    .hero-contact-row a { color: inherit; text-decoration: none; }
+    .hero-contact-row a:hover { color: var(--gold); }
 
     /* About card: same image full-width */
     .about-img-wrap {
@@ -727,10 +738,18 @@
       <div class="hero-photo-meta">
         <div class="hero-photo-name">Christine Thompson</div>
         <div class="hero-photo-title">Owner · Clarity Bookkeeping by Christine LLC</div>
-      </div>
-      <div class="hero-badge">
-        <div class="hero-badge-num">QB<span>✓</span></div>
-        <div class="hero-badge-label">ProAdvisor Certified</div>
+        <div class="hero-contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+          Warner Robins, GA &amp; All 50 States
+        </div>
+        <div class="hero-contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          <a href="tel:4783521146">(478) 352-1146</a>
+        </div>
+        <div class="hero-contact-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <a href="mailto:Christine@claritybookkeepingbychristine.com">Christine@claritybookkeepingbychristine.com</a>
+        </div>
       </div>
     </div>
   </div>

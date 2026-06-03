@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Value of a Bookkeeper | Clarity Bookkeeping by Christine</title>
+  <meta name="description" content="See the real numbers behind hiring a professional bookkeeper — time saved, money recovered, and the peace of mind that comes with financial clarity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #0d1018;
+      --ink-soft:   #3e4250;
+      --ink-muted:  #7c8090;
+      --cream:      #f5f2ec;
+      --cream-2:    #ede9e1;
+      --gold:       #b8924a;
+      --gold-lt:    #d4b06a;
+      --gold-pale:  #f0e4c8;
+      --white:      #ffffff;
+      --glass-bg:   rgba(255,255,255,0.65);
+      --glass-border: rgba(255,255,255,0.85);
+      --glass-shadow: 0 8px 40px rgba(0,0,0,0.09), 0 2px 8px rgba(0,0,0,0.05);
+      --radius-lg:  20px;
+      --radius-md:  14px;
+      --radius-sm:  8px;
+      --ease:       cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── BG BLOBS ── */
+    .bg-canvas { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .blob { position: absolute; border-radius: 50%; filter: blur(90px); }
+    .blob-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(212,176,106,0.35), transparent 70%); top: -200px; left: -200px; animation: blobDrift 20s ease-in-out infinite alternate; }
+    .blob-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(184,146,74,0.22), transparent 70%); bottom: 5%; right: -100px; animation: blobDrift 25s ease-in-out infinite alternate-reverse; }
+    .blob-3 { width: 380px; height: 380px; background: radial-gradient(circle, rgba(200,184,144,0.28), transparent 70%); top: 45%; left: 25%; animation: blobDrift 30s ease-in-out infinite alternate; }
+    @keyframes blobDrift { 0% { transform: translate(0,0) scale(1); } 100% { transform: translate(40px,28px) scale(1.07); } }
+
+    /* ── PAGE TRANSITION ── */
+    #page-transition {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--cream); opacity: 1; pointer-events: all;
+      transition: opacity 0.4s var(--ease);
+    }
+    #page-transition.visible { opacity: 0; pointer-events: none; }
+    #page-transition.fade-out { opacity: 1; pointer-events: all; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      padding: 0 5vw; height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: all 0.5s var(--ease);
+    }
+    nav.scrolled {
+      background: rgba(245,242,236,0.88);
+      backdrop-filter: blur(20px) saturate(1.4);
+      border-bottom: 1px solid rgba(184,146,74,0.14);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; color: var(--ink); text-decoration: none; line-height: 1.2; }
+    .nav-logo span { display: block; font-size: 0.62rem; font-family: 'DM Sans', sans-serif; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.08em; color: var(--ink-soft); text-decoration: none; transition: color 0.3s; }
+    .nav-back svg { width: 14px; height: 14px; }
+    .nav-back:hover { color: var(--gold); }
+
+    /* ── LAYOUT ── */
+    .page-wrap { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; padding: 110px 5vw 80px; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 5vw; }
+
+    /* ── PAGE HERO ── */
+    .page-hero { text-align: center; margin-bottom: 5rem; }
+    .page-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; margin-bottom: 1.2rem; }
+    .page-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .page-eyebrow::after  { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .page-eyebrow span { font-size: 0.67rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .page-h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 300; line-height: 1.1; color: var(--ink); margin-bottom: 1.2rem; }
+    .page-h1 em { font-style: italic; color: var(--gold); }
+    .page-lead { font-size: 1rem; font-weight: 300; line-height: 1.82; color: var(--ink-soft); max-width: 58ch; margin: 0 auto 1.5rem; }
+    .demo-badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--ink-muted); background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: 100px; padding: 0.38rem 0.9rem;
+      backdrop-filter: blur(10px);
+    }
+    .demo-badge svg { width: 11px; height: 11px; color: var(--gold); }
+
+    /* ── STAT HERO ROW ── */
+    .stat-hero-row {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem;
+      margin-bottom: 4rem;
+    }
+    .stat-hero-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg); backdrop-filter: blur(16px);
+      box-shadow: var(--glass-shadow); padding: 1.8rem 1.5rem;
+      text-align: center; position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), box-shadow 0.3s;
+    }
+    .stat-hero-card.in { opacity: 1; transform: none; }
+    .stat-hero-card:hover { box-shadow: 0 16px 50px rgba(0,0,0,0.11); transform: translateY(-3px); }
+    .stat-hero-card::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg); background: linear-gradient(145deg, rgba(255,255,255,0.45) 0%, transparent 55%); pointer-events: none; }
+    .stat-hero-num { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 400; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
+    .stat-hero-num em { font-style: normal; color: var(--gold); font-size: 1.8rem; }
+    .stat-hero-label { font-size: 0.72rem; font-weight: 400; color: var(--ink-muted); letter-spacing: 0.06em; line-height: 1.4; }
+    .stat-hero-sub { font-size: 0.65rem; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.4rem; font-weight: 500; }
+
+    /* ── SECTION HEADER ── */
+    .section-header { margin-bottom: 2.5rem; }
+    .section-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem; }
+    .section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--gold); flex-shrink: 0; }
+    .section-eyebrow span { font-size: 0.66rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .section-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; line-height: 1.15; color: var(--ink); }
+    .section-h2 em { font-style: italic; }
+    .section-lead { font-size: 0.9rem; font-weight: 300; line-height: 1.8; color: var(--ink-soft); max-width: 58ch; margin-top: 0.6rem; }
+
+    /* ── CHART SECTIONS ── */
+    .chart-section { margin-bottom: 4.5rem; }
+
+    .chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+    .chart-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.4rem; }
+
+    .chart-card {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg); backdrop-filter: blur(18px);
+      box-shadow: var(--glass-shadow); padding: 2rem;
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .chart-card.in { opacity: 1; transform: none; }
+    .chart-card::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg); background: linear-gradient(145deg, rgba(255,255,255,0.4) 0%, transparent 50%); pointer-events: none; }
+    .chart-card.dark {
+      background: linear-gradient(135deg, rgba(13,16,24,0.88), rgba(13,16,24,0.78));
+      border-color: rgba(255,255,255,0.07);
+    }
+    .chart-card.dark::after { background: linear-gradient(145deg, rgba(255,255,255,0.04) 0%, transparent 50%); }
+    .chart-card.full { grid-column: 1 / -1; }
+
+    .chart-card-eyebrow { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+    .chart-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; line-height: 1.2; }
+    .chart-card.dark .chart-card-title { color: var(--white); }
+    .chart-card-desc { font-size: 0.78rem; font-weight: 300; color: var(--ink-muted); line-height: 1.6; margin-bottom: 1.5rem; max-width: 48ch; }
+    .chart-card.dark .chart-card-desc { color: rgba(255,255,255,0.45); }
+
+    .chart-wrap { position: relative; width: 100%; }
+    .chart-wrap canvas { position: relative; z-index: 1; }
+
+    /* ── COMPARISON TABLE ── */
+    .compare-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .compare-table th {
+      font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--ink-muted); font-weight: 500; padding: 0.6rem 0.8rem;
+      text-align: left; border-bottom: 1px solid rgba(184,146,74,0.15);
+    }
+    .compare-table th:nth-child(2), .compare-table th:nth-child(3) { text-align: center; }
+    .compare-table td { font-size: 0.84rem; padding: 0.75rem 0.8rem; border-bottom: 1px solid rgba(184,146,74,0.08); color: var(--ink-soft); font-weight: 300; vertical-align: middle; }
+    .compare-table td:nth-child(1) { font-weight: 400; color: var(--ink); }
+    .compare-table td:nth-child(2), .compare-table td:nth-child(3) { text-align: center; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .check-yes { color: #2d7a4f; font-size: 1rem; }
+    .check-no  { color: #c0392b; font-size: 1rem; }
+    .check-partial { color: var(--gold); font-size: 0.8rem; font-weight: 500; }
+    .col-highlight { background: rgba(184,146,74,0.06); }
+
+    /* ── TIMELINE BAR (horizontal) ── */
+    .hbar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.9rem; }
+    .hbar-label { font-size: 0.8rem; font-weight: 300; color: var(--ink-soft); min-width: 140px; flex-shrink: 0; }
+    .hbar-track { flex: 1; height: 10px; background: rgba(184,146,74,0.12); border-radius: 100px; overflow: hidden; }
+    .hbar-fill { height: 100%; border-radius: 100px; width: 0; transition: width 1.2s var(--ease); }
+    .hbar-fill.gold { background: linear-gradient(90deg, var(--gold-lt), var(--gold)); }
+    .hbar-fill.green { background: linear-gradient(90deg, #6ee7b7, #2d7a4f); }
+    .hbar-fill.red { background: linear-gradient(90deg, #fca5a5, #c0392b); }
+    .hbar-val { font-size: 0.8rem; font-weight: 500; color: var(--ink); min-width: 52px; text-align: right; }
+
+    /* ── STRESS METER ── */
+    .stress-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 0.5rem; }
+    .stress-item { }
+    .stress-label { font-size: 0.76rem; font-weight: 400; color: var(--ink-soft); margin-bottom: 0.5rem; display: flex; justify-content: space-between; }
+    .stress-label span { font-weight: 500; color: var(--ink); }
+    .stress-track { height: 8px; background: rgba(184,146,74,0.1); border-radius: 100px; overflow: hidden; }
+    .stress-fill { height: 100%; border-radius: 100px; width: 0; transition: width 1.4s var(--ease); }
+
+    /* ── ROI CALLOUT ── */
+    .roi-callout {
+      background: linear-gradient(135deg, rgba(13,16,24,0.9), rgba(13,16,24,0.8));
+      border: 1px solid rgba(184,146,74,0.2); border-radius: var(--radius-lg);
+      padding: 3rem 3.5rem; display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem; align-items: center; margin-bottom: 4.5rem;
+      position: relative; overflow: hidden;
+      opacity: 0; transform: translateY(22px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .roi-callout.in { opacity: 1; transform: none; }
+    .roi-callout::before { content: ''; position: absolute; top: -100px; left: -80px; width: 350px; height: 350px; border-radius: 50%; background: radial-gradient(circle, rgba(184,146,74,0.12), transparent 70%); pointer-events: none; }
+    .roi-callout::after { content: ''; position: absolute; bottom: -80px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(184,146,74,0.08), transparent 70%); pointer-events: none; }
+    .roi-item { text-align: center; position: relative; z-index: 1; }
+    .roi-item + .roi-item { border-left: 1px solid rgba(255,255,255,0.07); }
+    .roi-num { font-family: 'Cormorant Garamond', serif; font-size: 3.2rem; font-weight: 300; color: var(--white); line-height: 1; }
+    .roi-num em { font-style: normal; color: var(--gold); font-size: 2rem; }
+    .roi-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.5rem; line-height: 1.5; }
+    .roi-note  { font-size: 0.7rem; font-weight: 300; color: rgba(255,255,255,0.22); margin-top: 0.3rem; font-style: italic; }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      text-align: center; padding: 2rem 0 1rem;
+      font-size: 0.72rem; color: var(--ink-muted); font-weight: 300;
+      border-top: 1px solid rgba(184,146,74,0.1); margin-top: 3rem;
+      line-height: 1.7;
+    }
+
+    /* ── CTA FOOTER ── */
+    .page-cta {
+      text-align: center; padding: 3rem 2rem 0; margin-top: 1rem;
+    }
+    .page-cta-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 300; color: var(--ink); margin-bottom: 0.8rem; }
+    .page-cta-h2 em { font-style: italic; color: var(--gold); }
+    .page-cta-sub { font-size: 0.9rem; font-weight: 300; color: var(--ink-soft); margin-bottom: 2rem; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); background: var(--ink); padding: 0.95rem 2rem; border-radius: 100px; text-decoration: none; box-shadow: 0 6px 24px rgba(13,16,24,0.22); transition: background 0.3s, transform 0.2s, box-shadow 0.3s; }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-2px); box-shadow: 0 10px 32px rgba(184,146,74,0.3); }
+    .btn-primary svg { width: 14px; height: 14px; }
+
+    .page-footer { position: relative; z-index: 1; text-align: center; padding: 2rem 5vw 3rem; border-top: 1px solid rgba(184,146,74,0.1); margin-top: 3rem; }
+    .page-footer p { font-size: 0.75rem; color: var(--ink-muted); }
+    .page-footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.in { opacity: 1; transform: none; }
+    .d1 { transition-delay: 0.08s; } .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; } .d4 { transition-delay: 0.32s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .stat-hero-row { grid-template-columns: 1fr 1fr; }
+      .chart-grid-2 { grid-template-columns: 1fr; }
+      .chart-grid-3 { grid-template-columns: 1fr 1fr; }
+      .roi-callout { grid-template-columns: 1fr; gap: 1.5rem; padding: 2.5rem 2rem; }
+      .roi-item + .roi-item { border-left: none; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .stat-hero-row { grid-template-columns: 1fr 1fr; }
+      .chart-grid-3 { grid-template-columns: 1fr; }
+      .stress-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="page-transition"></div>
+
+<div class="bg-canvas">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+</div>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo transition-link">
+    Clarity Bookkeeping
+    <span>by Christine</span>
+  </a>
+  <a href="index.html" class="nav-back transition-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to main site
+  </a>
+</nav>
+
+<div class="page-wrap">
+
+  <!-- ── HERO ── -->
+  <div class="page-hero reveal">
+    <div class="page-eyebrow"><span>The Numbers Don't Lie</span></div>
+    <h1 class="page-h1">What a bookkeeper<br/>is actually <em>worth</em></h1>
+    <p class="page-lead">Most business owners think of bookkeeping as a cost. The data tells a different story — one of time reclaimed, money recovered, and decisions made with confidence.</p>
+    <div class="demo-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      Based on industry research &amp; small business surveys — illustrative averages
+    </div>
+  </div>
+
+  <!-- ── HERO STATS ── -->
+  <div class="stat-hero-row">
+    <div class="stat-hero-card" data-delay="0">
+      <div class="stat-hero-num"><span class="count-up" data-target="10">0</span><em>hrs</em></div>
+      <div class="stat-hero-label">Saved every month by the average small business owner</div>
+      <div class="stat-hero-sub">↑ 120 hrs / year</div>
+    </div>
+    <div class="stat-hero-card" data-delay="100">
+      <div class="stat-hero-num"><span class="count-up" data-target="27" data-prefix="$" data-suffix="k">0</span></div>
+      <div class="stat-hero-label">Avg. tax savings identified in first year of clean books</div>
+      <div class="stat-hero-sub">Missed deductions recovered</div>
+    </div>
+    <div class="stat-hero-card" data-delay="200">
+      <div class="stat-hero-num"><span class="count-up" data-target="82" data-suffix="%">0</span></div>
+      <div class="stat-hero-label">Of small businesses fail partly due to cash flow problems</div>
+      <div class="stat-hero-sub">Visibility prevents surprises</div>
+    </div>
+    <div class="stat-hero-card" data-delay="300">
+      <div class="stat-hero-num"><span class="count-up" data-target="3.5" data-suffix="×" data-decimals="1">0</span></div>
+      <div class="stat-hero-label">Average ROI on professional bookkeeping services</div>
+      <div class="stat-hero-sub">More than pays for itself</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1: TIME ══ -->
+  <div class="chart-section">
+    <div class="section-header reveal">
+      <div class="section-eyebrow"><span>Your Most Valuable Asset</span></div>
+      <h2 class="section-h2">Where your time <em>actually goes</em></h2>
+      <p class="section-lead">Small business owners wear every hat. But time spent on administration is time not spent on revenue-generating work — and that has a real dollar cost.</p>
+    </div>
+
+    <div class="chart-grid-2">
+      <!-- Time Allocation Doughnut -->
+      <div class="chart-card reveal d1">
+        <div class="chart-card-eyebrow">Without a Bookkeeper</div>
+        <div class="chart-card-title">Where 40 hrs/week goes</div>
+        <div class="chart-card-desc">The average owner spends 25% of their working week on financial admin tasks that could be delegated.</div>
+        <div class="chart-wrap" style="height:240px;">
+          <canvas id="timeDonut"></canvas>
+        </div>
+      </div>
+
+      <!-- Time Freed Bar -->
+      <div class="chart-card reveal d2">
+        <div class="chart-card-eyebrow">With a Bookkeeper</div>
+        <div class="chart-card-title">Hours reclaimed per month</div>
+        <div class="chart-card-desc">These hours go straight back into the work that grows your business — or the life you started the business to fund.</div>
+        <div style="margin-top:0.5rem;">
+          <div class="hbar-row">
+            <div class="hbar-label">Transaction entry</div>
+            <div class="hbar-track"><div class="hbar-fill gold" data-width="72"></div></div>
+            <div class="hbar-val">3.6 hrs</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">Bank reconciliation</div>
+            <div class="hbar-track"><div class="hbar-fill gold" data-width="54"></div></div>
+            <div class="hbar-val">2.7 hrs</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">Invoicing &amp; A/R</div>
+            <div class="hbar-track"><div class="hbar-fill gold" data-width="46"></div></div>
+            <div class="hbar-val">2.3 hrs</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">Payroll processing</div>
+            <div class="hbar-track"><div class="hbar-fill gold" data-width="30"></div></div>
+            <div class="hbar-val">1.5 hrs</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">Tax prep scramble</div>
+            <div class="hbar-track"><div class="hbar-fill red" data-width="40"></div></div>
+            <div class="hbar-val">2.0 hrs</div>
+          </div>
+          <div class="hbar-row" style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(184,146,74,0.15);">
+            <div class="hbar-label" style="font-weight:500;color:var(--ink);">Total monthly savings</div>
+            <div class="hbar-track"><div class="hbar-fill green" data-width="100"></div></div>
+            <div class="hbar-val" style="font-weight:600;color:var(--ink);">~12 hrs</div>
+          </div>
+          <p style="font-size:0.72rem;color:var(--ink-muted);margin-top:1rem;">At a modest $75/hr opportunity cost, that's <strong style="color:var(--gold);">$900/month</strong> in reclaimed value.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2: MONEY ══ -->
+  <div class="chart-section">
+    <div class="section-header reveal">
+      <div class="section-eyebrow"><span>The Financial Picture</span></div>
+      <h2 class="section-h2">Clean books <em>find money</em><br/>you didn't know you had</h2>
+      <p class="section-lead">Disorganized finances don't just cause stress — they cost real money through missed deductions, late fees, poor cash flow decisions, and tax penalties.</p>
+    </div>
+
+    <div class="chart-grid-2">
+      <!-- Year-over-year profit line -->
+      <div class="chart-card full reveal">
+        <div class="chart-card-eyebrow">12-Month Comparison</div>
+        <div class="chart-card-title">Net profit: self-managed vs. professionally bookept</div>
+        <div class="chart-card-desc">Illustrative demo based on a $300k/year service business. Professional bookkeeping creates clarity that enables better decisions month by month.</div>
+        <div class="chart-wrap" style="height:280px;">
+          <canvas id="profitLine"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-grid-3" style="margin-top:1.4rem;">
+      <!-- Hidden costs -->
+      <div class="chart-card reveal d1">
+        <div class="chart-card-eyebrow">The Hidden Costs</div>
+        <div class="chart-card-title">Annual cost of DIY bookkeeping mistakes</div>
+        <div class="chart-card-desc">What disorganized books actually cost you each year.</div>
+        <div style="margin-top:1rem;">
+          <div class="hbar-row">
+            <div class="hbar-label">Missed deductions</div>
+            <div class="hbar-track"><div class="hbar-fill red" data-width="85"></div></div>
+            <div class="hbar-val">$4,200</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">Late penalties</div>
+            <div class="hbar-track"><div class="hbar-fill red" data-width="35"></div></div>
+            <div class="hbar-val">$1,800</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">Overpaid taxes</div>
+            <div class="hbar-track"><div class="hbar-fill red" data-width="55"></div></div>
+            <div class="hbar-val">$2,700</div>
+          </div>
+          <div class="hbar-row">
+            <div class="hbar-label">CPA cleanup fees</div>
+            <div class="hbar-track"><div class="hbar-fill red" data-width="45"></div></div>
+            <div class="hbar-val">$2,200</div>
+          </div>
+          <div class="hbar-row" style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid rgba(184,146,74,0.12);">
+            <div class="hbar-label" style="font-weight:500;color:var(--ink);">Total annual cost</div>
+            <div class="hbar-track"><div class="hbar-fill red" data-width="100"></div></div>
+            <div class="hbar-val" style="font-weight:600;color:#c0392b;">$10,900</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cash flow radar -->
+      <div class="chart-card reveal d2">
+        <div class="chart-card-eyebrow">Cash Flow Visibility</div>
+        <div class="chart-card-title">Months with cash flow surprises</div>
+        <div class="chart-card-desc">Businesses with clean monthly books are significantly less likely to be blindsided.</div>
+        <div class="chart-wrap" style="height:210px;">
+          <canvas id="cashBar"></canvas>
+        </div>
+      </div>
+
+      <!-- Deductions found -->
+      <div class="chart-card reveal d3">
+        <div class="chart-card-eyebrow">Tax Season</div>
+        <div class="chart-card-title">Deductions typically found in year 1</div>
+        <div class="chart-card-desc">Categories most often missed by owners managing their own books.</div>
+        <div class="chart-wrap" style="height:210px;">
+          <canvas id="deductionBar"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ ROI CALLOUT ══ -->
+  <div class="roi-callout">
+    <div class="roi-item">
+      <div class="roi-num"><em>$</em><span class="count-up" data-target="10900">0</span></div>
+      <div class="roi-label">Average annual cost of disorganized books</div>
+      <div class="roi-note">Penalties, missed deductions, CPA cleanup</div>
+    </div>
+    <div class="roi-item">
+      <div class="roi-num"><em>÷</em></div>
+      <div class="roi-label" style="font-size:1rem;color:rgba(255,255,255,0.2);margin-top:0;">vs.</div>
+      <div class="roi-note" style="margin-top:0.8rem;">Professional bookkeeping cost</div>
+    </div>
+    <div class="roi-item">
+      <div class="roi-num"><span class="count-up" data-target="3.5" data-suffix="×" data-decimals="1">0</span></div>
+      <div class="roi-label">Average return on investment</div>
+      <div class="roi-note">The bookkeeper more than pays for itself</div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3: STRESS & CONFIDENCE ══ -->
+  <div class="chart-section">
+    <div class="section-header reveal">
+      <div class="section-eyebrow"><span>Beyond the Numbers</span></div>
+      <h2 class="section-h2">The thing you can't<br/><em>put a price on</em></h2>
+      <p class="section-lead">Business owners who outsource their bookkeeping consistently report reduced stress and increased confidence in their financial decisions.</p>
+    </div>
+
+    <div class="chart-grid-2">
+      <!-- Stress metrics -->
+      <div class="chart-card reveal d1">
+        <div class="chart-card-eyebrow">Owner-Reported Confidence</div>
+        <div class="chart-card-title">Financial confidence before &amp; after</div>
+        <div class="chart-card-desc">Self-reported survey data from small business owners 6 months after hiring a bookkeeper.</div>
+        <div class="stress-grid" style="margin-top:1rem;">
+          <div class="stress-item">
+            <div class="stress-label">Know their monthly profit <span>Before: 34%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:rgba(184,146,74,0.3);" data-width="34"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Know their monthly profit <span>After: 91%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:var(--gold);" data-width="91"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Ready for tax season <span>Before: 28%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:rgba(184,146,74,0.3);" data-width="28"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Ready for tax season <span>After: 88%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:var(--gold);" data-width="88"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Understand cash flow <span>Before: 41%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:rgba(184,146,74,0.3);" data-width="41"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Understand cash flow <span>After: 87%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:var(--gold);" data-width="87"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Feel financially in control <span>Before: 22%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:rgba(184,146,74,0.3);" data-width="22"></div></div>
+          </div>
+          <div class="stress-item">
+            <div class="stress-label">Feel financially in control <span>After: 84%</span></div>
+            <div class="stress-track"><div class="stress-fill" style="background:var(--gold);" data-width="84"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="chart-card reveal d2">
+        <div class="chart-card-eyebrow">Side by Side</div>
+        <div class="chart-card-title">DIY vs. Professional Bookkeeping</div>
+        <div class="chart-card-desc">A straightforward look at what you get — and what you don't.</div>
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>DIY</th>
+              <th class="col-highlight">Professional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Monthly reconciliation</td><td><span class="check-partial">Sometimes</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Clean financial reports</td><td><span class="check-no">✗</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Tax-ready records</td><td><span class="check-partial">Rarely</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Payroll compliance</td><td><span class="check-no">✗</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Cash flow visibility</td><td><span class="check-partial">Partial</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Deduction optimization</td><td><span class="check-no">✗</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Your time back</td><td><span class="check-no">✗</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+            <tr><td>Peace of mind</td><td><span class="check-no">✗</span></td><td class="col-highlight"><span class="check-yes">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CTA ── -->
+  <div class="page-cta reveal">
+    <h2 class="page-cta-h2">Ready to see what clarity<br/><em>looks like for your business?</em></h2>
+    <p class="page-cta-sub">Schedule a free 15-minute book review — no obligation, no pressure, just a conversation.</p>
+    <a href="https://calendly.com/christine-claritybookkeepingbychristine/15min" target="_blank" class="btn-primary">
+      Book a Free Call
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+
+  <div class="disclaimer">
+    <p>All figures are illustrative estimates based on industry research, IRS data, and small business surveys including SCORE, NFIB, and Intuit's small business reports.<br/>Individual results vary. Demo data is provided for educational purposes only and does not constitute financial or tax advice.</p>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<footer class="page-footer">
+  <p>Questions? <a href="tel:4783521146">(478) 352-1146</a> · <a href="mailto:Christine@claritybookkeepingbychristine.com">Christine@claritybookkeepingbychristine.com</a></p>
+  <p style="margin-top:0.4rem;">© 2025 Clarity Bookkeeping by Christine LLC · Warner Robins, GA</p>
+</footer>
+
+<script>
+// ── PAGE TRANSITION ──
+const overlay = document.getElementById('page-transition');
+window.addEventListener('load', () => { requestAnimationFrame(() => overlay.classList.add('visible')); });
+document.querySelectorAll('.transition-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const href = this.getAttribute('href');
+    overlay.classList.remove('visible');
+    setTimeout(() => window.location.href = href, 420);
+  });
+});
+
+// ── NAV SCROLL ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+// ── CHART DEFAULTS ──
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.color = '#7c8090';
+
+const GOLD     = '#b8924a';
+const GOLD_LT  = '#d4b06a';
+const GOLD_P   = 'rgba(184,146,74,0.15)';
+const INK      = '#0d1018';
+const INK_SOFT = '#3e4250';
+const GREEN    = '#2d7a4f';
+const RED      = '#c0392b';
+const CREAM    = '#f5f2ec';
+const WHITE    = '#ffffff';
+
+// ── TIME DONUT ──
+new Chart(document.getElementById('timeDonut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Client Work', 'Sales & Marketing', 'Financial Admin', 'Operations', 'HR & Payroll'],
+    datasets: [{
+      data: [40, 20, 25, 10, 5],
+      backgroundColor: [GOLD, GOLD_LT, RED, 'rgba(184,146,74,0.35)', 'rgba(184,146,74,0.2)'],
+      borderColor: 'rgba(255,255,255,0.6)',
+      borderWidth: 2,
+      hoverOffset: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    cutout: '65%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 14, font: { size: 11 }, boxWidth: 10, boxHeight: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}%` } }
+    }
+  }
+});
+
+// ── PROFIT LINE ──
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const diy    = [3200, 2800, 4100, 3600, 2900, 3800, 4200, 3100, 3700, 2600, 4800, 5200];
+const pro    = [3800, 3900, 4600, 4800, 5100, 5400, 5800, 6000, 6400, 6700, 7100, 8200];
+
+new Chart(document.getElementById('profitLine'), {
+  type: 'line',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'Self-Managed Books',
+        data: diy,
+        borderColor: 'rgba(192,57,43,0.7)',
+        backgroundColor: 'rgba(192,57,43,0.06)',
+        borderWidth: 2,
+        borderDash: [5,4],
+        pointRadius: 4,
+        pointBackgroundColor: 'rgba(192,57,43,0.7)',
+        fill: true, tension: 0.4
+      },
+      {
+        label: 'Professional Bookkeeping',
+        data: pro,
+        borderColor: GOLD,
+        backgroundColor: 'rgba(184,146,74,0.08)',
+        borderWidth: 2.5,
+        pointRadius: 4,
+        pointBackgroundColor: GOLD,
+        fill: true, tension: 0.4
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: {
+      legend: { position: 'top', labels: { padding: 16, font: { size: 11 }, boxWidth: 12, boxHeight: 2 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}` } }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(184,146,74,0.08)' }, ticks: { font: { size: 11 } } },
+      y: {
+        grid: { color: 'rgba(184,146,74,0.08)' },
+        ticks: { font: { size: 11 }, callback: v => '$' + v.toLocaleString() }
+      }
+    }
+  }
+});
+
+// ── CASH FLOW SURPRISE BAR ──
+new Chart(document.getElementById('cashBar'), {
+  type: 'bar',
+  data: {
+    labels: ['No bookkeeper', 'With bookkeeper'],
+    datasets: [{
+      label: 'Months with cash surprises / year',
+      data: [7.2, 1.4],
+      backgroundColor: [RED, GOLD],
+      borderRadius: 8, borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} months avg.` } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+      y: { grid: { color: 'rgba(184,146,74,0.08)' }, ticks: { font: { size: 11 }, stepSize: 2 }, max: 9 }
+    }
+  }
+});
+
+// ── DEDUCTIONS BAR ──
+new Chart(document.getElementById('deductionBar'), {
+  type: 'bar',
+  data: {
+    labels: ['Home Office', 'Mileage', 'Software', 'Meals', 'Education'],
+    datasets: [{
+      label: 'Avg. $ found',
+      data: [3800, 5200, 2100, 1400, 1800],
+      backgroundColor: [GOLD, GOLD_LT, 'rgba(184,146,74,0.7)', 'rgba(184,146,74,0.5)', 'rgba(184,146,74,0.35)'],
+      borderRadius: 6, borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` $${ctx.parsed.x.toLocaleString()} avg.` } }
+    },
+    scales: {
+      x: { grid: { color: 'rgba(184,146,74,0.08)' }, ticks: { font: { size: 10 }, callback: v => '$' + v.toLocaleString() } },
+      y: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ── INTERSECTION OBSERVER — REVEALS + ANIMATED BARS ──
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+
+    // Generic reveal
+    el.classList.add('in');
+
+    // Stat hero cards with count-up
+    if (el.classList.contains('stat-hero-card')) {
+      const delay = parseInt(el.dataset.delay || 0);
+      setTimeout(() => {
+        el.classList.add('in');
+        el.querySelectorAll('.count-up').forEach(animateCount);
+      }, delay);
+    }
+
+    // ROI callout count-ups
+    if (el.classList.contains('roi-callout')) {
+      el.querySelectorAll('.count-up').forEach(animateCount);
+    }
+
+    // Horizontal bar fills
+    el.querySelectorAll('.hbar-fill[data-width]').forEach(bar => {
+      setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
+    });
+
+    // Stress fills
+    el.querySelectorAll('.stress-fill[data-width]').forEach(bar => {
+      setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 300);
+    });
+
+    io.unobserve(el);
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -30px 0px' });
+
+document.querySelectorAll('.reveal, .chart-card, .stat-hero-card, .roi-callout').forEach(el => io.observe(el));
+
+// ── COUNT-UP ANIMATION ──
+function animateCount(el) {
+  const target   = parseFloat(el.dataset.target);
+  const decimals = parseInt(el.dataset.decimals || 0);
+  const prefix   = el.dataset.prefix || '';
+  const suffix   = el.dataset.suffix || '';
+  const duration = 1400;
+  const start    = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased    = 1 - Math.pow(1 - progress, 3);
+    const value    = (eased * target).toFixed(decimals);
+    el.textContent = prefix + (decimals === 0 ? parseInt(value).toLocaleString() : value) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+</script>
+</body>
+</html>

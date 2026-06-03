@@ -389,9 +389,20 @@
       .complete-next-steps { grid-template-columns: 1fr; }
       .form-card { padding: 1.8rem 1.4rem; }
     }
+    /* ── PAGE TRANSITION OVERLAY ── */
+    #page-transition {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--cream);
+      opacity: 1; pointer-events: all;
+      transition: opacity 0.4s var(--ease);
+    }
+    #page-transition.visible { opacity: 0; pointer-events: none; }
+    #page-transition.fade-out { opacity: 1; pointer-events: all; }
   </style>
 </head>
 <body>
+
+<div id="page-transition"></div>
 
 <div class="bg-canvas">
   <div class="blob blob-1"></div>
@@ -1123,6 +1134,26 @@
 </footer>
 
 <script>
+  // ── PAGE TRANSITION ──
+  const overlay = document.getElementById('page-transition');
+
+  // Fade in on arrival
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => {
+      overlay.classList.add('visible');
+    });
+  });
+
+  // Fade out on any link back to index
+  document.querySelectorAll('a[href="index.html"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      overlay.classList.remove('visible');
+      overlay.classList.add('fade-out');
+      setTimeout(() => { window.location.href = 'index.html'; }, 420);
+    });
+  });
+
   // ── NAV SCROLL ──
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
